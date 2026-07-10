@@ -5,6 +5,7 @@ C
       CHARACTER*8 IC
 C     For IDATE (VAX and UNIX):
       INTEGER IARRAY(3)
+      INTEGER IDV(8)
       EQUIVALENCE (IARRAY,IA)
 C     Use machine names in all programs:
       COMMON /MACH1/ MACTYP
@@ -15,6 +16,14 @@ C-----------------------------------------------------------------------
 C
       IF (MACTYP .LE. 0 .OR. MACTYP .GT. 20) CALL MACH
 C
+#ifdef x86_64
+C       GNU Fortran on Linux x86
+        CALL DATE_AND_TIME(VALUES=IDV)
+        IMONTH = IDV(2)
+        IDAY   = IDV(3)
+        IYEAR  = IDV(1)
+#else
+      
       IF (MACTYP .EQ. 2 .OR. MACTYP .EQ. 7) THEN
 C
 C       CRAY: DATE RETURNS IC='MM/DD/YY' (TYPE INTEGER).
@@ -39,8 +48,17 @@ C
 C       Apollo UNIX: Front-end to cal_$decode_local_time:
         CALL IDATE (IMONTH,IDAY,IYEAR)
 C
+      ELSE IF (MACTYP .EQ. 12) THEN
+C
+C       GNU Fortran on Linux x86
+        CALL DATE_AND_TIME(VALUES=IDV)
+        IMONTH = IDV(2)
+        IDAY   = IDV(3)
+        IYEAR  = IDV(1)
+C
         ENDIF
 C
+#endif
       RETURN
       END
       SUBROUTINE DAYPRT (IOUT,IYEAR,IMONTH,IDAY)
