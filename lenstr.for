@@ -1,0 +1,13 @@
+      FUNCTION LENSTR (STRING)
+C
+C     STRIP OFF TRAILING BLANKS
+C
+      CHARACTER*(*) STRING
+C
+      DO 100 I = LEN(STRING), 1, -1
+        IF (STRING(I:I) .NE. ' ') GOTO 110
+100     CONTINUE
+      I = 0
+110   LENSTR = I
+      RETURN
+      END

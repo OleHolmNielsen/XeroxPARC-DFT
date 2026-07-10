@@ -1,0 +1,59 @@
+      PROGRAM RUN290
+C
+C     SPECIAL POINTS GENERATION
+C
+      PARAMETER (NDIM1 = 2000, NDIM2 = 500, NDIM9 = $NDIM9)
+      PARAMETER (NTYPMX = $NTYPMX)
+      PARAMETER (NDIM10 = $NDIM10)
+C
+      COMMON /FILES/INPUT,IOUT,IN290,IN213,ISTORE,IUNIT7,IUNIT8,ISTRUC,
+     +               IVNLKK,ISUMRY,IKPTS
+C
+      DOUBLE PRECISION ABOHR,RYEV,RYDERG,PI,SPI
+      COMMON /CONST/   ABOHR,RYEV,RYDERG,PI,SPI
+C     Machine types
+      COMMON /MACH1/ MACTYP
+C
+C.....LATTICE STRUCTURE
+      REAL XKAPA(3,NDIM9),A2TAB(NDIM2),A2LIST(NDIM1)
+      INTEGER TY(NDIM9),F0(48,NDIM9),NTAB(NDIM2),IALIST(3,NDIM1),
+     +NATOM(NDIM9)
+C.....SPECIAL POINTS
+      REAL WVKL(3,NDIM10)
+      INTEGER LWGHT(NDIM10),LROT(48,NDIM10)
+      DIMENSION IWORK(NDIM1),ICOPY(NDIM1)
+C     DATA
+      PARAMETER (I = 48*NDIM9)
+      DATA F0 /I * 0/
+C-----------------------------------------------------------------------
+C
+      CALL DAY(IYEAR,IMONTH,IDAY)
+      CALL CONSTS
+      IF (MACTYP .EQ. 10) THEN
+C       Sun: Abort on IEEE floating-point error
+        CALL FP_ABORT
+        ENDIF
+      IF (MACTYP .EQ. 11) THEN
+C       Apollo: Have to open files explicitly
+        OPEN(ISTRUC, FILE='fort.2')
+        OPEN(IN290,  FILE='fort.3')
+        IF (IUNIT8 .NE. 6)
+     +    OPEN(IUNIT8, FILE='fort.8')
+        ENDIF
+C
+      WRITE (IOUT,1000)
+     +NDIM1,NDIM2,NDIM9,NDIM10
+1000  FORMAT('1RUNNING PROGRAM K290'/'0DIMENSIONS ARE:'/
+     +' NDIM1=',I8,' A-VECTORS ARRANGED IN NDIM2=',I8,' SHELLS'/
+     +' NDIM9=',I8,' ATOMS                 NDIM10=',I7,
+     +' SPECIAL POINTS MAX'/)
+C-----------------------------------------------------------------------
+C
+      CALL K290
+     +  (NDIM1,NDIM2,NDIM9,NDIM10,NTYPMX,
+     +  XKAPA,TY,NATOM,NTAB,A2TAB,A2LIST,IALIST,F0,
+     +  WVKL,LWGHT,LROT,IWORK,ICOPY)
+C
+C     CRAY-2 bug:
+      CLOSE (UNIT = IOUT)
+      END

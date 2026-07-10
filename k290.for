@@ -1,0 +1,432 @@
+      SUBROUTINE K290
+     +  (NDIM1,NDIM2,NDIM9,NDIM10,NTYPMX,
+     +  XKAPA,TY,NATOM,  NTAB,A2TAB,A2LIST,IALIST,  F0,
+     +  WVKL,LWGHT,LROT, IWORK,ICOPY)
+C
+C                     WRITTEN ON SEPTEMBER 12TH, 1979.
+C                     IBM-RETOUCHED ON OCTOBER 27TH, 1980.
+C                     GENERATION OF SPECIAL POINTS MODIFIED ON
+C                     26-MAY-82 BY OHN.
+C
+C    PLAYING WITH SPECIAL POINTS AND CREATION OF 'CRYSTALLOGRAPHIC' FILE
+C    FOR BAND STRUCTURE CALCULATIONS.
+C    GENERATION OF SPECIAL POINTS IN K-SPACE FOR AN ARBITRARY LATTICE,
+C    FOLLOWING THE METHOD MONKHORST,PACK, PHYS. REV. B13 (1976) 5188
+C    MODIFIED BY MACDONALD, PHYS. REV. B18 (1978) 5897
+C    MODIFIED ALSO BY OLE HOLM NIELSEN ("SYMMETRIZATION")
+C
+C    TESTING THEIR EFFICIENCY AND PREPARATION OF THE
+C    "STRUCTURAL" FILE FOR RUNNING THE
+C    SELF-CONSISTENT BAND STRUCTURE PROGRAMS.
+C    IN THE CASES WHERE THE POINT GROUP OF THE CRYSTAL DOES NOT
+C    CONTAIN INVERSION, THE LATTER IS ARTIFICIALLY ADDED, IN ORDER
+C    TO MAKE USE OF THE HERMITICITY OF THE HAMILTONIAN
+C
+C    SUBROUTINES NEEDED: SPPT2,GROUP1,PGL1,ATFTM1,ROT1,RECLAT,STRUCT,
+C                        BZRDUC,INBZ,MESH,BZDEFI,USAGE
+C    (GROUP1, PGL1,ATFTM1, ROT1 FROM THE
+C    "COMPUTER PHYSICS COMMUNICATIONS" PACKAGE "ACMI" - (1971,1974)).
+C
+      INTEGER TY,F0,F00
+      COMPLEX SUMAMK
+      DIMENSION A1(3),A2(3),A3(3),TY(NDIM9),XKAPA(3,NDIM9),R(49,3,3),
+     +  V(3,48), F0(48,NDIM9), B1(3), B2(3), B3(3), WVK0(3), AR(3)
+      DIMENSION A01(3),A02(3),A03(3),B01(3),B02(3),B03(3),
+     +  X0(3),R0(49,3,3),IB0(48),V0(3,48),F00(48),IB(48)
+      DIMENSION WVKL(3,NDIM10),LWGHT(NDIM10),LROT(48,NDIM10),
+     +  A2LIST(NDIM1),NTAB(NDIM2),A2TAB(NDIM2),NATOM(NDIM9),STRAIN(6),
+     +  IALIST(3,NDIM1)
+      DIMENSION IWORK(NDIM1),ICOPY(NDIM1)
+      CHARACTER*80 TEXT
+C     K-VECTOR < EPS IS CONSIDERED ZERO
+      PARAMETER (EPS = 1.0E-6)
+C     MACHINE TYPE
+      COMMON /MACH1/ MACTYP
+      CHARACTER*7 MACHIN
+      COMMON /MACH2/ MACHIN(0:20)
+C
+C.....FILES
+      COMMON /FILES/INPUT,IOUT,IN290,IN213,ISTORE,IUNIT7,IUNIT8,ISTRUC,
+     +               IVNLKK,ISUMRY,IKPTS
+C.....PHYSICAL AND MATHEMATICAL CONSTANTS
+      DOUBLE PRECISION ABOHR,RYEV,RYDERG,PI,SPI
+      COMMON /CONST/   ABOHR,RYEV,RYDERG,PI,SPI
+C
+      DATA F00 /48 * 0/
+      DATA V,V0 /288*0.0/
+      DATA X0 /3*0.0/
+C
+C-----------------------------------------------------------------------
+C
+      IFIRST=0
+      IO290 = IN290
+C
+      CALL DAY (IYEAR,MONTH,IDAY)
+      WRITE (IOUT,110) MACHIN(MACTYP)
+110   FORMAT(1X,80('*')/
+     +  ' K290 - special points generation - ',A,' computer')
+      CALL DAYPRT (IOUT,IYEAR,MONTH,IDAY)
+      CALL USAGE (NPAGE0,T0)
+C
+C     READ IN LATTICE STRUCTURE
+C
+      CALL STRUCT(TEXT,A01,A02,A03,A1,A2,A3,NAT,TY,XKAPA,NATOM,
+     +  ULA,STRAIN,NDIM9,NTYPMX)
+C
+C     IS THE STRAIN SIGNIFICANT ?
+      TOTSTR = 0.0
+      ISTRIN = 0
+      DO 100 I = 1,6
+        TOTSTR  = TOTSTR + ABS(STRAIN(I))
+100     CONTINUE
+      IF (TOTSTR .GT. 1.0E-20) ISTRIN = 1
+C
+C-----------------------------------------------------------------------
+C
+C     GROUP-THEORY ANALYSIS OF LATTICE
+C
+      CALL GROUP1 (IOUT,A1,A2,A3,NAT,TY,NDIM9,XKAPA,B1,B2,B3,
+     +  IHG,IHC,ISY,LI,NC,IB,V,F0,R)
+C
+      WRITE (IOUT,320) B1,B2,B3
+320   FORMAT ('0B1',3F10.5/' B2',3F10.5/' B3',3F10.5)
+      DO 330 N = NC + 1, 48
+        IB(N) = 0
+330     CONTINUE
+      IF (ISY .GT. 0) GOTO 400
+      WRITE (IUNIT8,360)
+360   FORMAT ('0ROT   V  in the basis a1,a2,a3      ',
+     +'v  in cartesian coordinates'/)
+      DO 390 I=1,NC
+C       CARTESIAN COMPONENTS OF NONPRIMITIVE TRANSLATION
+        DO 370 J=1,3
+          WVK0(J) = V(1,I)*A1(J) + V(2,I)*A2(J) + V(3,I)*A3(J)
+370       CONTINUE
+        WRITE (IUNIT8,380) IB(I),(V(J,I),J=1,3),WVK0
+380     FORMAT (1X,I3,3X,3F8.5,3X,3F10.5)
+390     CONTINUE
+C
+400   INVADD=0
+      IF (LI .EQ. 0) THEN
+        WRITE (IUNIT7,420)
+420     FORMAT ('0Although the point group of the crystal does not'/
+     +  ' contain inversion, the special point generation algorithm'/
+     +  ' will consider it as a symmetry operation')
+        INVADD=1
+        ENDIF
+C
+C-----------------------------------------------------------------------
+C
+C GENERATION OF THE DIRECT LATTICE
+C
+200   WRITE (IOUT,210)
+210   FORMAT ('0Generation of the (direct) bravais lattice points'/
+     +' enter (sphere radius)**2, mesh size na1,na2,na3, and epsilon ?'/
+     +' (enter a "0" to get automatic generation of any value)')
+      READ (INPUT,*) A2MAX,NA1,NA2,NA3,EPS1
+      WRITE (IUNIT7,*) A2MAX,NA1,NA2,NA3,EPS1
+C
+C     DEDUCE A2MAX FROM DIMENSION NDIM1
+C     (NA1,2,3 ARE DEDUCED BY SUBROUTINE RECLAT)
+      VOLUM  = A1(1)*A2(2)*A3(3) + A2(1)*A3(2)*A1(3) +
+     +         A3(1)*A1(2)*A2(3) - A1(3)*A2(2)*A3(1) -
+     +         A2(3)*A3(2)*A1(1) - A3(3)*A1(2)*A2(1)
+      VOLUM  = ABS(VOLUM)
+C
+      IF (A2MAX .LE. 0.0) THEN
+        A2MAX  = ( FLOAT(NDIM1) * VOLUM * 3.0/(4.0*PI) )**(2./3.)
+C       TRUNCATION (0.75 IS A FUDGE FACTOR)
+        A2MAX  = FLOAT( IFIX( A2MAX * 0.75 ))
+        WRITE (IUNIT7,*) 'The A2MAX deduced is: ',A2MAX
+        ENDIF
+C
+      CALL RECLAT (A1,A2,A3,B1,B2,B3,NA1,NA2,NA3,A2MAX,
+     +  NDIM1,NDIM2,EPS1,IALIST,A2LIST,NATOT,NTAB,A2TAB,IWORK,ICOPY)
+C
+      WRITE (IUNIT7,230) NATOT
+230   FORMAT ('0',I5,' lattice points generated')
+C     CHECK ON ERROR SIGNALS:
+      IF (NATOT .LE. 0) GOTO 200
+C
+      WRITE (IUNIT8,260)
+260   FORMAT ('0Synopsis of direct lattice vectors'/
+     +12X,'first   squared'/
+     +' shell   occurrence  length        IALIST'/1X)
+      DO 285 I = 1,NDIM2
+        IF (A2TAB(I) .LT. 0.0) GOTO 290
+        ISHELL=I-1
+        WRITE (IUNIT8,280) ISHELL,NTAB(I),A2TAB(I),
+     +    (IALIST(J,NTAB(I)), J = 1, 3)
+280     FORMAT (1X,I5,I11,F10.3,3X,3I5)
+285     CONTINUE
+C
+C     DISPLAY COORDINATES
+290   WRITE(IUNIT7,*) 'More detail: enter NMIN,NMAX (0,0 to skip)'
+      READ (INPUT,*) NMIN,NMAX
+      WRITE (IUNIT7,*) NMIN,NMAX
+      IF (NMIN .EQ. 0 .OR. NMAX .EQ. 0) GOTO 299
+C     FOOL-PROOF:
+      NMIN = MAX(1,NMIN)
+      NMAX = MIN(NDIM1,NMAX)
+C
+      DO 298 I=NMIN,NMAX
+C       DECODING THE IALIST
+        I1     = IALIST(1,I)
+        I2     = IALIST(2,I)
+        I3     = IALIST(3,I)
+      DO 295 J = 1,3
+        AR(J) = FLOAT(I1)*A1(J) + FLOAT(I2)*A2(J) + FLOAT(I3)*A3(J)
+295     CONTINUE
+      WRITE (IUNIT8,296) I,AR
+296   FORMAT(' Lattice point no.',I4,' at X = ',3F10.5)
+298   CONTINUE
+      GOTO 290
+C
+299   WRITE (IUNIT7,*) 'Repeat generation or continue program ?',
+     +' (+1=repeat; -1=continue)'
+      READ (INPUT,*) IYES
+      IF (IYES .EQ. 1) GOTO 200
+C-----------------------------------------------------------------------
+C
+C     SORT IALIST AND A2TAB INTO STARS OF EQUIVALENT G-VECTORS
+C
+      CALL GSHELL (IALIST,NATOT,NA1,NA2,NA3,B1,B2,B3,A1,A2,A3,
+     + A2TAB,NTAB,NDIM1,NDIM2, R,IB,NC,LI)
+C-----------------------------------------------------------------------
+C
+C     WRITE ONTO FILE
+C
+C     EVERY DATA-GROUP IN FILE WILL START WITH IDENTIFICATION:
+C     IRECTP = RECORD TYPE.
+C     ALL FORMATS ARE ADDAPTED FOR DIRECT PRINTING
+C     (I.E. THEY START WITH 1X AND THE RECORDS ARE NOT TOO LONG).
+C     HEADING OF THE FILE: CREATED BY PROGRAM K290 AND DATE
+      NPRGR  = 290
+      IVERSN = 1
+      CALL DAY (IYEAR,MONTH,IDAY)
+      WRITE (IO290,920) NPRGR,IDAY,MONTH,IYEAR,IVERSN,MACTYP
+920   FORMAT (1X,10I5)
+      WRITE (IO290,'(A)') TEXT
+C     FIRST RECORDING, WE HAVE TO RECORD ALL THE GENERAL
+C     INFORMATION ABOUT THE CRYSTAL
+      IFIRST=1
+C     THIS RECORD-TYPE MEANS: HEADING OF THE FILE
+C     (RECORD LENGTH: VARIABLE, DEPENDS ON NAT ONLY)
+      WRITE (IO290,940) IFIRST
+940   FORMAT (1X,I5)
+      WRITE (IO290,940) NAT
+C     CRYSTALLOGRAPHIC DATA
+      WRITE (IO290,950) A1,A2,A3,B1,B2,B3
+950   FORMAT (1X,3E14.6)
+      DO 960 K=1,NAT
+        WRITE (IO290,970) TY(K),(XKAPA(J,K),J=1,3)
+970     FORMAT (1X,I5,3E14.6)
+960     CONTINUE
+C     GROUP-THEORETICAL INFORMATION
+      WRITE (IO290,980) IHG,IHC,ISY,LI,NC,IB
+980   FORMAT (1X,5I5,4(/12I3))
+      WRITE (IO290,950) ((V(J,I),J=1,3),I=1,48)
+      WRITE (IO290,990) ((F0(I,J),J=1,NAT),I=1,48)
+990   FORMAT (1X,12I3)
+      WRITE (IO290,950) (((R(K,I,J),J=1,3),I=1,3),K=1,49)
+C-----------------------------------------------------------------------
+C     GENERATE THE BRAVAIS LATTICE
+      WRITE (IUNIT7,434)
+434   FORMAT('0',20('-'),' The (unstrained) bravais lattice ',20('-')/
+     +' (used for generating the largest possible mesh in the b.z.)')
+C
+      CALL GROUP1 (IUNIT7,A01,A02,A03,1,TY,NDIM9,X0,B01,B02,B03,
+     +  IHG0,IHC0,ISY0,LI0,NC0,IB0,V0,F00,R0)
+C
+C     IT IS ASSUMED THAT THE SAME 'TYPE' OF SYMMETRY OPERATIONS
+C     (CUBIC/HEXAGONAL) WILL APPLY TO THE CRYSTAL AS WELL AS THE BRAVAIS
+C     LATTICE.
+C-----------------------------------------------------------------------
+      WRITE (IOUT,440)
+440   FORMAT ('0',20('*'),'Generation of special points ',25('*')/
+     +'0IQ1,IQ2,IQ3 are the monkhorst-pack parameters (generalized)'/
+     +' and WVK0 is a constant vector shift of this mesh')
+C
+450   CALL USAGE (NSP0,TSP0)
+      WRITE (IUNIT7,*) 'Enter IQ1,IQ2,IQ3,WVK0 (6 times 0 to exit) ?'
+      READ (INPUT,*) IQ1,IQ2,IQ3,WVK0
+C     PARAMETER Q OF MONKHORST AND PACK, GENERALIZED FOR 3 AXES B1,2,3
+C     WVK0 IS THE SHIFT OF THE WHOLE MESH (SEE MACDONALD)
+      WRITE (IOUT,470) IQ1,IQ2,IQ3,WVK0
+470   FORMAT (30X,3I5,3F10.5)
+      IF (IABS(IQ1) + IABS(IQ2) + IABS(IQ3) .EQ. 0) GOTO 710
+C     GENERATION OF THE POINTS
+C     (THEY ARE NOT MULTIPLIED BY 2*PI BECAUSE B1,2,3  WERE NOT,EITHER)
+C
+      CALL SPPT2 (IQ1,IQ2,IQ3,WVK0,NDIM10,A01,A02,A03,B01,B02,B03,
+     +IHC,INVADD,NC,IB,R,NTOT,WVKL,LWGHT,LROT,NC0,IB0)
+C
+C     CHECK ON ERROR SIGNALS
+      WRITE (IOUT,480) NTOT
+480   FORMAT(1X,I5,' special points generated')
+      IF (NTOT .EQ. 0) THEN
+        GOTO 450
+      ELSE IF (NTOT .LT. 0) THEN
+        WRITE (IOUT,500) NDIM10
+500     FORMAT ('0Dimension NDIM10 =',I5/
+     +  ' insufficient for accommodating all the special points'/
+     +  ' what follows is an incomplete list')
+        NTOT = IABS(NTOT)
+        ENDIF
+C     BEFORE USING THE LIST WVKL AS WAVE VECTORS, THEY HAVE TO BE
+C     MULTIPLIED BY 2*PI
+C     THE LIST OF WEIGHTS LWGHT IS NOT NORMALIZED
+      ISWGHT = 0
+      DO 520 I=1,NTOT
+        ISWGHT = ISWGHT + LWGHT(I)
+520     CONTINUE
+C
+      WRITE (IUNIT7,530)
+530   FORMAT (5X,'Wavevector k',T28,'weight',9X,'unfolding rotations')
+C     SET NEAR-ZEROES EQUAL TO ZERO:
+      DO 550 L=1,NTOT
+        DO 535 I = 1,3
+          IF (ABS(WVKL(I,L)) .LT. EPS) WVKL(I,L) = 0.0
+535       CONTINUE
+C
+        IF (ISTRIN .EQ. 0) GOTO 539
+C       EXPRESS SPECIAL POINTS IN (UNSTRAINED) BASIS
+        PROJ1 = 0.0
+        PROJ2 = 0.0
+        PROJ3 = 0.0
+        DO 536 I = 1,3
+          PROJ1 = PROJ1 + WVKL(I,L)*A01(I)
+          PROJ2 = PROJ2 + WVKL(I,L)*A02(I)
+          PROJ3 = PROJ3 + WVKL(I,L)*A03(I)
+536       CONTINUE
+        DO 537 I = 1,3
+          WVKL(I,L) = PROJ1*B1(I) + PROJ2*B2(I) + PROJ3*B3(I)
+537       CONTINUE
+C
+539     LMAX=LWGHT(L)
+        WRITE (IUNIT7,540) (WVKL(I,L),I=1,3),LWGHT(L),
+     +                   (LROT(I,L),I=1,LMAX)
+540     FORMAT (1X,3F8.4,I7,9X,12I3,1X/(41X,12I3,1X)/(41X,12I3,1X)/
+     +          (41X,12I3,1X) )
+550     CONTINUE
+      WRITE (IUNIT7,560) ISWGHT
+560   FORMAT (16X,'Total:',I10)
+C
+C CHECK OF THE EFFICIENCY OF THIS SPECIAL POINTS SET BY
+C THE INTEGRAL OF A(M)(K) OVER THE ENTIRE B.Z. (SHOULD = 0).
+C WITH THE SPECIAL POINTS METHOD, THE INTEGRAL WILL BE NONZERO
+C FOR A SHELL OF DIRECT-LATTICE VECTORS.
+C THE LATER THE FAILURE, THE BETTER THE SPECIAL POINTS SET.
+C
+C THE  DEFINITION OF MONKHORST,PACK, EQ.(5) IS USED,
+C INCLUDING THE NORMALIZATION FACTOR. HOWEVER,
+C WE ALWAYS MAKE SUMMATION OVER R-VECTORS
+C OF THE SAME LENGTH, RATHER THAN USING ANY SYMMETRY
+C OPERATIONS. THIS MIGHT OCCASSIONALLY PRODUCE
+C A SYMMETRIZED PLANE WAVE WHICH IS IN REALITY
+C A SUM OF TWO DISTINCT S.P.W.'S.
+C (IN THE CASE WHERE A SET OF VECTORS OF THE SAME
+C LENGTH CONSISTS OF VECTORS OF 2 DISTINCT TYPES
+C  (THOSE WHICH CANNOT BE BROUGHT INTO EACH OTHER
+C BY ANY SYMMETRY OPERATION.) THIS IS OF VERY
+C LITTLE RELEVANCE FOR OUR PRESENT PURPOSE, TESTING
+C THE SET OF SPECIAL POINTS AND FINDING THE FIRST
+C FAILURE.)
+C      WE THUS EVALUATE THE WEIGHTED SUMS OVER ALL
+C SPECIAL POINTS AND OVER ALL R-VECTORS OF A GIVEN SHELL.
+      WRITE (IUNIT7,570)
+570   FORMAT ('0Weighted sums of symmetrized plane waves',
+     +' over the special points set'/
+     +' (= approximation to the integral of the S.P.W.,',
+     +' = 0 except for 0-th shell)'/
+     +11X,'R',39X,'A(M)(K) summed over k-set'/
+     +' shell from to     typical lattice vector  length**2',7X,
+     +'real    imaginary')
+      NFAIL = 0
+      DO 660 M = 1,NDIM2
+        ISHELL = M - 1
+        NMIN = NTAB(M)
+        NMAX = NTAB(M + 1) - 1
+        IF (A2TAB(M) .LT. 0) GOTO 670
+        NCOUNT = NMAX - NMIN + 1
+        SUMAMK = 0.0
+        DO 630 I = NMIN,NMAX
+C         DECODING THE IALIST
+          I1     = IALIST(1,I)
+          I2     = IALIST(2,I)
+          I3     = IALIST(3,I)
+          DO 600 J = 1,3
+            AR(J) = FLOAT(I1)*A1(J) + FLOAT(I2)*A2(J) + FLOAT(I3)*A3(J)
+            IF (ABS(AR(J)) .GT. 1.0E4) THEN
+              WRITE (IOUT,590) I1,I2,I3
+590           FORMAT(' Error - unrealistic I1,I2,I3 = ',3I10)
+              CALL EXIT
+              ENDIF
+600         CONTINUE
+C         SCALAR PRODUCT AND SUM OF PLANE WAVES CORRESPONDING
+C         TO ALL THE SPECIAL POINTS
+          DO 620 K = 1,NTOT
+            SCALPR = 0.0
+            DO 610 J = 1,3
+              SCALPR = SCALPR + AR(J)*WVKL(J,K)
+610           CONTINUE
+C           ADD 1 SYMMETRIZED PLANE WAVE
+            ARGMT = 2.0*PI*SCALPR
+            IF (ABS(ARGMT) .GT. 1.0E5) WRITE(IOUT,615) ARGMT,AR
+615         FORMAT(' Warning - ARGMT = ',E10.4,' AR = ',3F12.3)
+            SUMAMK=SUMAMK + FLOAT(LWGHT(K))*CMPLX(COS(ARGMT),SIN(ARGMT))
+620         CONTINUE
+630     CONTINUE
+      SUMAMK = SUMAMK/FLOAT(NCOUNT*ISWGHT)
+      IF (CABS(SUMAMK) .GT. 1.0E-4) THEN
+        NFAIL = NFAIL + 1
+C       WE ONLY WANT A PRINT-OUT OF THE FIRST 10 FAILURES:
+        IF (NFAIL .LE. 10) THEN
+          WRITE (IUNIT7,650) ISHELL,NMIN,NMAX,AR,A2TAB(M),SUMAMK
+650       FORMAT (1X,I3,2I5,4F9.5,2E13.5)
+        ELSE
+          GOTO 670
+          ENDIF
+        ENDIF
+C
+660   CONTINUE
+C
+C.....POSSIBLY WRITING INTO FILE
+670   WRITE (IUNIT7,*) 'Save this set of special points on file ?'
+      WRITE (IUNIT7,*) ' (+1=yes; -1=no)'
+      READ (INPUT,*) IYES
+      WRITE (IUNIT7,*) IYES
+      IF (IYES .NE. 1) THEN
+        CALL USAGE (NSP1,TSP1)
+        WRITE (IUNIT7,680) TSP1 - TSP0
+680     FORMAT (1X,F10.3,' CPU seconds')
+        GOTO 450
+        ENDIF
+C-----------------------------------------------------------------------
+C RECORDING THE INFORMATION ABOUT  A SET OF SPECIAL POINTS
+C            THIS RECORD-TYPE MEANS: SPECIAL POINTS
+C            RECORD LENGTH: VARIABLE, DEPENDS ON NTOT ONLY
+      IRECTP=2
+      WRITE (IO290,940) IRECTP
+      WRITE (IO290,940) NTOT
+      WRITE (IO290,1020) IQ1,IQ2,IQ3,WVK0
+1020  FORMAT (1X,3I5,3E14.6)
+      DO 1030 I = 1,NTOT
+        WRITE (IO290,1040) LWGHT(I),(WVKL(J,I),J=1,3),(LROT(J,I),J=1,48)
+1040    FORMAT (1X,I5,3E14.6/(1X,12I4))
+1030    CONTINUE
+C
+      CALL USAGE (NSP1,TSP1)
+      WRITE (IOUT,1050) TSP1 - TSP0
+1050  FORMAT(' This special points set written to file - ',F10.3,
+     +' CPU seconds')
+C
+      GO TO 450
+C
+C-----------------------------------------------------------------------
+710   CALL USAGE (NPAGE1,T1)
+      WRITE (IOUT,870) T1 - T0, NPAGE1 - NPAGE0
+870   FORMAT ('0File created. ',
+     +  F10.3,' CPU seconds, ',I10,' page faults'/)
+      RETURN
+      END
