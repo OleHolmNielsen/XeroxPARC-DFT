@@ -239,14 +239,7 @@ cvnlkknum.for: vnlkknum.for cvnlkknum.diff
 # The datafiles
 #
 
-C.VG Si.VG B.VG N.VG:                              \
-    ;- set -xv                                     \
-    ; FILE=$@                                      \
-    ; fetch $@ -mV2 -fTR -t"DSN=rkmk005.$$FILE"    \
-    ; if test ! -f $@ ; then                       \
-        echo "File $@ not found"                   \
-    ;   exit 2                                     \
-    ; fi
+C.VG Si.VG B.VG N.VG:
 
 #
 # Subroutines necessary for the "stressfield" program
