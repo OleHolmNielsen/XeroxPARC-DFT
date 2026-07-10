@@ -25,7 +25,7 @@ LISTING = listing
 # GNU Fortran
 FC = gfortran
 # FFLAGS=-O
-FFLAGS=-g -std=legacy --warn-no-argument-mismatch
+FFLAGS=-cpp -Dx86_64 -g -std=legacy --warn-no-argument-mismatch
 
 # The loader
 LDR = $(FC) $(FFLAGS)
