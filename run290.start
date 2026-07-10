@@ -29,10 +29,15 @@ C-----------------------------------------------------------------------
 C
       CALL DAY(IYEAR,IMONTH,IDAY)
       CALL CONSTS
+
+#ifdef sun
       IF (MACTYP .EQ. 10) THEN
 C       Sun: Abort on IEEE floating-point error
         CALL FP_ABORT
         ENDIF
+#endif
+
+#ifdef apollo
       IF (MACTYP .EQ. 11) THEN
 C       Apollo: Have to open files explicitly
         OPEN(ISTRUC, FILE='fort.2')
@@ -40,6 +45,7 @@ C       Apollo: Have to open files explicitly
         IF (IUNIT8 .NE. 6)
      +    OPEN(IUNIT8, FILE='fort.8')
         ENDIF
+#endif
 C
       WRITE (IOUT,1000)
      +NDIM1,NDIM2,NDIM9,NDIM10
