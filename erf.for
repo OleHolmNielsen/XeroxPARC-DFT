@@ -1,0 +1,71 @@
+      DOUBLE PRECISION FUNCTION DERFC(XX)
+C
+C     COMPLEMENTARY ERROR FUNCTION
+C     FROM THE SANDIA MATHEMATICAL PROGRAM LIBRARY
+C
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      DIMENSION P1(4),Q1(4),P2(6),Q2(6),P3(4),Q3(4)
+      SAVE P1,Q1,P2,Q2,P3,Q3,XMAX,SQPI
+C
+      DATA P1 /242.66 79552 30531 8D0 ,  21.979 26161 82941 5D0 ,
+     +         6.9963 83488 61913 6D0 , -3.5609 84370 18153 9D-2/
+      DATA Q1 /215.05 88758 69861 2D0 ,  91.164 90540 45149 0D0,
+     +         15.082 79763 04077 9D0 ,  1.0D0/
+      DATA P2 /22.898 99285 1659D0 ,     26.094 74695 6075D0 ,
+     +         14.571 89859 6926D0 ,     4.2677 20107 0898D0 ,
+     +         0.56437 16068 6381D0 ,   -6.0858 15195 9688 D-6/
+      DATA Q2 /22.898 98574 9891D0 ,     51.933 57068 7552D0 ,
+     +         50.273 20286 3803D0 ,     26.288 79575 8761D0 ,
+     +         7.5688 48229 3618D0 ,     1.0D0/
+      DATA P3 /-1.2130 82763 89978 D-2 , -0.11990 39552 68146 0D0 ,
+     +         -0.24391 10294 88626D0 ,  -3.2431 95192 77746 D-2/
+      DATA Q3 /4.3002 66434 52770 D-2 ,   0.48955 24419 61437D0 ,
+     +         1.4377 12279 37118D0 ,     1.0D0/
+C     1/SQRT(PI)
+      DATA SQPI /0.56418 95835 47756D0/
+C     XMAX IS THE VALUE BEYOND WHICH DERFC(X) = 0 .
+C     IT IS COMPUTED AS SQRT(LOG(RMIN)), WHERE RMIN IS THE
+C     SMALLEST REAL NUMBER REPRESENTABLE ON THE MACHINE.
+C     IBM VALUE: (THE INTRINSIC DERFC COULD ALSO BE USED)
+C     DATA XMAX /13.4/
+C     VAX VALUE:
+      DATA XMAX /9.0/
+C----------------------------------------------------------------------
+      X  = ABS(XX)
+      X2 = X*X
+C
+      IF (XX .GT. XMAX)    THEN
+C
+        DERFC = 0.0D0
+C
+      ELSE IF (XX .LT. -XMAX) THEN
+C
+        DERFC = 2.0D0
+C
+      ELSE IF (X .GT. 4.0)     THEN
+C
+        XI2 = 1.0D0/X2
+        DERFC = XI2*(P3(1) + XI2*(P3(2) + XI2*(P3(3) + XI2*P3(4))))/
+     +   (Q3(1) + XI2*(Q3(2) + XI2*(Q3(3) + XI2*Q3(4))))
+        DERFC = EXP( -X2)*(SQPI + DERFC)/X
+        IF (XX .LT. 0.0) DERFC = 2.0D0 - DERFC
+C
+      ELSE IF (X .GT. 0.46875) THEN
+C
+        DERFC = EXP( -X2)*(P2(1) + X*(P2(2) + X*(P2(3) + X*(P2(4) +
+     +    X*(P2(5) + X*P2(6))))))
+        DERFC = DERFC/(Q2(1) + X*(Q2(2) + X*(Q2(3) + X*(Q2(4) +
+     +    X*(Q2(5) + X*Q2(6))))))
+        IF (XX .LE. 0.0) DERFC = 2.0D0 - DERFC
+C
+      ELSE
+C
+C       0 < ABS(X) < 0.46875
+        DERFC = X*(P1(1) + X2*(P1(2) + X2*(P1(3) + X2*P1(4))))
+        DERFC = DERFC/(Q1(1) + X2*(Q1(2) + X2*(Q1(3) + X2*Q1(4))))
+        IF (XX .LT. 0.0) DERFC = - DERFC
+        DERFC = 1.0D0 - DERFC
+C
+        ENDIF
+      RETURN
+      END

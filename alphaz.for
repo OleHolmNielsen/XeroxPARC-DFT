@@ -1,0 +1,225 @@
+      SUBROUTINE ALPHAZ (POTTYP,TY,NAT,POTPAR,NTYPMX,NDIM9,NPARAM,
+     +                   ULA,VOLUM,ZKAPA,VALPHA)
+C
+C                                 WRITTEN 29-APR-82 BY OLE HOLM NIELSEN
+C     CALCULATE THE ALPHA*Z TERM IN THE TOTAL ENERGY.
+C     THIS IS REALLY THE CHARGE DENSITY RHO(G=0) TERM IN TOTAL ENERGY,
+C     WHERE ONLY THE L=0 TERM OF THE NONLOCAL (AND LOCAL) POTENTIAL
+C     CONTRIBUTE.
+C
+C     INPUT:
+C     POTTYP ..... POTENTIAL TYPES (13,15,16,17,20 PRESENTLY ALLOWED)
+C     NAT ........ NUMBER OF ATOMS IN THE UNIT CELL
+C     POTPAR ..... ARRAY WITH POTENTIAL PARAMETERS
+C     NTYPMX ..... MAXIMUM NUMBER OF ATOMIC TYPES
+C     NDIM9 ...... MAXIMUM NUMBER OF ATOMS
+C     NPARAM ..... DIMENSION OF PARAMETERS
+C     ULA ........ LATTICE CONSTANT IN ANGSTROMS
+C     VOLUM ...... VOLUME OF UNIT CELL IN UNITS (ULA)**3
+C     OUTPUT:
+C     ZKAPA ...... DEDUCED IONIC CHARGES (ROUNDED TO INTEGERS)
+C     VALPHA ..... THE ALPHA-TERM FOR SPIN-UP/DOWN POTENTIAL
+C
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+C
+      INTEGER POTTYP(NTYPMX),TY(NDIM9)
+      DOUBLE PRECISION POTPAR(NTYPMX,NPARAM), VALPHA(2)
+      REAL ZKAPA(NDIM9),ULA,VOLUM
+C
+C.....FILES
+      COMMON /FILES/INPUT,IOUT,IN290,IN213,ISTORE,IUNIT7,IUNIT8,ISTRUC,
+     +               IVNLKK,ISUMRY,IKPTS
+C.....PHYSICAL AND MATHEMATICAL CONSTANTS
+      DOUBLE PRECISION ABOHR,RYEV,RYDERG,PI,SPI
+      COMMON /CONST/   ABOHR,RYEV,RYDERG,PI,SPI
+C
+C-----------------------------------------------------------------------
+      VALPHA(1) = 0.0D0
+      VALPHA(2) = 0.0D0
+      ALFSUM = 0.0D0
+      ZSUM   = 0.0D0
+C
+      DO 300 K = 1,NAT
+C
+      ITYPE = TY(K)
+C
+      IF (POTTYP(ITYPE) .EQ. 10) THEN
+C
+C       JELLIUM
+C
+        Z = POTPAR(ITYPE,1)
+        ZKAPA(K) = Z
+        ZSUM = ZSUM + Z
+C       ALPHA IS IDENTICALLY ZERO FOR JELLIUM
+C
+      ELSE IF (POTTYP(ITYPE) .EQ. 11) THEN
+C
+C       COULOMB POTENTIAL
+C
+        Z = POTPAR(ITYPE,1)
+C       ROUNDING:
+        Z = NINT(Z)
+        ZKAPA(K) = Z
+        ZSUM = ZSUM + Z
+C       ALPHA IS IDENTICALLY ZERO FOR 1/R POTENTIAL
+C
+      ELSE IF (POTTYP(ITYPE) .EQ. 13) THEN
+C
+C       APPELBAUM-HAMANN POTENTIAL
+C
+        Z = POTPAR(ITYPE,1)
+C       ROUNDING:
+        Z = NINT(Z)
+        ZKAPA(K) = Z
+        ZSUM = ZSUM + Z
+        ALF = POTPAR(ITYPE,2)
+        V1 = POTPAR(ITYPE,3)
+        V2 = POTPAR(ITYPE,4)
+C       ALPHA IN RY, NORMALIZATION TO VOLUME DONE LATER.
+        ALPHA = 2.0D0*( PI/ALF*Z + (PI/ALF)**1.5D0*(V1 + 1.5D0*V2/ALF) )
+        ALFSUM = ALFSUM + ALPHA
+        VALPHA(1) = VALPHA(1) + ALPHA
+        VALPHA(2) = VALPHA(2) + ALPHA
+C
+      ELSE IF (POTTYP(ITYPE) .EQ. 15) THEN
+C
+C       BERKELEY POTENTIAL
+C
+        A1 = POTPAR(ITYPE,1)
+        A2 = POTPAR(ITYPE,2)
+        A3 = POTPAR(ITYPE,3)
+        VNORM = POTPAR(ITYPE,5)
+C       IONIC CHARGE
+        Z = - A1*(1.0D0 + A3)*VNORM/(8.0D0*PI)
+C       ROUNDING:
+        Z = NINT(Z)
+        ZKAPA(K) = Z
+        IF (Z .LE. 0.0 .OR. Z .GT. 50.0) THEN
+          WRITE(IOUT,510)
+          WRITE(IOUT,540) K,Z
+540       FORMAT(' BERKELEY POTENTIAL FOR ATOM NUMBER ',I3,
+     +    ' IS UNREALISTIC, Z = ',G15.8)
+          CALL EXIT
+          ENDIF
+        ZSUM = ZSUM + Z
+C       RESULT IN RY, NORMALIZATION TO VOLUME DONE LATER.
+        ALPHA = - A1*A2**2/2.0D0 * VNORM
+        ALFSUM = ALFSUM + ALPHA
+        VALPHA(1) = VALPHA(1) + ALPHA
+        VALPHA(2) = VALPHA(2) + ALPHA
+C
+      ELSE IF (POTTYP(ITYPE) .EQ. 16) THEN
+C
+C       HAMANN-SCHLUTER-CHIANG NON-LOCAL POTENTIAL
+C       (SUM OF GAUSSIANS)
+C
+        Z = POTPAR(ITYPE,1)
+C       ROUNDING:
+        Z = NINT(Z)
+        ZKAPA(K) = Z
+        ZSUM = ZSUM + Z
+        ALF0 = POTPAR(ITYPE,2)
+        ALPHA = PI*Z/ALF0
+        NGAUS = NINT(POTPAR(ITYPE,4))
+        IPARAM = 4
+        DO 165 I = 1,NGAUS
+          IPARAM = IPARAM + 1
+          CI = POTPAR(ITYPE,IPARAM)
+          IPARAM = IPARAM + 1
+          ALFI = POTPAR(ITYPE,IPARAM)
+          ALPHA = ALPHA + CI*(PI/ALFI)**1.5D0
+165       CONTINUE
+C       ALPHA IN RY, NORMALIZATION TO VOLUME DONE LATER.
+        ALPHA = 2.0D0*ALPHA
+        ALFSUM = ALFSUM + ALPHA
+        VALPHA(1) = VALPHA(1) + ALPHA
+        VALPHA(2) = VALPHA(2) + ALPHA
+C
+      ELSE IF (POTTYP(ITYPE) .EQ. 17) THEN
+C
+C       BELL LABS 1982-"PERIODIC TABLE" NON-LOCAL POTENTIAL
+C
+        Z = NINT(POTPAR(ITYPE,1))
+        ZKAPA(K) = Z
+        ZSUM = ZSUM + Z
+        ALF1 = POTPAR(ITYPE,2)
+        ALF2 = POTPAR(ITYPE,3)
+        C1   = POTPAR(ITYPE,4)
+        C2   = POTPAR(ITYPE,5)
+        ALPHA = PI*Z*(C1/ALF1 + C2/ALF2)
+        LMAX = NINT(POTPAR(ITYPE,6))
+C       ANGULAR MOMENTUM CHOSEN AS LOCAL POTENTIAL
+        LOCAL = NINT(POTPAR(ITYPE,16 + 9*LMAX))
+        IF (LOCAL .LT. 0) GOTO 220
+        IPARAM = 6 + LOCAL*9
+        DO 200 I = 1,3
+          ALPHAI = POTPAR(ITYPE,IPARAM + I)
+          AI     = POTPAR(ITYPE,IPARAM + 3 + I)
+          AI3    = POTPAR(ITYPE,IPARAM + 6 + I)
+          ALPHA  = ALPHA + (AI + 1.5D0/ALPHAI*AI3)*(PI/ALPHAI)**1.5D0
+200       CONTINUE
+        IPARAM = 16 + 9*LMAX + 1
+205     LSPIN  = NINT(POTPAR(ITYPE,IPARAM))
+        IF (LSPIN .LT. 0) THEN
+          GOTO 220
+        ELSE IF (LSPIN .EQ. LOCAL) THEN
+          ALPHSP = 0.0D0
+          DO 210 I = 1,3
+            ALPHAI = POTPAR(ITYPE,IPARAM + I)
+            AI     = POTPAR(ITYPE,IPARAM + 3 + I)
+            AI3    = POTPAR(ITYPE,IPARAM + 6 + I)
+            ALPHSP = ALPHSP + (AI+1.5D0/ALPHAI*AI3)*(PI/ALPHAI)**1.5D0
+210       CONTINUE
+C***********************************************************************
+C                                                                      *
+C         C H E C K    +/- FOR UP/DOWN                                 *
+C                                                                      *
+C***********************************************************************
+          VALPHA(1) = VALPHA(1) + 0.5D0 * 2.0D0 * ALPHSP
+          VALPHA(2) = VALPHA(2) - 0.5D0 * 2.0D0 * ALPHSP
+        ELSE
+          IPARAM = IPARAM + 9
+          GOTO 205
+          ENDIF
+C
+C       ALPHA IN RY, NORMALIZATION TO VOLUME DONE LATER.
+220     ALPHA = 2.0D0*ALPHA
+        ALFSUM = ALFSUM + ALPHA
+        VALPHA(1) = VALPHA(1) + ALPHA
+        VALPHA(2) = VALPHA(2) + ALPHA
+C
+      ELSE IF (POTTYP(ITYPE) .EQ. 20) THEN
+C
+C       OUR OWN NUMERICAL POTENTIALS
+C
+        Z      = NINT( POTPAR(ITYPE,1) )
+        ALPHA  =       POTPAR(ITYPE,5)
+        ZKAPA(K) = Z
+        ZSUM   = ZSUM + Z
+C       ALPHA IS ALREADY IN RY, NORMALIZATION TO VOLUME DONE LATER.
+        ALFSUM = ALFSUM + ALPHA
+        VALPHA(1) = VALPHA(1) + POTPAR(ITYPE,12)
+        VALPHA(2) = VALPHA(2) + POTPAR(ITYPE,13)
+C
+      ELSE
+C
+        WRITE(IOUT,510)
+510     FORMAT(' SUBROUTINE ALPHAZ *** FATAL ERROR ***')
+        WRITE(IOUT,520) K,POTTYP(ITYPE)
+520     FORMAT(' ATOM NUMBER ',I3,' HAS AN ILLEGAL TYPE = ',I5)
+        CALL EXIT
+C
+        ENDIF
+C
+300   CONTINUE
+C
+C     AZ ("ALPHA TIMES Z") IS ONLY VALID FOR NON-SPINPOLARIZED CASES
+C     AZ  = ALFSUM * ZSUM
+C     VOLUME OF UNIT CELL IN ABOHR**3
+      VOL = VOLUM * ( DBLE(ULA) / ABOHR ) **3
+C     ALPHA*Z IN EV
+C     AZ        = AZ / VOL * RYEV
+      VALPHA(1) = VALPHA(1) / VOL * RYEV
+      VALPHA(2) = VALPHA(2) / VOL * RYEV
+      RETURN
+      END
