@@ -1,4 +1,8 @@
 #
+# This Makefile is adapted for Linux systems.
+# Author: Ole.H.Nielsen@fysik.dtu.dk
+# Homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
+#
 # Maintain the compiled subroutines and executables.
 # This version does NOT use libraries
 #

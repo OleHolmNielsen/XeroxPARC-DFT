@@ -5,6 +5,10 @@ by Karel Kunc and Richard M. Martin at the Xerox PARC (Palo Alto Research Center
 
 The code was further developed by Ole Holm Nielsen at Xerox PARC during 1982-1983.
 
+Author: Ole.H.Nielsen@fysik.dtu.dk
+
+Homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
+
 The code implements Total Energy, Forces, and Stresses
 with a pseudopotential plane-wave basis set.
 
