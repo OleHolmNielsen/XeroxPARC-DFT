@@ -1,7 +1,7 @@
-      FUNCTION SECOND (DUMMY)
-      CALL USAGE (N, SECOND)
-      RETURN
-      END
+C      FUNCTION SECOND (DUMMY)
+C      CALL USAGE (N, SECOND)
+C      RETURN
+C      END
       SUBROUTINE USAGE (NPAGES,CPUTIME)
 C
 C     Number of page faults (virtual machines, only) and CPU-time so far
@@ -20,6 +20,7 @@ C     8 ..... Fujitsu VP-100/200/400 (= Amdahl 1XXX = Siemens)
 C     9 ..... VAX + MAP attached processor
 C     10 .... Generic UNIX (tested on SunOS3.4 and 4.0)
 C     11 .... Apollo UNIX
+C     12 .... Linux x86
 C
 C     Use machine names in all programs:
       COMMON /MACH1/ MACTYP
@@ -33,6 +34,9 @@ C     Just to make sure that MACHIN is properly set:
 C
       NPAGES = 0
       CPUTIME = 0.0
+#ifdef x86_64
+#else
+
 C
 C-----------------------------------------------------------------------
 C
@@ -84,11 +88,17 @@ C
 C
 C-----------------------------------------------------------------------
 C
+#endif
       RETURN
       END
+
+#ifdef vax
 C
 C     Uncomment on VAX machines:
 C     include 'usagevax.for/list'
+#endif
+
+#ifdef apollo
 C
 C     On Apollo UNIX machines, replace the following dummy code with the contents
 C     of the file usapollo.for - NB: Include does NOT work for entire subroutines
@@ -109,21 +119,25 @@ c     Date subroutine for Apollo
 c
 c     return
 c     end
+#endif
+
+#ifdef aix_xlf
       subroutine idate(imonth, iday, iyear)
  
 c     Date subroutine for AIX XLF 3.X
  
-	type iar
-		sequence
-		integer*4 iday
-		integer*4 imonth
-		integer*4 iyear
-	end type
-	type (iar) idate_struct
-	call idate_(idate_struct)
-	imonth = idate_struct % imonth
-	iday   = idate_struct % iday
-	iyear  = idate_struct % iyear
-	
+        type iar
+                sequence
+                integer*4 iday
+                integer*4 imonth
+                integer*4 iyear
+        end type
+        type (iar) idate_struct
+        call idate_(idate_struct)
+        imonth = idate_struct % imonth
+        iday   = idate_struct % iday
+        iyear  = idate_struct % iyear
+        
       return
       end
+#endif
