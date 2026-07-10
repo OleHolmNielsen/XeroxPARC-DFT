@@ -22,7 +22,7 @@ LISTING = listing
 # FC = f77
 # Intel Fortran
 # FC = ifx
-# GNU Fortran
+# GNU Fortran (GCC) 8.5.0 20210514 (Red Hat 8.5.0-28)
 FC = gfortran
 # FFLAGS=-O
 FFLAGS=-cpp -Dx86_64 -g -std=legacy --warn-no-argument-mismatch
@@ -47,6 +47,7 @@ LIBS: $(LIBS)
 
 #
 # Program K290
+# GENERATION OF SPECIAL POINTS IN K-SPACE FOR AN ARBITRARY LATTICE
 #
 
 OBJ_290 = gcode.o     gshell.o   sorting.o  sppt2.o   \
@@ -59,6 +60,7 @@ run290: run290.o $(OBJ_290)
 
 #
 # Program K213
+# PREPARATION OF INPUT FILE WITH PSEUDOPOTENTIAL
 #
 
 OBJ_213 = alphaz.o    eps1.o      gcode.o     gshell.o   \
