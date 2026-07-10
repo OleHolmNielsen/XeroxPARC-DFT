@@ -47,7 +47,7 @@ RUN207=1
 #
 # Running K290
 #
-if test $RUN290 = 1
+if [[ $RUN290 -eq 1 ]]
 then
 	make run290
 	./run290 <<'EOF'
@@ -63,10 +63,16 @@ fi
 #
 # Running K213
 #
-if test $RUN213 = 1; then
+if [[ $RUN213 -eq 1 ]]
+then
     FILE1=B.VG
     FILE2=N.VG
     make $FILE1 $FILE2
+    if [[ ! -s $FILE1 || ! -s $FILE1 ]]
+    then
+	    echo "ERROR: Missing files $FILE1 $FILE2"
+	    exit 1
+    fi
     make run213
     ./run213 <<EOF
 -1
@@ -93,7 +99,7 @@ fi
 exit 0
 
 if test $RUN214 = 1; then  
-    fetch fort.1 -mV2 -fTR -t"DSN=rkmk005.$FILE"
+    # fetch fort.1 -mV2 -fTR -t"DSN=rkmk005.$FILE"
     PROGRAM=run214
     make $PROGRAM
     ./$PROGRAM
@@ -170,14 +176,7 @@ if test $RUN207 = 1; then
 -1           No eigenvalues kept
 EOF
     # Saving the data file:
-    $HOME/archive fort.10 $CRYSTAL.dat
-    rm EVFILE fort.15 fort.14 fort.13
-    rm $PROGRAM
+    # $HOME/archive fort.10 $CRYSTAL.dat
+    # rm EVFILE fort.15 fort.14 fort.13
+    # rm $PROGRAM
 fi
-#
-# The End
-#
-# Cray job accounting (dummy elsewhere)
-jar -hms
-rm -r $TMPDIR
-exit
