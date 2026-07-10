@@ -66,9 +66,9 @@ fi
 if test $RUN213 = 1; then
     FILE1=B.VG
     FILE2=N.VG
-    make -f $BINDIR/Makefile $FILE1 $FILE2
-    (cd $BINDIR; make run213; mv run213 $TMPDIR)
-    run213 <<EOF
+    make $FILE1 $FILE2
+    make run213
+    ./run213 <<EOF
 -1
 0 0 0 0 0
 0 0
@@ -88,10 +88,6 @@ $FILE2
 EOF
     # Move the output file to become input file for K207
     mv fort.10 fort.4
-    rm run213
-else
-    # Assume that the file is on mass storage
-    fetch fort.4 -mV2 -fTR -t"DSN=rkmk005.$FILE"
 fi
 
 exit 0
@@ -99,11 +95,10 @@ exit 0
 if test $RUN214 = 1; then  
     fetch fort.1 -mV2 -fTR -t"DSN=rkmk005.$FILE"
     PROGRAM=run214
-    (cd $BINDIR; make $PROGRAM; mv $PROGRAM $TMPDIR)
-    $PROGRAM
+    make $PROGRAM
+    ./$PROGRAM
     # Move the output file to become input file for K207
     mv fort.10 fort.4
-    rm $PROGRAM
 fi
 
 #
@@ -114,8 +109,8 @@ if test $RUN207 = 1; then
         PROGRAM=run207
     else
         PROGRAM=crun207
-    (cd $BINDIR; make $PROGRAM; mv $PROGRAM $TMPDIR)
-    $PROGRAM <<'EOF'
+    make $PROGRAM
+    ./$PROGRAM <<'EOF'
 1            spec. pts.
 1            XC is OK
 1            semiconductor
