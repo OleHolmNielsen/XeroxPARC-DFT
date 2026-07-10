@@ -1,0 +1,188 @@
+#!/bin/bash
+
+# set -x
+TMPDIR=.
+
+# Trap error signals:
+trap "rm -rf $TMPDIR; exit 2" 1 2 3 14 15 19
+
+BINDIR=.
+CRYSTAL=bn
+FILE=$CRYSTAL.dat
+
+# The structure file with atomic coordinates
+cat <<'EOF' >fort.2
+ 1-cell Boron Nitride
+ 2
+ 0.0 0.5 0.5      0.5 0.0 0.5     0.5 0.5 0.0
+ 5         -0.125    -0.125    -0.125
+ 7          0.125     0.125     0.125
+ 3.00
+EOF
+#
+# Set proper dimensions:
+#
+NTYPMX=2
+NSPIN=1
+NDIM1=7000
+NDIM2=500
+NDIM3=150
+NDIM4=800
+NDIM6=32768
+NDIM8=4
+NDIM9=2
+NDIM13=$NDIM3
+NG1MAX=20
+NG2MAX=20
+NG3MAX=20
+NCMPLX=2
+export NTYPMX NSPIN NDIM1 NDIM2 NDIM3 NDIM4 NDIM6 NDIM8 NDIM9 NDIM13 \
+NG1MAX NG2MAX NG3MAX NCMPLX
+ 
+#
+RUN290=1
+RUN213=1
+RUN214=1
+RUN207=1
+#
+# Running K290
+#
+if test $RUN290 = 1
+then
+	make run290
+	./run290 <<'EOF'
+0 0 0 0 0
+0 0
+-1
+2 2 2 0 0 0
+1
+0 0 0 0 0 0
+EOF
+fi
+
+#
+# Running K213
+#
+if test $RUN213 = 1; then
+    FILE1=B.VG
+    FILE2=N.VG
+    make -f $BINDIR/Makefile $FILE1 $FILE2
+    (cd $BINDIR; make run213; mv run213 $TMPDIR)
+    run213 <<EOF
+-1
+0 0 0 0 0
+0 0
+-1
+20
+$FILE1
+20
+$FILE2
+0.8
+-1
+0 0
+1.8e-6
+1
+0 0
+-1
+1
+EOF
+    # Move the output file to become input file for K207
+    mv fort.10 fort.4
+    rm run213
+else
+    # Assume that the file is on mass storage
+    fetch fort.4 -mV2 -fTR -t"DSN=rkmk005.$FILE"
+fi
+
+exit 0
+
+if test $RUN214 = 1; then  
+    fetch fort.1 -mV2 -fTR -t"DSN=rkmk005.$FILE"
+    PROGRAM=run214
+    (cd $BINDIR; make $PROGRAM; mv $PROGRAM $TMPDIR)
+    $PROGRAM
+    # Move the output file to become input file for K207
+    mv fort.10 fort.4
+    rm $PROGRAM
+fi
+
+#
+# Running k207
+#
+if test $RUN207 = 1; then
+    if test $NCMPLX = 1; then
+        PROGRAM=run207
+    else
+        PROGRAM=crun207
+    (cd $BINDIR; make $PROGRAM; mv $PROGRAM $TMPDIR)
+    $PROGRAM <<'EOF'
+1            spec. pts.
+1            XC is OK
+1            semiconductor
+1            # electrons OK
+1            # eigenvalues OK
+6 18 2       cutoffs (Ry)
+2            iterative diagonalization
+15           max # iterations
+1E-7         eigenvalue accuracy
+0.5          FAC
+2            Cycle when recycling eigenvectors
+-1           No VNL file
+-1           - nor any reading of VNL
+1            test dim Hamiltonian
+1            - OK
+1            NDSPLi OK
+1            V(G) display OK
+-1           change ISWCH
+    2        new ISWCH
+1            Rho(r) display OK
+-1           change FFT
+32 32 32     FFT
+1            stress
+1            forces
+    4        # cycles
+-1           no initial Rho(r) guess
+-1           projection radius - off
+-1           no display of mesh points
+-1           no further potential display
+2 3 1.0E-8 0.9 0.5 2      mixing parameters
+2            switch
+1            modify parameters
+1            E1,E2 OK
+1            NDSPLi OK
+1            V(G) display OK
+-1           change ISWCH
+    1        new ISWCH
+1            Rho(r) display OK
+-1           change FFT
+32 32 32     FFT
+1            stress
+1            forces
+    1        # cycles
+-1           no initial Rho(r) guess
+-1           projection radius - off
+-1           no display of mesh points
+-1           no further potential display
+2 3 1.0E-8 0.9 0.5 2      mixing parameters
+2            switch
+-1           do not modify parameters
+-1           Band structure
+3            # k-points
+0 0 0        GAMMA point
+1 0 0        X-point
+.5 .5 .5     L-point
+5            Stop, keep potential
+-1           No eigenvalues kept
+EOF
+    # Saving the data file:
+    $HOME/archive fort.10 $CRYSTAL.dat
+    rm EVFILE fort.15 fort.14 fort.13
+    rm $PROGRAM
+fi
+#
+# The End
+#
+# Cray job accounting (dummy elsewhere)
+jar -hms
+rm -r $TMPDIR
+exit
