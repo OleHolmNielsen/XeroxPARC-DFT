@@ -24,7 +24,7 @@ C     Use machine names in all programs:
 C
 C-----------------------------------------------------------------------
 C
-      MACTYP = 10
+      MACTYP = 12
       MACHIN(0) = 'Unknown'
       MACHIN(1) = 'IBM'
       MACHIN(2) = 'CRAY-1'
@@ -37,5 +37,6 @@ C
       MACHIN(9) = 'MAP+VAX'
       MACHIN(10) = 'SunUNIX'
       MACHIN(11) = 'Apollo'
+      MACHIN(12) = 'Linux_x86'
       RETURN
       END
