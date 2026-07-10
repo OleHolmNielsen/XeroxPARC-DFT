@@ -1,12 +1,9 @@
 # Xerox PARC (Palo Alto Research Center) DFT plane-wave code
 
-This project preserves the DFT plane-wave code written originally
-by Karel Kunc and Richard M. Martin at the
-Xerox PARC (Palo Alto Research Center)
-during 1979-1981.
+This historical project preserves the DFT plane-wave code written originally
+by Karel Kunc and Richard M. Martin at the Xerox PARC (Palo Alto Research Center) during 1979-1981.
 
-The code was further developed by Ole Holm Nielsen at Xerox PARC 
-during 1982-1983.
+The code was further developed by Ole Holm Nielsen at Xerox PARC during 1982-1983.
 
 The code implements Total Energy, Forces, and Stresses
 with a pseudopotential plane-wave basis set.
