@@ -267,8 +267,8 @@ testion: testion.o ionion.o usage.o unixus.o \
 # Maintenance
 #
 clean:
-	rm -f *.f *.bak *.orig *~ run290 run290.for run213 run207 crun207 core listing
-	rm -f *.o
+	rm -f *.f *.bak *.orig *~ run290 run290.for run213 run213.for run207 crun207 core listing
+	rm -f *.o fort.*
 
 #
 # Compilation rules (Generic UNIX)
