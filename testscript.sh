@@ -42,7 +42,7 @@ NG1MAX NG2MAX NG3MAX NCMPLX
 #
 RUN290=1
 RUN213=1
-RUN214=1
+RUN214=0
 RUN207=1
 
 line="============================================================================="
@@ -104,9 +104,8 @@ EOF
     mv fort.10 fort.4
 fi
 
-exit 0
-
-if test $RUN214 = 1; then  
+if [[ $RUN214 = 1 ]]
+then  
     # fetch fort.1 -mV2 -fTR -t"DSN=rkmk005.$FILE"
     PROGRAM=run214
 	cat <<EOF
@@ -122,11 +121,13 @@ EOF
     mv fort.10 fort.4
 fi
 
-if test $RUN207 = 1; then
+if [[ $RUN207 = 1 ]]
+then
     if test $NCMPLX = 1; then
         PROGRAM=run207
     else
         PROGRAM=crun207
+    fi
 
 cat <<EOF
 $line
