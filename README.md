@@ -1,4 +1,6 @@
-# Xerox PARC (Palo Alto Research Center) DFT plane-wave code
+============================================================
+Xerox PARC (Palo Alto Research Center) DFT plane-wave code
+============================================================
 
 This historical project preserves the DFT plane-wave code written originally
 by Karel Kunc and Richard M. Martin at the Xerox PARC (Palo Alto Research Center) during 1979-1981.
@@ -19,15 +21,15 @@ A run of the code consists of three sequential code steps in the sections below.
 K290: Analyses the crystal structure and generates Special k-points and symmetry operations
 =================================================================================================
 
-## History
+History:
 
 - Written on September 12, 1979.
 - IBM-retouched on October 27, 1980.
 - Generation of special points modified on May 26, 1982 by OHN.
 
-## Purpose
+Purpose:
 
-Playing with special points and creation of a "crystallographic" file for band structure calculations.
+- Playing with special points and creation of a "crystallographic" file for band structure calculations.
 
 Generation of special points in k-space for an arbitrary lattice, following the method of:
 
@@ -35,35 +37,35 @@ Generation of special points in k-space for an arbitrary lattice, following the 
 - Modified by MacDonald, *Phys. Rev. B* **18** (1978) 5897
 - Modified also by Ole Holm Nielsen ("symmetrization")
 
-## Notes
+Notes:
 
-Testing their efficiency and preparation of the "structural" file for running the self-consistent band structure programs.
+- Testing their efficiency and preparation of the "structural" file for running the self-consistent band structure programs.
 
-In cases where the point group of the crystal does not contain inversion, inversion is artificially added in order to make use of the hermiticity of the Hamiltonian.
+- In cases where the point group of the crystal does not contain inversion, inversion is artificially added in order to make use of the hermiticity of the Hamiltonian.
 
 K213: Preparation of an input file with pseudopotential for running K207
 ============================================================================
 
-## History
+History:
 
 - Written on July 24, 1981, based on `K97`.
 - Modified in April 1982 for non-local potentials by Ole Holm Nielsen.
 
-## Purpose
+Purpose::
 
-Preparation of an input file with pseudopotential for running `K95` (or similar pseudopotential programs), including:
+- Preparation of an input file with pseudopotential for running `K95` (or similar pseudopotential programs), including:
 
-- generation of reciprocal lattice vectors,
-- establishment of a synoptic table of reciprocal space,
-- calculation of atomic pseudopotentials,
-- combination of the total ionic pseudopotential from the individual atomic ones,
-- definition of the initial pseudopotential for the first run of the self-consistent loop.
+  - generation of reciprocal lattice vectors,
+  - establishment of a synoptic table of reciprocal space,
+  - calculation of atomic pseudopotentials,
+  - combination of the total ionic pseudopotential from the individual atomic ones,
+  - definition of the initial pseudopotential for the first run of the self-consistent loop.
 
-## Initial pseudopotential
+Initial pseudopotential:
 
-The initial pseudopotential for the self-consistent loop is chosen to be the ionic one, screened by the dielectric function of a free electron gas.
+- The initial pseudopotential for the self-consistent loop is chosen to be the ionic one, screened by the dielectric function of a free electron gas.
 
-## Potentials currently available
+Potentials currently available:
 
 - Appelbaum-Hamann (`POT13`)
 - Berkeley ionic (`POT15`)
@@ -73,12 +75,9 @@ The initial pseudopotential for the self-consistent loop is chosen to be the ion
 K207 self-consistent DFT (Density Functional Theory) calculation of Total Energy, Forces, and Stresses
 ============================================================================================================
 
-## Purpose
+Purpose:
 
-Selfconsistent calculation of band structure and total energy, Hellmann-Feynman forces and stress for semiconductors and metals.
-
-3. The run207 code makes a self-consistent DFT (Density Functional Theory)
-   calculation of Total Energy, Forces, and Stresses.
+- Selfconsistent calculation of band structure and total energy, Hellmann-Feynman forces and stress for semiconductors and metals.
 
 Input files
 ===============
