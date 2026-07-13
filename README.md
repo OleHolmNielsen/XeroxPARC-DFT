@@ -6,7 +6,7 @@ by Karel Kunc and Richard M. Martin at the Xerox PARC (Palo Alto Research Center
 
 The code was further developed by Ole Holm Nielsen at Xerox PARC during 1982-1983.
 
-Author: Ole.H.Nielsen@fysik.dtu.dk
+Author of this page: Ole.H.Nielsen@fysik.dtu.dk
 
 Homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
 
@@ -32,8 +32,8 @@ Purpose:
 
 Generation of special points in k-space for an arbitrary lattice, following the method of:
 
-- Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188
-- Modified by MacDonald, *Phys. Rev. B* **18** (1978) 5897
+- [Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188)
+- Modified by [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897)
 - Modified also by Ole Holm Nielsen ("symmetrization")
 
 Notes:
