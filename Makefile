@@ -28,7 +28,7 @@ FC = gfortran
 FFLAGS=-cpp -Dx86_64 -g -std=legacy --warn-no-argument-mismatch
 
 # The loader including OpenBLAS from https://www.openmathlib.org/OpenBLAS/
-LDR = $(FC) $(FFLAGS) -lopenblas -lgfortran
+LDR = $(FC) $(FFLAGS)
 
 # Any extra stuff that you want to link in (libraries etc.)
 # Generic UNIX:
@@ -36,7 +36,7 @@ LDR = $(FC) $(FFLAGS) -lopenblas -lgfortran
 # UNIX with BLAS library
 # OBJS = unixtra.o unixus.o error.o
 OBJS =
-LIBS =
+LIBS = -lopenblas -lgfortran
 
 #
 # The default target:
