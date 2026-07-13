@@ -1,0 +1,301 @@
+      SUBROUTINE IONION (A1,A2,A3,XKAPA,ULA,ZK,NAT,EPS,NDIM9,
+     +                   GAMAEW,FORCE,STRSII)
+C
+C CALCULATION OF THE NONDIVERGENT PART OF ION-ION FORCES
+C OF A SYSTEM OF POINT-CHARGES FOR AN ARBITRARY
+C LATTICE. DEFINITION OF IHM, ZUNGER, COHEN, J. PHYS. C 12 (1979)
+C 4409, ALGORITHM RELATED TO THAT GIVEN IN MARADUDIN ET AL.,
+C LATTICE DYNAMICS... SOLID ST.PH. SUPPL.3(1971), EQ. (6.3.29).
+C
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+C
+      DOUBLE PRECISION DERFC
+      EXTERNAL DERFC
+      REAL A1(3),A2(3),A3(3),XKAPA(3,NDIM9),ULA,
+     +     ZK(NDIM9),EPS
+      DOUBLE PRECISION GAMAEW, FORCE(3,NDIM9), STRSII(3,3)
+C
+C.....FILES
+      COMMON /FILES/INPUT,IOUT,IN290,IN213,ISTORE,IUNIT7,IUNIT8,ISTRUC,
+     +               IVNLKK,ISUMRY,IKPTS
+C.....PHYSICAL AND MATHEMATICAL CONSTANTS
+      DOUBLE PRECISION ABOHR,RYEV,RYDERG,PI,SPI
+      COMMON /CONST/   ABOHR,RYEV,RYDERG,PI,SPI
+C
+C     WRITTEN 13-APR-82 BY OHN
+C     MODIFIED SEP-1982 FOR STRESSES
+C     IMPROVED 15-FEB-1988 FOR BETTER ACCURACY
+C
+C THIS IS A DOUBLE PRECISION VERSION.
+C (ALL INPUT DATA, HOWEVER, ARE ENTERED IN SINGLE PRECISION.
+C IT MIGHT BE DESIRABLE TO CHANGE THIS FEATURE IF ONCE SOME
+C COMPLICATED LATTICES ARE TREATED.)
+C SUBROUTINES NEEDED: DERFC
+C INPUT DATA
+C      A1,A2,A3 .... CARTESIAN COORDINATES OF PRIMITIVE TRANSLATIONS.
+C      XKAPA ....... CARTESIAN COORDINATES OF THE BASIS.
+C      ULA ......... UNIT OF LENGTH USED ABOVE, IN ANGSTROMS
+C      ZK .......... ZK(KAPA) IS THE (CORE-)CHARGE ON THE
+C                    SITE KAPA, IN UNITS "PROTON CHARGE".
+C      NAT ......... NUMBER OF ATOMS OF THE BASIS
+C      EPS ......... PARAMETER OF EWALD SUMMATION (SEE MARADUDIN,
+C                    EQ.(6.3.29)). ITS VALUE SHOULD BE IMMATERIAL.
+C OUTPUT DATA
+C      FORCE ....... ARRAY(3,*) GIVING THE FORCES IN MILLIDYNES
+C      GAMAEW ...... GAMMA-EWALD ION-ION ENERGY
+C      STRSII ...... STRESS TENSOR
+C
+C-----------------------------------------------------------------------
+      PARAMETER ( NDM9 = 36 )
+      DIMENSION B1(3),B2(3),B3(3),XLP(3),XXX(3),TAU(3),FG(3,NDM9),
+     +  FX(3,NDM9),DA1(3),DA2(3),DA3(3),DXKAPA(3,NDM9),DZK(NDM9),
+     +  STRREC(3,3),STRDIR(3,3)
+C-----------------------------------------------------------------------
+C INITIALIZATION OF THE SUBROUTINE
+C
+      IF (NDIM9 .GT. NDM9) THEN
+        WRITE (IOUT,*) 'SUBROUTINE IONION *** FATAL ERROR ***'
+        WRITE (IOUT,*) 'NDIM9=',NDIM9,', BUT INTERNAL DIMENSION=',NDM9
+        CALL EXIT
+        ENDIF
+C     KEEP THINGS IN DOUBLE PRECISION:
+      DO 90 I =1,3
+        DA1(I) = DBLE(A1(I))
+        DA2(I) = DBLE(A2(I))
+        DA3(I) = DBLE(A3(I))
+        DO 90 KAPA = 1,NAT
+          DXKAPA(I,KAPA) = DBLE(XKAPA(I,KAPA))
+          DZK(KAPA)      = DBLE(ZK(KAPA))
+90        CONTINUE
+      DULA = DBLE(ULA)
+      DEPS = DBLE(EPS)
+C     VOLUME OF THE UNIT CELL
+      VOLUM = DA1(1)*DA2(2)*DA3(3) + DA2(1)*DA3(2)*DA1(3) +
+     +        DA3(1)*DA1(2)*DA2(3) - DA1(3)*DA2(2)*DA3(1) -
+     +        DA2(3)*DA3(2)*DA1(1) - DA3(3)*DA1(2)*DA2(1)
+C     RECIPROCAL LATTICE
+      B1(1) = (DA2(2)*DA3(3) - DA2(3)*DA3(2)) / VOLUM
+      B1(2) = (DA2(3)*DA3(1) - DA2(1)*DA3(3)) / VOLUM
+      B1(3) = (DA2(1)*DA3(2) - DA2(2)*DA3(1)) / VOLUM
+      B2(1) = (DA3(2)*DA1(3) - DA3(3)*DA1(2)) / VOLUM
+      B2(2) = (DA3(3)*DA1(1) - DA3(1)*DA1(3)) / VOLUM
+      B2(3) = (DA3(1)*DA1(2) - DA3(2)*DA1(1)) / VOLUM
+      B3(1) = (DA1(2)*DA2(3) - DA1(3)*DA2(2)) / VOLUM
+      B3(2) = (DA1(3)*DA2(1) - DA1(1)*DA2(3)) / VOLUM
+      B3(3) = (DA1(1)*DA2(2) - DA1(2)*DA2(1)) / VOLUM
+      VOLUM = DABS(VOLUM)
+C     SCALAR PRODUCTS AND LENGTHS
+      A11 = DA1(1)**2 + DA1(2)**2 + DA1(3)**2
+      A22 = DA2(1)**2 + DA2(2)**2 + DA2(3)**2
+      A33 = DA3(1)**2 + DA3(2)**2 + DA3(3)**2
+      B11 = B1(1)**2  + B1(2)**2  + B1(3)**2
+      B22 = B2(1)**2  + B2(2)**2  + B2(3)**2
+      B33 = B3(1)**2  + B3(2)**2  + B3(3)**2
+C
+C     This piece of code is the EISPACK function EPSLON:
+C     It determines ACCUR such that 1+ACCUR > 1
+C     (See EISPACK for further info).
+      A = 4.0D0 / 3.0D0
+10    B = A - 1.0D0
+      C = B + B + B
+      ACCUR = DABS (C - 1.0D0)
+      IF (ACCUR .EQ. 0.0D0) GO TO 10
+C
+C     Estimate the lengths beyond which the contributions will be neglegible.
+      ACCLOG = DLOG(ACCUR)
+      G2MAX = 4.0*DEPS*ABS(ACCLOG) / (2.0 * PI)**2
+      MAXG1 = DSQRT( G2MAX * A11 ) + 0.5D0
+      MAXG2 = DSQRT( G2MAX * A22 ) + 0.5D0
+      MAXG3 = DSQRT( G2MAX * A33 ) + 0.5D0
+      X2MAX = ABS(ACCLOG)/DEPS
+      MAXX1 = DSQRT( X2MAX * B11 ) + 0.5D0
+      MAXX2 = DSQRT( X2MAX * B22 ) + 0.5D0
+      MAXX3 = DSQRT( X2MAX * B33 ) + 0.5D0
+C     WRITE(IUNIT8,100) EPS,MAXG1,MAXG2,MAXG3,MAXX1,MAXX2,MAXX3,ACCUR
+C100   FORMAT(' SUBROUTINE IONION - FOR EPS = ',F10.4/
+C    +' THE SUMMATIONS OVER RECIPROCAL SPACE ARE FROM +/- ',3I5/
+C    +' AND THE SUMMATIONS OVER DIRECT SPACE ARE FROM +/- ',3I5/
+C    +' ESTIMATED ACCURACY = ', E10.4/)
+C
+C     ZEROING:
+      GAMREC = 0.0D0
+      GAMDIR = 0.0D0
+      DO 115 I = 1,3
+      DO 110 J = 1,3
+        STRREC(I,J) = 0.0D0
+        STRDIR(I,J) = 0.0D0
+110     CONTINUE
+      DO 115 KAPA = 1,NAT
+        FG(I,KAPA) = 0.0D0
+        FX(I,KAPA) = 0.0D0
+115     CONTINUE
+C-----------------------------------------------------------------------
+C
+C     THE SUMMATION OVER RECIPROCAL SPACE
+C
+C     WRITE (IOUT,*) 'RECIPROCAL SPACE SUM'
+      DO 120 IG1 = -MAXG1,MAXG1
+      DO 120 IG2 = -MAXG2,MAXG2
+      DO 120 IG3 = -MAXG3,MAXG3
+C
+C     G=0 is excluded:
+      IF (IG3 .EQ. 0) THEN
+        IF (IG2 .EQ. 0) THEN
+          IF (IG1 .EQ. 0) THEN
+            GOTO 120
+            ENDIF
+          ENDIF
+        ENDIF
+C
+      DO 140 I = 1,3
+        TAU(I) = (DBLE(IG1)*B1(I) + DBLE(IG2)*B2(I) +
+     +            DBLE(IG3)*B3(I)) * 2.0D0*PI
+140     CONTINUE
+      TAU2 = TAU(1)**2 + TAU(2)**2 + TAU(3)**2
+      T2E  = TAU2/(4.0D0*DEPS)
+C     CONTRIBUTION NEGLEGIBLE
+      IF ( -T2E .LT. ACCLOG) GOTO 120
+      EXPFAC = DEXP( - T2E)/T2E
+C
+C     GAMMA-EWALD: SUM OVER KAPPA
+C
+      SUMR = 0.0D0
+      SUMI = 0.0D0
+      DO 141 KAPA = 1,NAT
+        ARG  = TAU(1)*DXKAPA(1,KAPA) + TAU(2)*DXKAPA(2,KAPA) +
+     +         TAU(3)*DXKAPA(3,KAPA)
+        SUMR = SUMR + DZK(KAPA)*DCOS(ARG)
+        SUMI = SUMI + DZK(KAPA)*DSIN(ARG)
+141     CONTINUE
+      IF (ABS(SUMR) .LT. ACCUR) SUMR = 0.0D0
+      IF (ABS(SUMI) .LT. ACCUR) SUMI = 0.0D0
+      TERM   = EXPFAC*(SUMR**2 + SUMI**2)
+      GAMREC = GAMREC + TERM
+C
+C     STRESS:
+C
+      FACTOR = TERM * 2.0D0*(T2E + 1.0D0)/TAU2
+      DO 142 J = 1,3
+      DO 142 I = 1,3
+        SUM = TAU(I)*TAU(J) * FACTOR
+        IF (I .EQ. J) SUM = SUM - TERM
+        STRREC(I,J) = STRREC(I,J) + SUM
+142     CONTINUE
+C
+C     FORCES: LOOP OVER THE ATOMS KAPPA-0
+C
+      DO 155 KAPA0 = 1,NAT
+        SUM = 0.0D0
+C       SUMMATION OVER KAPPA
+        DO 150 KAPA = 1,NAT
+          ARG = 0.0D0
+          DO 160 I=1,3
+            ARG = ARG + TAU(I)*( DXKAPA(I,KAPA0) - DXKAPA(I,KAPA) )
+160         CONTINUE
+          SUM = SUM + DZK(KAPA)*DSIN(ARG)
+150       CONTINUE
+        SUM = SUM*EXPFAC
+        IF (ABS(SUM) .LT. ACCUR) SUM = 0.0D0
+        DO 155 I = 1,3
+          FG(I,KAPA0) = FG(I,KAPA0) + SUM*TAU(I)
+155       CONTINUE
+C
+120   CONTINUE
+C-----------------------------------------------------------------------
+C
+C     SUMMATION OVER THE DIRECT LATTICE
+C
+C     WRITE (IOUT,*) 'DIRECT LATTICE SUM'
+      SQEPS = DSQRT(DEPS)
+      DO 200 IX1 = -MAXX1,MAXX1
+      DO 200 IX2 = -MAXX2,MAXX2
+      DO 200 IX3 = -MAXX3,MAXX3
+        DO 180 I=1,3
+          XLP(I) = DBLE(IX1)*DA1(I) + DBLE(IX2)*DA2(I) +
+     +             DBLE(IX3)*DA3(I)
+180       CONTINUE
+C
+C     LOOP OVER ATOMS KAPPA-0
+C
+      DO 200 KAPA0 =  1,NAT
+C     SUMMATION OVER KAPPA
+      DO 200 KAPA = 1,NAT
+        DO 210 I=1,3
+          XXX(I) = DXKAPA(I,KAPA0) - DXKAPA(I,KAPA) - XLP(I)
+210       CONTINUE
+      XXX2 = XXX(1)**2 + XXX(2)**2 + XXX(3)**2
+C     (L-PRIM,KAPPA) = (0,KAPPA0) IS EXCLUDED
+      IF (XXX2 .LT. 1.0E-8) GOTO 200
+C     NEGLEGIBLE CONTRIBUTION
+      ARG = XXX2 * DEPS
+      IF ( - ARG .LT. ACCLOG) GOTO 200
+C     FUNCTION H(X) = DERFC(X)/X
+      ARG = DSQRT(ARG)
+      HX  = DERFC(ARG) / ARG
+C
+C.....GAMMA-EWALD:
+C
+      GAMDIR = GAMDIR + DZK(KAPA)*DZK(KAPA0)*HX
+C
+C.....STRESS:
+C
+C     FUNCTION H'(X)*X
+      ARG2 = ARG*ARG
+      IF ( - ARG2 .GT. ACCLOG) THEN
+        HPRIM = - HX - 2.0D0/SPI*DEXP( - ARG2)
+      ELSE
+        HPRIM = - HX
+        ENDIF
+      FACTOR = DZK(KAPA)*DZK(KAPA0)*HPRIM/XXX2
+      DO 190 J = 1,3
+      DO 190 I = 1,3
+        STRDIR(I,J) = STRDIR(I,J) + FACTOR * XXX(I)*XXX(J)
+190     CONTINUE
+C
+C.....FORCES:
+C
+C     FUNCTION H'(X)
+      HPRIM = HPRIM/ARG
+      FACTOR = HPRIM*DZK(KAPA)/DSQRT(XXX2)
+      DO 205 I = 1,3
+        FX(I,KAPA0) = FX(I,KAPA0) + FACTOR*XXX(I)
+205     CONTINUE
+200   CONTINUE
+C-----------------------------------------------------------------------
+C
+C     THE THIRD AND FOURTH SUMS
+C
+      S3 = 0.0D0
+      S4 = 0.0D0
+      DO 230 KAPA = 1,NAT
+        S3 = S3 + DZK(KAPA)**2
+        S4 = S4 + DZK(KAPA)
+230     CONTINUE
+C-----------------------------------------------------------------------
+C
+C     FINAL COMPOSITION OF GAMMA-EWALD, STRESS AND FORCES
+C
+      GAMAEW = PI/(2.0D0*VOLUM*DEPS)*GAMREC + SQEPS/2.0D0*GAMDIR -
+     + SQEPS/SPI*S3 - PI/(2.0D0*VOLUM*DEPS)*S4**2
+C     UNIT CONVERSION TO EV
+      GAMAEW = GAMAEW*2.0D0*ABOHR/DULA * RYEV
+C
+      DO 240 J = 1,3
+      DO 240 I = 1,3
+        STRSII(I,J) = PI/(2.0D0*VOLUM*DEPS)*STRREC(I,J) +
+     +  SQEPS/2.0D0*STRDIR(I,J)
+        IF (I .EQ. J)
+     +  STRSII(I,J) = STRSII(I,J) + PI/(2.0D0*VOLUM*DEPS)*S4**2
+C       UNIT CONVERSION TO EV/UNIT CELL:
+        STRSII(I,J) = STRSII(I,J)*2.0D0*ABOHR/DULA * RYEV
+240     CONTINUE
+C
+      DO 220 KAPA0 = 1,NAT
+      DO 220 I = 1,3
+        FSUM = DZK(KAPA0)*
+     +  ( FG(I,KAPA0)*PI/(VOLUM*DEPS) - FX(I,KAPA0)*DEPS )
+C       UNIT CONVERSION TO MILLI-DYNES
+        FORCE(I,KAPA0) = FSUM * 2.0D0*ABOHR/DULA /DULA
+220     CONTINUE
+      RETURN
+      END

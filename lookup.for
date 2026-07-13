@@ -1,0 +1,105 @@
+      SUBROUTINE LOOKUP (LIST,NGTOT,IGVALU,IPLACE,NG1,NG2,NG3,N,ICHECK)
+C
+C     INDEX LOOKUP. WRITTEN BY RICHARD NEEDS ON 19TH AUG 1986.
+C     IF ICHECK=1 THE LOOKUPS ARE CHECKED TO SEE WHETHER THEY ARE
+C     IN THE IGLIST. OTHERWISE NO CHECKS ARE PERFORMED.
+C
+      DIMENSION IGVALU(3,N),IPLACE(N)
+      DIMENSION LIST(-NG1:NG1,-NG2:NG2,-NG3:NG3)
+CDIR$ INT24 I,IPLACE,IGVALU,LIST
+      COMMON /FILES/INPUT,IOUT,IN290,IN213,ISTORE,IUNIT7,IUNIT8,ISTRUC,
+     +               IVNLKK,ISUMRY,IKPTS
+C---------------------------------------------------------------------
+C
+      DO 10 I = 1,N
+        IPLACE(I) = LIST(IGVALU(1,I),IGVALU(2,I),IGVALU(3,I))
+10      CONTINUE
+C
+      IF (ICHECK .LT. 1) RETURN
+C
+      INOTG = 0
+      DO 30 I = 1,N
+        IF (IABS(IGVALU(1,I)) .GT. NG1) GOTO 20
+        IF (IABS(IGVALU(2,I)) .GT. NG2) GOTO 20
+        IF (IABS(IGVALU(3,I)) .GT. NG3) GOTO 20
+        GOTO 30
+20      IPLACE(I) = 0
+        INOTG = INOTG + 1
+30      CONTINUE
+C
+      IF (ICHECK .EQ. 1 .AND. INOTG .NE. 0) THEN
+        WRITE(IOUT,*) 'LOOKUP ',INOTG,' OUT OF GRID'
+        ENDIF
+C
+      INOTL = 0
+      DO 40 I = 1,N
+        IPL = IPLACE(I)
+        IF (IPL .GT. NGTOT .OR. IPL .LE. 0) THEN
+          INOTL = INOTL + 1
+          IF (ICHECK .EQ. 1 .AND. IPL .NE. 0) THEN
+            WRITE(IOUT,*) '***ERROR*** LOOKUP'
+            WRITE(IOUT,*) 'IPLACE NOT IN IGLIST BUT NOT ZERO'
+            CALL EXIT
+            ENDIF
+          ENDIF
+40      CONTINUE
+      INOT = INOTL - INOTG
+      IF (ICHECK .EQ. 1 .AND. INOT .NE. 0) THEN
+        WRITE(IOUT,*) 'LOOKUP ',INOT,' IN GRID BUT NOT IN IGLIST'
+        ENDIF
+C
+      RETURN
+      END
+      SUBROUTINE LOOK00 (IGLIST,LIST,NGTOT,NG1,NG2,NG3,
+     +                   NG1MAX,NG2MAX,NG3MAX)
+C
+C     INITIALIZING INDEX LOOKUP
+C
+      INTEGER IGLIST(3,NGTOT),LIST(-NG1:NG1,-NG2:NG2,-NG3:NG3)
+      COMMON /FILES/INPUT,IOUT,IN290,IN213,ISTORE,IUNIT7,IUNIT8,ISTRUC,
+     +               IVNLKK,ISUMRY,IKPTS
+C-----------------------------------------------------------------
+C
+      IF (NG1 .GT. NG1MAX) THEN
+        WRITE(IOUT,*) '***ERROR*** LOOK00'
+        WRITE(IOUT,*) 'NG1= ',NG1,' BUT NG1MAX=',NG1MAX
+        CALL EXIT
+        ENDIF
+      IF (NG2 .GT. NG2MAX) THEN
+        WRITE(IOUT,*) '***ERROR*** LOOK00'
+        WRITE(IOUT,*) 'NG2= ',NG2,' BUT NG2MAX=',NG2MAX
+        CALL EXIT
+        ENDIF
+      IF (NG3 .GT. NG3MAX) THEN
+        WRITE(IOUT,*) '***ERROR*** LOOK00'
+        WRITE(IOUT,*) 'NG3= ',NG3,' BUT NG3MAX=',NG3MAX
+        CALL EXIT
+        ENDIF
+C
+      WRITE (IUNIT7,99) NGTOT
+99    FORMAT(' LOOK00: INDEX LOOKUP ON ',I6,' G-VECTORS')
+C
+      DO 10 K = -NG3,NG3
+      DO 10 J = -NG2,NG2
+      DO 10 I = -NG1,NG1
+        LIST(I,J,K) = 0
+10      CONTINUE
+C
+      DO 20 I = 1,NGTOT
+        IG1 = IGLIST(1,I)
+        IG2 = IGLIST(2,I)
+        IG3 = IGLIST(3,I)
+        IF (IABS(IG1) .GT. NG1) GOTO 30
+        IF (IABS(IG2) .GT. NG2) GOTO 30
+        IF (IABS(IG3) .GT. NG3) GOTO 30
+        LIST(IG1,IG2,IG3) = I
+20      CONTINUE
+C
+      RETURN
+C
+30    WRITE(IOUT,*) '***ERROR*** LOOK00'
+      WRITE(IOUT,*) 'SOME ELEMENT OF IGLIST OUT OF RANGE'
+      CALL EXIT
+C
+      RETURN
+      END

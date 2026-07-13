@@ -1,0 +1,269 @@
+      SUBROUTINE PROJCT
+     + (LREAL,NDIM1,NDIM3,NDIM4,NDIM5,NDIM8,NDIM9,
+     +  RPROJ,VOLUM,NAT,SATGR,SATGI,
+     +  CEV,NBDS,GK,LISTAB,NA,NB,OCC,WORK,OCCLM)
+C
+C     ANGULAR-MOMENTUM PROJECTION OF WAVEFUNCTIONS
+C     FOR EACH BAND AND EACH ATOMIC SITE.
+C     THE WAVEFUNCTION**2 IS INTEGRATED UP TO THE WIGNER-SEITZ RADIUS.
+C
+C     WRITTEN BY O. H. NIELSEN (15-OCT-1984)
+C
+C     OUTPUT:
+C     OCCLM ...... THE INTEGRAL
+C                  SPHERICAL HARMONICS IN CARTESIAN BASIS:
+C                  1     - 1.0
+C                  2,3,4 - ROOT(3)    *  X,  Y,  Z
+C                  5,6,7 - ROOT(15)   *  XY, XZ, YZ
+C                  8     - ROOT(15)/2 * (X**2  - Y**2)
+C                  9     - ROOT(5)/2  * (3Z**2 - 1)
+C
+      LOGICAL LREAL
+      COMPLEX CEV(NDIM5,NDIM8)
+      DIMENSION GK(4,NDIM5), LISTAB(NDIM5),
+     +  SATGR(NDIM9,NDIM1), SATGI(NDIM9,NDIM1),
+     +  OCCLM(9,NDIM9,NDIM8)
+      DOUBLE PRECISION OCC(NDIM8)
+C
+C     GAUSS QUADRATURE PARAMETERS:
+C     R AND WEIGHT ARE THE INTEGRATION POINTS AND WEIGHTS RESPECTIVELY.
+      PARAMETER (NGAUSS = 5)
+      DOUBLE PRECISION R(NGAUSS), WEIGHT(NGAUSS), AA(NGAUSS), ENDPTS(2)
+      DOUBLE PRECISION RMIN,RMAX,VOLAT
+      REAL SUM(9)
+      COMPLEX WORK(9,NDIM9,NGAUSS), Z
+C-----------------------------------------------------------------------
+C
+C.....FILES
+      COMMON /FILES/INPUT,IOUT,IN290,IN213,ISTORE,IUNIT7,IUNIT8,ISTRUC,
+     +               IVNLKK,ISUMRY,IKPTS
+C.....PHYSICAL AND MATHEMATICAL CONSTANTS
+      DOUBLE PRECISION ABOHR,RYEV,RYDERG,PI,SPI
+      COMMON /CONST/   ABOHR,RYEV,RYDERG,PI,SPI
+C
+      DC2ABS(Z) = DPROD(REAL(Z),REAL(Z)) + DPROD(AIMAG(Z),AIMAG(Z))
+C-----------------------------------------------------------------------
+C     **** DO NOT FORGET THE MODIFICATIONS IN ROUTINE PROJLM ******
+C     FOR COMPLEX AND REAL HAMILTONIANS
+C-----------------------------------------------------------------------
+C
+C     CHOOSE A RADIUS OF INTEGRATION:
+C
+      RMIN = 0.0D0
+      IF (RPROJ .LT. 0.0) THEN
+C       NO PROJECTION
+        RETURN
+      ELSE IF (RPROJ .EQ. 0.0) THEN
+C       FIND THE WIGNER-SEITZ RADIUS
+        VOLAT = VOLUM / DBLE(NAT)
+        RMAX = ( (3.0D0 * VOLAT) / (4.0D0 * PI) ) ** (1.0D0 / 3.0D0)
+      ELSE
+C       RPROJ INDICATES INTEGRATION RADIUS
+        RMAX = RPROJ
+        ENDIF
+C
+C      SET UP GRID FOR GAUSS QUADRATURE INTEGRATION
+C
+       IFAIL = 0
+C      ROUTINE WRITTEN BY G.H.GOLUB, STANFORD UNIVERSITY.
+       CALL GAUSSQ (1,NGAUSS,0.D0,0.D0,0,ENDPTS,AA,R,WEIGHT)
+C      NAG-LIBRARY:
+C      CALL D01BCF(0,-1.D0,1.D0,0.D0,0.D0,NGAUSS,WEIGHT,R,IFAIL)
+C      CERN LIBRARY D106
+C      CALL GSET(-1.0D0,1.0D0,NGAUSS,R,WEIGHT,IFAIL)
+       IF (IFAIL .NE. 0) THEN
+         WRITE (IOUT,*) 'GAUSS ROUTINE RETURNED WITH IFAIL =',IFAIL
+         CALL EXIT
+         ENDIF
+C     SCALE THE INTERVAL (-1,+1) INTO (RMIN,RMAX):
+      DO 100 I = 1, NGAUSS
+        R(I) = (RMAX - RMIN) * (R(I) + 1.0D0) / 2.0D0 + RMIN
+        WEIGHT(I) = (RMAX - RMIN) * WEIGHT(I) / 2.0D0
+C
+C       INTEGRATION FACTORS (4PI)**2, R**2, 1/4PI (FROM YLM), 1/VOLUM:
+C
+        WEIGHT(I) = WEIGHT(I) * (4.0D0*PI) * R(I)**2 / DBLE(VOLUM)
+100     CONTINUE
+C
+      DO 110 J = 1, NDIM8
+        DO 110 KAPA = 1, NDIM9
+          DO 110 L = 1, 9
+            OCCLM(L,KAPA,J) = 0.0
+110         CONTINUE
+C
+C     LOOP OVER ELECTRONIC BANDS
+C     (PLACED OUTERMOST TO SAVE ON WORKSPACES)
+C
+      DO 300 J = 1, NBDS
+C
+      CALL PROJLM
+     + (J,LREAL,NDIM1,NDIM3,NDIM4,NDIM5,NDIM8,NDIM9,NGAUSS,
+     +  R,NAT,SATGR,SATGI,CEV,CEV,
+     +  GK,LISTAB,NA,NB,WORK)
+C
+C     INTEGRATE THE SQUARED WAVEFUNCTION
+C
+      DO 300 KAPA = 1, NAT
+      DO 300 L = 1, 9
+        OCCLM(L,KAPA,J) = 0.0
+        DO 300 I = 1, NGAUSS
+          OCCLM(L,KAPA,J) = OCCLM(L,KAPA,J) +
+     +      WEIGHT(I) * DC2ABS( WORK(L,KAPA,I) )
+C
+300       CONTINUE
+C
+C     PRINT OUT RESULTS
+C
+      WRITE (IOUT,400) RMAX
+400   FORMAT ('0WAVEFUNCTION ANGULAR MOMENTUM DECOMPOSITION'/
+     +' INTEGRATION (UNITS: ELECTRONS) UP TO RADIUS = ',F12.6,' (ULA)'/
+     +' BAND ATOM   S      X      Y      Z     ',
+     +' XY     XZ     YZ    X2-Y2  3Z2-1  S+P+D')
+      DO 450 J = 1, NBDS
+      DO 450 KAPA = 1, NAT
+        TOTOCC = 0.0
+        DO 440 L = 1, 9
+          TOTOCC = TOTOCC + OCCLM(L,KAPA,J)
+440       CONTINUE
+        WRITE (IOUT,410) J,KAPA,(OCCLM(L,KAPA,J), L = 1, 9), TOTOCC
+410     FORMAT (1X,I4,I5,10F7.3)
+450     CONTINUE
+C
+C     SUM UP CONTRIBUTIONS OF BANDS
+C
+      IF (NBDS .LE. 1) GOTO 540
+      DO 530 KAPA = 1, NAT
+        TOTOCC = 0.0
+        DO 510 L = 1, 9
+          SUM(L) = 0.0
+          DO 500 J = 1, NBDS
+            SUM(L) = SUM(L) + OCCLM(L,KAPA,J) * OCC(J)
+500         CONTINUE
+          TOTOCC = TOTOCC + SUM(L)
+510       CONTINUE
+        WRITE (IOUT,520) KAPA, (SUM(L),L=1,9), TOTOCC
+520     FORMAT (' SUM*OCC',I2,10F7.3)
+530     CONTINUE
+C
+540   RETURN
+      END
+      SUBROUTINE PROJLM
+     + (J,LREAL,NDIM1,NDIM3,NDIM4,NDIM5,NDIM8,NDIM9,NGRID,
+     +  R,NAT,SATGR,SATGI,CEV,CEVRL,
+     +  GK,LISTAB,NA,NB,WORK)
+C
+C     PERFORM THE ACTUAL PROJECTION ON THE GRID R(I)
+C
+C     J .......... BAND INDEX
+C     R, NGRID ... RADIAL GRID ON WHICH WAVEFUNCTION IS DESIRED
+C     WORK ....... WORKSPACE CONTAINING THE OUTPUT
+C
+      LOGICAL   LREAL
+      DIMENSION GK(4,NDIM5), LISTAB(NDIM5),
+     +          SATGR(NDIM9,NDIM1), SATGI(NDIM9,NDIM1)
+      COMPLEX   WORK(9,NDIM9,NGRID)
+      DOUBLE    PRECISION R(NGRID)
+C
+      DOUBLE PRECISION QR, BES(0:2)
+      REAL GKI(3), YLM(9), BESYLM(9)
+      COMPLEX CS, CEVJM
+      DIMENSION INDEX(9)
+C
+C     FOR COMPLEX HAMILTONIANS
+      COMPLEX CEV(NDIM5,NDIM8)
+C
+C     FOR REAL HAMILTONIANS
+      REAL CEVRL(NDIM5,NDIM8)
+C-----------------------------------------------------------------------
+C
+C.....FILES
+      COMMON /FILES/INPUT,IOUT,IN290,IN213,ISTORE,IUNIT7,IUNIT8,ISTRUC,
+     +               IVNLKK,ISUMRY,IKPTS
+C.....PHYSICAL AND MATHEMATICAL CONSTANTS
+      DOUBLE PRECISION ABOHR,RYEV,RYDERG,PI,SPI
+      COMMON /CONST/   ABOHR,RYEV,RYDERG,PI,SPI
+C
+      PARAMETER ( EPS = 1.0E-6 )
+      DATA INDEX /0,1,1,1,2,2,2,2,2/
+      DATA YLM(1) /1.0/
+C-----------------------------------------------------------------------
+C
+      F1  = SQRT(3.0)
+      F2  = SQRT(15.0)
+      F3  = SQRT(15.0) / 2.0
+      F4  = SQRT(5.0) / 2.0
+      F5  = 3.0 * F4
+C
+C     ZERO THE WORKSPACES:
+      DO 120 I = 1, NGRID
+        DO 120 KAPA = 1, NDIM9
+          DO 120 L = 1, 9
+            WORK(L,KAPA,I) = 0.0
+120         CONTINUE
+C
+C     LOOP OVER PLANE WAVES
+C
+      DO 200 M = 1, NA + NB
+C
+        LISTM = LISTAB(M)
+        GKLEN = GK(4,M)
+C
+C       SPHERICAL HARMONICS (CARTESIAN BASIS):
+C
+        IF (GKLEN .GT. EPS) THEN
+          DO 150 I = 1, 3
+            GKI(I) = GK(I,M) / GKLEN
+150         CONTINUE
+C         YLM(1) = 1.0 (DEFINED IN A DATA STATEMENT)
+          YLM(2) = F1 * GKI(1)
+          YLM(3) = F1 * GKI(2)
+          YLM(4) = F1 * GKI(3)
+          YLM(5) = F2 * GKI(1) * GKI(2)
+          YLM(6) = F2 * GKI(1) * GKI(3)
+          YLM(7) = F2 * GKI(2) * GKI(3)
+          YLM(8) = F3 * (GKI(1)**2 - GKI(2)**2)
+          YLM(9) = F5 * GKI(3)**2 - F4
+        ELSE
+          DO 170 L = 2, 9
+            YLM(L) = 0.0
+170         CONTINUE
+          ENDIF
+      
+C
+C       LOOP OVER INTEGRATION POINTS
+C
+        DO 200 I = 1, NGRID
+          QR = GKLEN * R(I) * 2.0D0 * PI
+C         BESSEL FUNCTIONS:
+          IF (QR .LT. EPS) THEN
+            BES(0) = 1.0D0
+            BES(1) = 0.0D0
+            BES(2) = 0.0D0
+          ELSE
+            BES(0) = SIN(QR)/QR
+            BES(1) = (BES(0) - COS(QR))/QR
+            BES(2) = 3.0D0*BES(1)/QR - BES(0)
+            ENDIF
+          DO 190 L = 1, 9
+            BESYLM(L) = BES(INDEX(L)) * YLM(L)
+190         CONTINUE
+C         WAVEFUNCTION
+          IF (LREAL) THEN
+            CEVJM = CEVRL(M,J)
+          ELSE
+            CEVJM = CEV(M,J)
+            ENDIF
+C
+C         LOOP OVER ATOMIC SITES
+C
+          DO 200 KAPA = 1, NAT
+C           STRUCTURE FACTOR OF ATOMIC SITE:
+            CS  = CEVJM * CMPLX( SATGR(KAPA,LISTM), SATGI(KAPA,LISTM) )
+C
+C           LOOP OVER SPHERICAL HARMONICS
+C
+            DO 200 L = 1, 9
+              WORK(L,KAPA,I) = WORK(L,KAPA,I) + CS * BESYLM(L)
+200           CONTINUE
+      RETURN
+      END

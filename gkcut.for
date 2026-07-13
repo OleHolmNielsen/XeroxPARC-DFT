@@ -1,0 +1,112 @@
+      SUBROUTINE GKCUT (WVK,E1,E2,B1,B2,B3,NG1,NG2,NG3,NDIM1,NDIM3,
+     +NDIM4,NDIM5,ISORT,RSORT,ISTRAI,GMTRIC,IGLIST,NGTOT,LISTAB,
+     +GK,NA,NB)
+C
+C     CALCULATE THE CUTOFF OF (G+K)-VECTORS
+C
+C.....LISTS FOR WAVES AT THE K-POINT WVK
+      DIMENSION LISTAB(NDIM5),GK(4,NDIM5)
+C.....LATTICE STRUCTURE
+      DIMENSION B1(3),B2(3),B3(3),WVK(3),GMTRIC(3,3)
+      DIMENSION IGLIST(3,NDIM1)
+C.....SCRATCH
+      DIMENSION GVEC(3),ISORT(NDIM5),RSORT(NDIM5)
+C
+C.....FILES
+      COMMON /FILES/INPUT,IOUT,IN290,IN213,ISTORE,IUNIT7,IUNIT8,ISTRUC,
+     +               IVNLKK,ISUMRY,IKPTS
+C-----------------------------------------------------------------------
+C
+C IMPROVEMENT FOR FUTURE. IN THE LOOP DO 50 IT IS NOT NECESSARY
+C TO RUN THROUGH ALL NGTOT VECTORS, BECAUSE THERE CERTAINLY WILL
+C NOT BE ANY WAVES OF INTEREST IN THE REGION WHERE ALL THE
+C (SQUARED) G-VECTORS ARE .GT. (E2 + WVK**2).
+C     WVK2 = WVK(1)**2 + WVK(2)**2 + WVK(3)**2
+C
+      NA   = 0
+      NTOT = 0
+C
+      DO 50 IG = 1,NGTOT
+C
+C       CALL GCODE (IGLIST(1,IG),NG1,NG2,NG3,B1,B2,B3,I1,I2,I3,GVEC)
+C       Get the (k+G)-vector
+        DO 20 J = 1, 3
+          GVEC(J) = WVK(J) +
+     +              FLOAT(IGLIST(1,IG)) * B1(J) +
+     +              FLOAT(IGLIST(2,IG)) * B2(J) +
+     +              FLOAT(IGLIST(3,IG)) * B3(J)
+20       CONTINUE
+        GG2KK = GVEC(1)**2 + GVEC(2)**2 + GVEC(3)**2
+C
+        EPW   = GG2KK
+        IF (ISTRAI .NE. 0) THEN
+C       THE STRAINED CASE, WHERE WE EMPLOY THE G-METRIC TENSOR
+        EPW = 0.0
+        DO 30 I = 1,3
+          DO 30 J = 1,3
+            EPW = EPW + GVEC(I)*GVEC(J)*GMTRIC(I,J)
+30          CONTINUE
+        ENDIF
+C
+        IF (EPW .LE. E1) NA = NA+1
+        IF (EPW .LE. E2) THEN
+          NTOT = NTOT+1
+          IF (NTOT .GT. NDIM5) GOTO 50
+          LISTAB(NTOT) = IG
+          DO 40 I = 1,3
+            GK(I,NTOT) = GVEC(I)
+40          CONTINUE
+          GK(4,NTOT) = SQRT(GG2KK)
+          ENDIF
+C
+50      CONTINUE
+C
+      IF (NTOT .GT. NDIM5) GOTO 130
+C
+C     SORT GK ACCORDING TO LENGTH OF (G+K)
+C
+C     COPY LENGTHS OF VECTORS INTO RSORT
+C     INITIALIZE ARRAY OF POINTERS ISORT
+      DO 60 I = 1,NTOT
+        RSORT(I) = GK(4,I)
+        ISORT(I) = I
+60      CONTINUE
+C
+C     SORT:
+      CALL VSRTR (RSORT,NTOT,ISORT)
+C
+C     REARRANGE GK AND LISTAB ACCORDING TO ISORT
+      DO 70 I = 1,NTOT
+        GK(4,I) = RSORT(I)
+70      CONTINUE
+C
+      DO 100 J = 1,3
+        DO 80 I = 1,NTOT
+          RSORT(I) = GK(J,ISORT(I))
+80        CONTINUE
+        DO 90 I = 1,NTOT
+          GK(J,I) = RSORT(I)
+90        CONTINUE
+100     CONTINUE
+C
+      DO 110 I = 1,NTOT
+        ISORT(I) = LISTAB(ISORT(I))
+110     CONTINUE
+      DO 120 I = 1,NTOT
+        LISTAB(I) = ISORT(I)
+120     CONTINUE
+C
+C     Set NB
+130   NB = NTOT - NA
+C
+C     Set NA,NB=0 for error recovery in calling program
+C
+      IF (NTOT .GT. NDIM5 .OR. NA .GT. NDIM3 .OR. NB .GT. NDIM4) THEN
+        WRITE (IOUT,*) 'SUBROUTINE GKCUT *** ERROR ***'
+        WRITE (IOUT,*) 'NA,NB =',NA,NB,' EXCEED DIMENSIONS NDIM3,4'
+C       NA = 0
+C       NB = 0
+        ENDIF
+C
+      RETURN
+      END

@@ -1,0 +1,991 @@
+      DOUBLE PRECISION FUNCTION DASUM(N,DX,INCX)
+C
+C     RETURNS SUM OF MAGNITUDES OF DOUBLE PRECISION DX.
+C     DASUM = SUM FROM 0 TO N-1 OF DABS(DX(1+I*INCX))
+C
+      DOUBLE PRECISION DX(*)
+      DASUM = 0.D0
+      IF(N.LE.0)RETURN
+      IF(INCX.EQ.1)GOTO 20
+C
+C       CODE FOR INCREMENTS NOT EQUAL TO 1.
+C
+      NS = N*INCX
+        DO 10 I=1,NS,INCX
+        DASUM = DASUM + DABS(DX(I))
+   10        CONTINUE
+      RETURN
+C
+C       CODE FOR INCREMENTS EQUAL TO 1.
+C
+C
+C       CLEAN-UP LOOP SO REMAINING VECTOR LENGTH IS A MULTIPLE OF 6.
+C
+   20 M = MOD(N,6)
+      IF( M .EQ. 0 ) GO TO 40
+      DO 30 I = 1,M
+       DASUM = DASUM + DABS(DX(I))
+   30 CONTINUE
+      IF( N .LT. 6 ) RETURN
+   40 MP1 = M + 1
+      DO 50 I = MP1,N,6
+       DASUM = DASUM + DABS(DX(I)) + DABS(DX(I+1)) + DABS(DX(I+2))
+     $       + DABS(DX(I+3)) + DABS(DX(I+4)) + DABS(DX(I+5))
+   50 CONTINUE
+      RETURN
+      END
+      SUBROUTINE DAXPY(N,DA,DX,INCX,DY,INCY)
+C
+C     OVERWRITE DOUBLE PRECISION DY WITH DOUBLE PRECISION DA*DX + DY.
+C     FOR I = 0 TO N-1, REPLACE       DY(LY+I*INCY) WITH DA*DX(LX+I*INCX) +
+C      DY(LY+I*INCY), WHERE LX = 1 IF INCX .GE. 0, ELSE LX = (-INCX)*N,
+C      AND LY IS DEFINED IN A SIMILAR WAY USING INCY.
+C
+      DOUBLE PRECISION DX(*),DY(*),DA
+      IF(N.LE.0.OR.DA.EQ.0.D0) RETURN
+      IF(INCX.EQ.INCY) IF(INCX-1) 5,20,60
+    5 CONTINUE
+C
+C       CODE FOR NONEQUAL OR NONPOSITIVE INCREMENTS.
+C
+      IX = 1
+      IY = 1
+      IF(INCX.LT.0)IX = (-N+1)*INCX + 1
+      IF(INCY.LT.0)IY = (-N+1)*INCY + 1
+      DO 10 I = 1,N
+      DY(IY) = DY(IY) + DA*DX(IX)
+      IX = IX + INCX
+      IY = IY + INCY
+   10 CONTINUE
+      RETURN
+C
+C       CODE FOR BOTH INCREMENTS EQUAL TO 1
+C
+C
+C       CLEAN-UP LOOP SO REMAINING VECTOR LENGTH IS A MULTIPLE OF 4.
+C
+   20 M = MOD(N,4)
+      IF( M .EQ. 0 ) GO TO 40
+      DO 30 I = 1,M
+      DY(I) = DY(I) + DA*DX(I)
+   30 CONTINUE
+      IF( N .LT. 4 ) RETURN
+   40 MP1 = M + 1
+      DO 50 I = MP1,N,4
+      DY(I) = DY(I) + DA*DX(I)
+      DY(I + 1) = DY(I + 1) + DA*DX(I + 1)
+      DY(I + 2) = DY(I + 2) + DA*DX(I + 2)
+      DY(I + 3) = DY(I + 3) + DA*DX(I + 3)
+   50 CONTINUE
+      RETURN
+C
+C       CODE FOR EQUAL, POSITIVE, NONUNIT INCREMENTS.
+C
+   60 CONTINUE
+      NS = N*INCX
+        DO 70 I=1,NS,INCX
+        DY(I) = DA*DX(I) + DY(I)
+   70        CONTINUE
+      RETURN
+      END
+      SUBROUTINE DCOPY(N,DX,INCX,DY,INCY)
+C
+C     COPY DOUBLE PRECISION DX TO DOUBLE PRECISION DY.
+C     FOR I = 0 TO N-1, COPY DX(LX+I*INCX) TO DY(LY+I*INCY),
+C     WHERE LX = 1 IF INCX .GE. 0, ELSE LX = (-INCX)*N, AND LY IS
+C     DEFINED IN A SIMILAR WAY USING INCY.
+C
+      DOUBLE PRECISION DX(*),DY(*)
+      IF(N.LE.0)RETURN
+      IF(INCX.EQ.INCY) IF(INCX-1) 5,20,60
+    5 CONTINUE
+C
+C       CODE FOR UNEQUAL OR NONPOSITIVE INCREMENTS.
+C
+      IX = 1
+      IY = 1
+      IF(INCX.LT.0)IX = (-N+1)*INCX + 1
+      IF(INCY.LT.0)IY = (-N+1)*INCY + 1
+      DO 10 I = 1,N
+      DY(IY) = DX(IX)
+      IX = IX + INCX
+      IY = IY + INCY
+   10 CONTINUE
+      RETURN
+C
+C       CODE FOR BOTH INCREMENTS EQUAL TO 1
+C
+C
+C       CLEAN-UP LOOP SO REMAINING VECTOR LENGTH IS A MULTIPLE OF 7.
+C
+   20 M = MOD(N,7)
+      IF( M .EQ. 0 ) GO TO 40
+      DO 30 I = 1,M
+      DY(I) = DX(I)
+   30 CONTINUE
+      IF( N .LT. 7 ) RETURN
+   40 MP1 = M + 1
+      DO 50 I = MP1,N,7
+      DY(I) = DX(I)
+      DY(I + 1) = DX(I + 1)
+      DY(I + 2) = DX(I + 2)
+      DY(I + 3) = DX(I + 3)
+      DY(I + 4) = DX(I + 4)
+      DY(I + 5) = DX(I + 5)
+      DY(I + 6) = DX(I + 6)
+   50 CONTINUE
+      RETURN
+C
+C       CODE FOR EQUAL, POSITIVE, NONUNIT INCREMENTS.
+C
+   60 CONTINUE
+      NS=N*INCX
+        DO 70 I=1,NS,INCX
+        DY(I) = DX(I)
+   70        CONTINUE
+      RETURN
+      END
+      DOUBLE PRECISION FUNCTION DDOT(N,DX,INCX,DY,INCY)
+C
+C     RETURNS THE DOT PRODUCT OF DOUBLE PRECISION DX AND DY.
+C     DDOT = SUM FOR I = 0 TO N-1 OF  DX(LX+I*INCX) * DY(LY+I*INCY)
+C     WHERE LX = 1 IF INCX .GE. 0, ELSE LX = (-INCX)*N, AND LY IS
+C     DEFINED IN A SIMILAR WAY USING INCY.
+C
+      DOUBLE PRECISION DX(*),DY(*)
+      DDOT = 0.D0
+      IF(N.LE.0)RETURN
+      IF(INCX.EQ.INCY) IF(INCX-1) 5,20,60
+    5 CONTINUE
+C
+C        CODE FOR UNEQUAL OR NONPOSITIVE INCREMENTS.
+C
+      IX = 1
+      IY = 1
+      IF(INCX.LT.0)IX = (-N+1)*INCX + 1
+      IF(INCY.LT.0)IY = (-N+1)*INCY + 1
+      DO 10 I = 1,N
+       DDOT = DDOT + DX(IX)*DY(IY)
+      IX = IX + INCX
+      IY = IY + INCY
+   10 CONTINUE
+      RETURN
+C
+C       CODE FOR BOTH INCREMENTS EQUAL TO 1.
+C
+C
+C       CLEAN-UP LOOP SO REMAINING VECTOR LENGTH IS A MULTIPLE OF 5.
+C
+   20 M = MOD(N,5)
+      IF( M .EQ. 0 ) GO TO 40
+      DO 30 I = 1,M
+       DDOT = DDOT + DX(I)*DY(I)
+   30 CONTINUE
+      IF( N .LT. 5 ) RETURN
+   40 MP1 = M + 1
+      DO 50 I = MP1,N,5
+       DDOT = DDOT + DX(I)*DY(I) + DX(I+1)*DY(I+1) +
+     $ DX(I + 2)*DY(I + 2) + DX(I + 3)*DY(I + 3) + DX(I + 4)*DY(I + 4)
+   50 CONTINUE
+      RETURN
+C
+C        CODE FOR POSITIVE EQUAL INCREMENTS .NE.1.
+C
+   60 CONTINUE
+      NS = N*INCX
+        DO 70 I=1,NS,INCX
+        DDOT = DDOT + DX(I)*DY(I)
+   70        CONTINUE
+      RETURN
+      END
+      DOUBLE PRECISION FUNCTION DNRM2 ( N, DX, INCX)
+      INTEGER             NEXT
+      DOUBLE PRECISION DX(*), CUTLO, CUTHI, HITEST, SUM, XMAX,ZERO,ONE
+      DATA   ZERO, ONE /0.0D0, 1.0D0/
+C
+C     EUCLIDEAN NORM OF THE N-VECTOR STORED IN DX() WITH STORAGE
+C     INCREMENT INCX .
+C     IF    N .LE. 0 RETURN WITH RESULT = 0.
+C     IF N .GE. 1 THEN INCX MUST BE .GE. 1
+C
+C          C.L.LAWSON, 1978 JAN 08
+C
+C     FOUR PHASE METHOD          USING TWO BUILT-IN CONSTANTS THAT ARE
+C     HOPEFULLY APPLICABLE TO ALL MACHINES.
+C        CUTLO = MAXIMUM OF  DSQRT(U/EPS)  OVER ALL KNOWN MACHINES.
+C        CUTHI = MINIMUM OF  DSQRT(V)          OVER ALL KNOWN MACHINES.
+C     WHERE
+C        EPS = SMALLEST NO. SUCH THAT EPS + 1. .GT. 1.
+C        U   = SMALLEST POSITIVE NO.      (UNDERFLOW LIMIT)
+C        V   = LARGEST       NO.            (OVERFLOW  LIMIT)
+C
+C     BRIEF OUTLINE OF ALGORITHM..
+C
+C     PHASE 1       SCANS ZERO COMPONENTS.
+C     MOVE TO PHASE 2 WHEN A COMPONENT IS NONZERO AND .LE. CUTLO
+C     MOVE TO PHASE 3 WHEN A COMPONENT IS .GT. CUTLO
+C     MOVE TO PHASE 4 WHEN A COMPONENT IS .GE. CUTHI/M
+C     WHERE M = N FOR X() REAL AND M = 2*N FOR COMPLEX.
+C
+C     VALUES FOR CUTLO AND CUTHI..
+C     FROM THE ENVIRONMENTAL PARAMETERS LISTED IN THE IMSL CONVERTER
+C     DOCUMENT THE LIMITING VALUES ARE AS FOLLOWS..
+C     CUTLO, S.P.   U/EPS = 2**(-102) FOR  HONEYWELL.  CLOSE SECONDS ARE
+C                UNIVAC AND DEC AT 2**(-103)
+C                THUS CUTLO = 2**(-51) = 4.44089E-16
+C     CUTHI, S.P.   V = 2**127 FOR UNIVAC, HONEYWELL, AND DEC.
+C                THUS CUTHI = 2**(63.5) = 1.30438E19
+C     CUTLO, D.P.   U/EPS = 2**(-67) FOR HONEYWELL AND DEC.
+C                THUS CUTLO = 2**(-33.5) = 8.23181D-11
+C     CUTHI, D.P.   SAME AS S.P.  CUTHI = 1.30438D19
+C     DATA CUTLO, CUTHI / 8.232D-11,  1.304D19 /
+C     DATA CUTLO, CUTHI / 4.441E-16,  1.304E19 /
+      DATA CUTLO, CUTHI / 8.232D-11,  1.304D19 /
+C
+      IF(N .GT. 0) GO TO 10
+       DNRM2      = ZERO
+       GO TO 300
+C
+   10 ASSIGN 30 TO NEXT
+      SUM = ZERO
+      NN = N * INCX
+C                                      BEGIN MAIN LOOP
+      I = 1
+   20       GO TO NEXT,(30, 50, 70, 110)
+   30 IF( DABS(DX(I)) .GT. CUTLO) GO TO 85
+      ASSIGN 50 TO NEXT
+      XMAX = ZERO
+C
+C                   PHASE 1.  SUM IS ZERO
+C
+   50 IF( DX(I) .EQ. ZERO) GO TO 200
+      IF( DABS(DX(I)) .GT. CUTLO) GO TO 85
+C
+C                         PREPARE FOR PHASE 2.
+      ASSIGN 70 TO NEXT
+      GO TO 105
+C
+C                         PREPARE FOR PHASE 4.
+C
+  100 I = J
+      ASSIGN 110 TO NEXT
+      SUM = (SUM / DX(I)) / DX(I)
+  105 XMAX = DABS(DX(I))
+      GO TO 115
+C
+C                PHASE 2.  SUM IS SMALL.
+C                        SCALE TO AVOID DESTRUCTIVE UNDERFLOW.
+C
+   70 IF( DABS(DX(I)) .GT. CUTLO ) GO TO 75
+C
+C                  COMMON CODE FOR PHASES 2 AND 4.
+C                  IN PHASE 4 SUM IS LARGE.      SCALE TO AVOID OVERFLOW.
+C
+  110 IF( DABS(DX(I)) .LE. XMAX ) GO TO 115
+       SUM = ONE + SUM * (XMAX / DX(I))**2
+       XMAX = DABS(DX(I))
+       GO TO 200
+C
+  115 SUM = SUM + (DX(I)/XMAX)**2
+      GO TO 200
+C
+C
+C               PREPARE FOR PHASE 3.
+C
+   75 SUM = (SUM * XMAX) * XMAX
+C
+C
+C     FOR REAL OR D.P. SET HITEST = CUTHI/N
+C     FOR COMPLEX      SET HITEST = CUTHI/(2*N)
+C
+   85 HITEST = CUTHI/FLOAT( N )
+C
+C                PHASE 3.  SUM IS MID-RANGE.       NO SCALING.
+C
+      DO 95 J =I,NN,INCX
+      IF(DABS(DX(J)) .GE. HITEST) GO TO 100
+   95       SUM = SUM + DX(J)**2
+      DNRM2 = DSQRT( SUM )
+      GO TO 300
+C
+  200 CONTINUE
+      I = I + INCX
+      IF ( I .LE. NN ) GO TO 20
+C
+C             END OF MAIN LOOP.
+C
+C             COMPUTE SQUARE ROOT AND ADJUST FOR SCALING.
+C
+      DNRM2 = XMAX * DSQRT(SUM)
+  300 CONTINUE
+      RETURN
+      END
+      DOUBLE PRECISION FUNCTION DQDOTA(N,DB,QC,DX,INCX,DY,INCY)
+C     D.P. DOT PRODUCT WITH EXTENDED PRECISION ACCUMULATION (AND RESULT)
+C     QC AND DQDOTA ARE SET = DB + QC + SUM FOR I = 0 TO N-1 OF
+C      DX(LX+I*INCX) * DY(LY+I*INCY),      WHERE QC IS AN EXTENDED
+C      PRECISION RESULT PREVIOUSLY COMPUTED BY DQDOTI OR DQDOTA
+C      AND LX = 1 IF INCX .GE. 0, ELSE LX = (-INCX)*N, AND LY IS
+C      DEFINED IN A SIMILAR WAY USING INCY. THE MP PACKAGE BY
+C      RICHARD P. BRENT IS USED FOR THE EXTENDED PRECISION ARITHMETIC.
+C
+C     FRED T. KROGH,  JPL,  1977,  JUNE 1
+C2
+      DOUBLE PRECISION DX(*), DY(*), DB
+      INTEGER  QC(10), QX(10), QY(10)
+C     THE COMMON BLOCK FOR THE MP PACKAGE (MODIFIED TO GIVE IT A NAME)
+      COMMON /MPCOM/  MPB, MPT, MPM, MPLUN, MPMXR, MPR(12)
+      DATA  I1 / 0 /
+C     IF I1 IS 0 THE MP PACKAGE MUST BE INITIALIZED (MPBLAS SETS I1 = 1)
+      IF (I1 .EQ. 0) CALL MPBLAS(I1)
+      IF (DB .EQ. 0.D0) GO TO 20
+      CALL MPCDM(DB, QX)
+      CALL MPADD(QC, QX, QC)
+   20 IF (N .EQ. 0) GO TO 40
+      IX = 1
+      IY = 1
+      IF (INCX .LT. 0) IX = (-N + 1) * INCX + 1
+      IF (INCY .LT. 0) IY = (-N + 1) * INCY + 1
+      DO  30  I = 1,N
+       CALL MPCDM(DX(IX), QX)
+       CALL MPCDM(DY(IY), QY)
+       CALL MPMUL(QX, QY, QX)
+       CALL MPADD(QC, QX, QC)
+       IX = IX + INCX
+       IY = IY + INCY
+   30 CONTINUE
+   40 CALL MPCMD(QC, DQDOTA)
+      RETURN
+      END
+      DOUBLE PRECISION FUNCTION DQDOTI(N,DB,QC,DX,INCX,DY,INCY)
+C     D.P. DOT PRODUCT WITH EXTENDED PRECISION ACCUMULATION (AND RESULT)
+C     QC AND DQDOTI ARE SET = DB + SUM FOR I = 0 TO N-1 OF
+C      DX(LX+I*INCX) * DY(LY+I*INCY),      WHERE QC IS AN EXTENDED
+C      PRECISION RESULT WHICH CAN BE USED AS INPUT TO DQDOTA,
+C      AND LX = 1 IF INCX .GE. 0, ELSE LX = (-INCX)*N, AND LY IS
+C      DEFINED IN A SIMILAR WAY USING INCY. THE MP PACKAGE BY
+C      RICHARD P. BRENT IS USED FOR THE EXTENDED PRECISION ARITHMETIC.
+C
+C     FRED T. KROGH,  JPL,  1977,  JUNE 1
+C2
+      DOUBLE PRECISION DX(*), DY(*), DB
+      INTEGER  QC(10), QX(10), QY(10)
+C     THE COMMON BLOCK FOR THE MP PACKAGE (MODIFIED TO GIVE IT A NAME)
+      COMMON /MPCOM/  MPB, MPT, MPM, MPLUN, MPMXR, MPR(12)
+      DATA  I1 / 0 /
+C     IF I1 IS 0 THE MP PACKAGE MUST BE INITIALIZED (MPBLAS SETS I1 = 1)
+      IF (I1 .EQ. 0) CALL MPBLAS(I1)
+      QC(1) = 0
+      IF (DB .EQ. 0.D0) GO TO 60
+      CALL MPCDM(DB, QX)
+      CALL MPADD(QC, QX, QC)
+   60 IF (N .EQ. 0) GO TO 80
+      IX = 1
+      IY = 1
+      IF (INCX .LT. 0) IX = (-N + 1) * INCX + 1
+      IF (INCY .LT. 0) IY = (-N + 1) * INCY + 1
+      DO  70  I = 1,N
+       CALL MPCDM(DX(IX), QX)
+       CALL MPCDM(DY(IY), QY)
+       CALL MPMUL(QX, QY, QX)
+       CALL MPADD(QC, QX, QC)
+       IX = IX + INCX
+       IY = IY + INCY
+   70 CONTINUE
+   80 CALL MPCMD(QC, DQDOTI)
+      RETURN
+      END
+      SUBROUTINE DROT(N,DX,INCX,DY,INCY,DC,DS)
+C
+C     MULTIPLY THE 2 X 2 MATRIX       ( DC DS) TIMES THE 2 X N MATRIX (DX**T)
+C                         (-DS DC)                   (DY**T)
+C     WHERE **T INDICATES TRANSPOSE.      THE ELEMENTS OF DX ARE IN
+C     DX(LX+I*INCX), I = 0 TO N-1, WHERE LX = 1 IF INCX .GE. 0, ELSE
+C     LX = (-INCX)*N, AND SIMILARLY FOR DY USING LY AND INCY.
+      DOUBLE PRECISION DX,DY,DC,DS,ZERO,ONE,W,Z
+      DIMENSION DX(*),DY(*)
+C
+      DATA ZERO,ONE/0.D0,1.D0/
+      IF(N .LE. 0 .OR. (DS .EQ. ZERO .AND. DC .EQ. ONE)) GO TO 40
+      IF(.NOT. (INCX .EQ. INCY .AND. INCX .GT. 0)) GO TO 20
+C
+         NSTEPS=INCX*N
+         DO 10 I=1,NSTEPS,INCX
+            W=DX(I)
+            Z=DY(I)
+            DX(I)=DC*W+DS*Z
+            DY(I)=-DS*W+DC*Z
+   10            CONTINUE
+         GO TO 40
+C
+   20 CONTINUE
+         KX=1
+         KY=1
+C
+         IF(INCX .LT. 0) KX=1-(N-1)*INCX
+         IF(INCY .LT. 0) KY=1-(N-1)*INCY
+C
+         DO 30 I=1,N
+            W=DX(KX)
+            Z=DY(KY)
+            DX(KX)=DC*W+DS*Z
+            DY(KY)=-DS*W+DC*Z
+            KX=KX+INCX
+            KY=KY+INCY
+   30            CONTINUE
+   40 CONTINUE
+C
+      RETURN
+      END
+      SUBROUTINE DROTG(DA,DB,DC,DS)
+C
+C     DESIGNED BY C.L.LAWSON, JPL, 1977 SEPT 08
+C
+C
+C     CONSTRUCT THE GIVENS TRANSFORMATION
+C
+C        ( DC      DS )
+C     G = (         ) ,        DC**2 + DS**2 = 1 ,
+C        (-DS      DC )
+C
+C     WHICH ZEROS THE SECOND ENTRY OF THE 2-VECTOR  (DA,DB)**T .
+C
+C     THE QUANTITY R = (+/-)DSQRT(DA**2 + DB**2) OVERWRITES DA IN
+C     STORAGE.      THE VALUE OF DB IS OVERWRITTEN BY A VALUE Z WHICH
+C     ALLOWS DC AND DS TO BE RECOVERED BY THE FOLLOWING ALGORITHM:
+C          IF Z=1  SET       DC=0.D0  AND  DS=1.D0
+C          IF DABS(Z) .LT. 1  SET  DC=DSQRT(1-Z**2)  AND  DS=Z
+C          IF DABS(Z) .GT. 1  SET  DC=1/Z  AND       DS=DSQRT(1-DC**2)
+C
+C     NORMALLY, THE SUBPROGRAM DROT(N,DX,INCX,DY,INCY,DC,DS) WILL
+C     NEXT BE CALLED TO APPLY THE TRANSFORMATION TO A 2 BY N MATRIX.
+C
+C ------------------------------------------------------------------
+C
+      DOUBLE PRECISION      DA, DB, DC, DS, U, V, R
+      IF (DABS(DA) .LE. DABS(DB)) GO TO 10
+C
+C *** HERE DABS(DA) .GT. DABS(DB) ***
+C
+      U = DA + DA
+      V = DB / U
+C
+C     NOTE THAT U AND R HAVE THE SIGN OF DA
+C
+      R = DSQRT(.25D0 + V**2) * U
+C
+C     NOTE THAT DC IS POSITIVE
+C
+      DC = DA / R
+      DS = V * (DC + DC)
+      DB = DS
+      DA = R
+      RETURN
+C
+C *** HERE DABS(DA) .LE. DABS(DB) ***
+C
+   10 IF (DB .EQ. 0.D0) GO TO 20
+      U = DB + DB
+      V = DA / U
+C
+C     NOTE THAT U AND R HAVE THE SIGN OF DB
+C     (R IS IMMEDIATELY STORED IN DA)
+C
+      DA = DSQRT(.25D0 + V**2) * U
+C
+C     NOTE THAT DS IS POSITIVE
+C
+      DS = DB / DA
+      DC = V * (DS + DS)
+      IF (DC .EQ. 0.D0) GO TO 15
+      DB = 1.D0 / DC
+      RETURN
+   15 DB = 1.D0
+      RETURN
+C
+C *** HERE DA = DB = 0.D0 ***
+C
+   20 DC = 1.D0
+      DS = 0.D0
+      RETURN
+C
+      END
+      SUBROUTINE DROTM (N,DX,INCX,DY,INCY,DPARAM)
+C
+C     APPLY THE MODIFIED GIVENS TRANSFORMATION, H, TO THE 2 BY N MATRIX
+C
+C     (DX**T) , WHERE **T INDICATES TRANSPOSE. THE ELEMENTS OF DX ARE IN
+C     (DY**T)
+C
+C     DX(LX+I*INCX), I = 0 TO N-1, WHERE LX = 1 IF INCX .GE. 0, ELSE
+C     LX = (-INCX)*N, AND SIMILARLY FOR SY USING LY AND INCY.
+C     WITH DPARAM(1)=DFLAG, H HAS ONE OF THE FOLLOWING FORMS..
+C
+C     DFLAG=-1.D0     DFLAG=0.D0      DFLAG=1.D0     DFLAG=-2.D0
+C
+C      (DH11  DH12)      (1.D0  DH12)      (DH11  1.D0)      (1.D0  0.D0)
+C     H=(         )      (         )      (         )      (         )
+C      (DH21  DH22),      (DH21  1.D0),      (-1.D0 DH22),      (0.D0  1.D0).
+C     SEE DROTMG FOR A DESCRIPTION OF DATA STORAGE IN DPARAM.
+C
+      DOUBLE PRECISION DFLAG,DH12,DH22,DX,TWO,Z,DH11,DH21,
+     1 DPARAM,DY,W,ZERO
+      DIMENSION DX(*),DY(*),DPARAM(5)
+      DATA ZERO,TWO/0.D0,2.D0/
+C
+      DFLAG=DPARAM(1)
+      IF(N .LE. 0 .OR.(DFLAG+TWO.EQ.ZERO)) GO TO 140
+        IF(.NOT.(INCX.EQ.INCY.AND. INCX .GT.0)) GO TO 70
+C
+             NSTEPS=N*INCX
+             IF(DFLAG) 50,10,30
+   10             CONTINUE
+             DH12=DPARAM(4)
+             DH21=DPARAM(3)
+                DO 20 I=1,NSTEPS,INCX
+                W=DX(I)
+                Z=DY(I)
+                DX(I)=W+Z*DH12
+                DY(I)=W*DH21+Z
+   20                CONTINUE
+             GO TO 140
+   30             CONTINUE
+             DH11=DPARAM(2)
+             DH22=DPARAM(5)
+                DO 40 I=1,NSTEPS,INCX
+                W=DX(I)
+                Z=DY(I)
+                DX(I)=W*DH11+Z
+                DY(I)=-W+DH22*Z
+   40                CONTINUE
+             GO TO 140
+   50             CONTINUE
+             DH11=DPARAM(2)
+             DH12=DPARAM(4)
+             DH21=DPARAM(3)
+             DH22=DPARAM(5)
+                DO 60 I=1,NSTEPS,INCX
+                W=DX(I)
+                Z=DY(I)
+                DX(I)=W*DH11+Z*DH12
+                DY(I)=W*DH21+Z*DH22
+   60                CONTINUE
+             GO TO 140
+   70        CONTINUE
+        KX=1
+        KY=1
+        IF(INCX .LT. 0) KX=1+(1-N)*INCX
+        IF(INCY .LT. 0) KY=1+(1-N)*INCY
+C
+        IF(DFLAG)120,80,100
+   80        CONTINUE
+        DH12=DPARAM(4)
+        DH21=DPARAM(3)
+             DO 90 I=1,N
+             W=DX(KX)
+             Z=DY(KY)
+             DX(KX)=W+Z*DH12
+             DY(KY)=W*DH21+Z
+             KX=KX+INCX
+             KY=KY+INCY
+   90             CONTINUE
+        GO TO 140
+  100        CONTINUE
+        DH11=DPARAM(2)
+        DH22=DPARAM(5)
+             DO 110 I=1,N
+             W=DX(KX)
+             Z=DY(KY)
+             DX(KX)=W*DH11+Z
+             DY(KY)=-W+DH22*Z
+             KX=KX+INCX
+             KY=KY+INCY
+  110             CONTINUE
+        GO TO 140
+  120        CONTINUE
+        DH11=DPARAM(2)
+        DH12=DPARAM(4)
+        DH21=DPARAM(3)
+        DH22=DPARAM(5)
+             DO 130 I=1,N
+             W=DX(KX)
+             Z=DY(KY)
+             DX(KX)=W*DH11+Z*DH12
+             DY(KY)=W*DH21+Z*DH22
+             KX=KX+INCX
+             KY=KY+INCY
+  130             CONTINUE
+  140        CONTINUE
+        RETURN
+        END
+      SUBROUTINE DROTMG (DD1,DD2,DX1,DY1,DPARAM)
+C
+C     CONSTRUCT THE MODIFIED GIVENS TRANSFORMATION MATRIX H WHICH ZEROS
+C     THE SECOND COMPONENT OF THE 2-VECTOR  (DSQRT(DD1)*DX1,DSQRT(DD2)*
+C     DY2)**T.
+C     WITH DPARAM(1)=DFLAG, H HAS ONE OF THE FOLLOWING FORMS..
+C
+C     DFLAG=-1.D0     DFLAG=0.D0      DFLAG=1.D0     DFLAG=-2.D0
+C
+C      (DH11  DH12)      (1.D0  DH12)      (DH11  1.D0)      (1.D0  0.D0)
+C     H=(         )      (         )      (         )      (         )
+C      (DH21  DH22),      (DH21  1.D0),      (-1.D0 DH22),      (0.D0  1.D0).
+C     LOCATIONS 2-4 OF DPARAM CONTAIN DH11, DH21, DH12, AND DH22
+C     RESPECTIVELY. (VALUES OF 1.D0, -1.D0, OR 0.D0 IMPLIED BY THE
+C     VALUE OF DPARAM(1) ARE NOT STORED IN DPARAM.)
+C
+C     THE VALUES OF GAMSQ AND RGAMSQ SET IN THE DATA STATEMENT MAY BE
+C     INEXACT.      THIS IS OK AS THEY ARE ONLY USED FOR TESTING THE SIZE
+C     OF DD1 AND DD2.  ALL ACTUAL SCALING OF DATA IS DONE USING GAM.
+C
+      DOUBLE PRECISION GAM,ONE,RGAMSQ,DD2,DH11,DH21,DPARAM,DP2,
+     1 DQ2,DU,DY1,ZERO,GAMSQ,DD1,DFLAG,DH12,DH22,DP1,DQ1,
+     2 DTEMP,DX1,TWO
+      DIMENSION DPARAM(5)
+C
+      DATA ZERO,ONE,TWO /0.D0,1.D0,2.D0/
+      DATA GAM,GAMSQ,RGAMSQ/4096.D0,16777216.D0,5.9604645D-8/
+      IF(.NOT. DD1 .LT. ZERO) GO TO 10
+C      GO ZERO-H-D-AND-DX1..
+        GO TO 60
+   10 CONTINUE
+C     CASE-DD1-NONNEGATIVE
+      DP2=DD2*DY1
+      IF(.NOT. DP2 .EQ. ZERO) GO TO 20
+        DFLAG=-TWO
+        GO TO 260
+C     REGULAR-CASE..
+   20 CONTINUE
+      DP1=DD1*DX1
+      DQ2=DP2*DY1
+      DQ1=DP1*DX1
+C
+      IF(.NOT. DABS(DQ1) .GT. DABS(DQ2)) GO TO 40
+        DH21=-DY1/DX1
+        DH12=DP2/DP1
+C
+        DU=ONE-DH12*DH21
+C
+        IF(.NOT. DU .LE. ZERO) GO TO 30
+C        GO ZERO-H-D-AND-DX1..
+             GO TO 60
+   30        CONTINUE
+             DFLAG=ZERO
+             DD1=DD1/DU
+             DD2=DD2/DU
+             DX1=DX1*DU
+C        GO SCALE-CHECK..
+             GO TO 100
+   40 CONTINUE
+        IF(.NOT. DQ2 .LT. ZERO) GO TO 50
+C        GO ZERO-H-D-AND-DX1..
+             GO TO 60
+   50        CONTINUE
+             DFLAG=ONE
+             DH11=DP1/DP2
+             DH22=DX1/DY1
+             DU=ONE+DH11*DH22
+             DTEMP=DD2/DU
+             DD2=DD1/DU
+             DD1=DTEMP
+             DX1=DY1*DU
+C        GO SCALE-CHECK
+             GO TO 100
+C     PROCEDURE..ZERO-H-D-AND-DX1..
+   60 CONTINUE
+        DFLAG=-ONE
+        DH11=ZERO
+        DH12=ZERO
+        DH21=ZERO
+        DH22=ZERO
+C
+        DD1=ZERO
+        DD2=ZERO
+        DX1=ZERO
+C        RETURN..
+        GO TO 220
+C     PROCEDURE..FIX-H..
+   70 CONTINUE
+      IF(.NOT. DFLAG .GE. ZERO) GO TO 90
+C
+        IF(.NOT. DFLAG .EQ. ZERO) GO TO 80
+        DH11=ONE
+        DH22=ONE
+        DFLAG=-ONE
+        GO TO 90
+   80        CONTINUE
+        DH21=-ONE
+        DH12=ONE
+        DFLAG=-ONE
+   90 CONTINUE
+      GO TO IGO,(120,150,180,210)
+C     PROCEDURE..SCALE-CHECK
+  100 CONTINUE
+  110        CONTINUE
+        IF(.NOT. DD1 .LE. RGAMSQ) GO TO 130
+             IF(DD1 .EQ. ZERO) GO TO 160
+             ASSIGN 120 TO IGO
+C             FIX-H..
+             GO TO 70
+  120             CONTINUE
+             DD1=DD1*GAM**2
+             DX1=DX1/GAM
+             DH11=DH11/GAM
+             DH12=DH12/GAM
+        GO TO 110
+  130 CONTINUE
+  140        CONTINUE
+        IF(.NOT. DD1 .GE. GAMSQ) GO TO 160
+             ASSIGN 150 TO IGO
+C             FIX-H..
+             GO TO 70
+  150             CONTINUE
+             DD1=DD1/GAM**2
+             DX1=DX1*GAM
+             DH11=DH11*GAM
+             DH12=DH12*GAM
+        GO TO 140
+  160 CONTINUE
+  170        CONTINUE
+        IF(.NOT. DABS(DD2) .LE. RGAMSQ) GO TO 190
+             IF(DD2 .EQ. ZERO) GO TO 220
+             ASSIGN 180 TO IGO
+C             FIX-H..
+             GO TO 70
+  180             CONTINUE
+             DD2=DD2*GAM**2
+             DH21=DH21/GAM
+             DH22=DH22/GAM
+        GO TO 170
+  190 CONTINUE
+  200        CONTINUE
+        IF(.NOT. DABS(DD2) .GE. GAMSQ) GO TO 220
+             ASSIGN 210 TO IGO
+C             FIX-H..
+             GO TO 70
+  210             CONTINUE
+             DD2=DD2/GAM**2
+             DH21=DH21*GAM
+             DH22=DH22*GAM
+        GO TO 200
+  220 CONTINUE
+        IF(DFLAG)250,230,240
+  230        CONTINUE
+             DPARAM(3)=DH21
+             DPARAM(4)=DH12
+             GO TO 260
+  240        CONTINUE
+             DPARAM(2)=DH11
+             DPARAM(5)=DH22
+             GO TO 260
+  250        CONTINUE
+             DPARAM(2)=DH11
+             DPARAM(3)=DH21
+             DPARAM(4)=DH12
+             DPARAM(5)=DH22
+  260 CONTINUE
+        DPARAM(1)=DFLAG
+        RETURN
+      END
+      SUBROUTINE DSCAL(N,DA,DX,INCX)
+C
+C     REPLACE DOUBLE PRECISION DX BY DOUBLE PRECISION DA*DX.
+C     FOR I = 0 TO N-1, REPLACE DX(1+I*INCX) WITH  DA * DX(1+I*INCX)
+C
+      DOUBLE PRECISION DA,DX(*)
+      IF(N.LE.0)RETURN
+      IF(INCX.EQ.1)GOTO 20
+C
+C       CODE FOR INCREMENTS NOT EQUAL TO 1.
+C
+      NS = N*INCX
+        DO 10 I = 1,NS,INCX
+        DX(I) = DA*DX(I)
+   10        CONTINUE
+      RETURN
+C
+C       CODE FOR INCREMENTS EQUAL TO 1.
+C
+C
+C       CLEAN-UP LOOP SO REMAINING VECTOR LENGTH IS A MULTIPLE OF 5.
+C
+   20 M = MOD(N,5)
+      IF( M .EQ. 0 ) GO TO 40
+      DO 30 I = 1,M
+      DX(I) = DA*DX(I)
+   30 CONTINUE
+      IF( N .LT. 5 ) RETURN
+   40 MP1 = M + 1
+      DO 50 I = MP1,N,5
+      DX(I) = DA*DX(I)
+      DX(I + 1) = DA*DX(I + 1)
+      DX(I + 2) = DA*DX(I + 2)
+      DX(I + 3) = DA*DX(I + 3)
+      DX(I + 4) = DA*DX(I + 4)
+   50 CONTINUE
+      RETURN
+      END
+      DOUBLE PRECISION FUNCTION DSDOT(N,SX,INCX,SY,INCY)
+C
+C     RETURNS D.P. DOT PRODUCT ACCUMULATED IN D.P., FOR S.P. SX AND SY
+C     DSDOT = SUM FOR I = 0 TO N-1 OF  SX(LX+I*INCX) * SY(LY+I*INCY),
+C     WHERE LX = 1 IF INCX .GE. 0, ELSE LX = (-INCX)*N, AND LY IS
+C     DEFINED IN A SIMILAR WAY USING INCY.
+C
+      REAL SX(*),SY(*)
+C
+      DSDOT = 0.D0
+      IF(N .LE. 0)RETURN
+      IF(INCX.EQ.INCY.AND.INCX.GT.0) GO TO 20
+      KX = 1
+      KY = 1
+      IF(INCX.LT.0) KX = 1+(1-N)*INCX
+      IF(INCY.LT.0) KY = 1+(1-N)*INCY
+        DO 10 I = 1,N
+        DSDOT = DSDOT + DBLE(SX(KX))*DBLE(SY(KY))
+        KX = KX + INCX
+        KY = KY + INCY
+   10 CONTINUE
+      RETURN
+   20 CONTINUE
+      NS = N*INCX
+        DO 30 I=1,NS,INCX
+        DSDOT = DSDOT + DBLE(SX(I))*DBLE(SY(I))
+   30        CONTINUE
+      RETURN
+      END
+      SUBROUTINE DSWAP(N,DX,INCX,DY,INCY)
+C
+C     INTERCHANGE DOUBLE PRECISION DX AND DOUBLE PRECISION DY.
+C     FOR I = 0 TO N-1, INTERCHANGE  DX(LX+I*INCX) AND DY(LY+I*INCY),
+C     WHERE LX = 1 IF INCX .GE. 0, ELSE LX = (-INCX)*N, AND LY IS
+C     DEFINED IN A SIMILAR WAY USING INCY.
+C
+      DOUBLE PRECISION DX(1),DY(1),DTEMP1,DTEMP2,DTEMP3
+      IF(N.LE.0)RETURN
+      IF(INCX.EQ.INCY) IF(INCX-1) 5,20,60
+    5 CONTINUE
+C
+C      CODE FOR UNEQUAL OR NONPOSITIVE INCREMENTS.
+C
+      IX = 1
+      IY = 1
+      IF(INCX.LT.0)IX = (-N+1)*INCX + 1
+      IF(INCY.LT.0)IY = (-N+1)*INCY + 1
+      DO 10 I = 1,N
+      DTEMP1 = DX(IX)
+      DX(IX) = DY(IY)
+      DY(IY) = DTEMP1
+      IX = IX + INCX
+      IY = IY + INCY
+   10 CONTINUE
+      RETURN
+C
+C      CODE FOR BOTH INCREMENTS EQUAL TO 1
+C
+C
+C      CLEAN-UP LOOP SO REMAINING VECTOR LENGTH IS A MULTIPLE OF 3.
+C
+   20 M = MOD(N,3)
+      IF( M .EQ. 0 ) GO TO 40
+      DO 30 I = 1,M
+      DTEMP1 = DX(I)
+      DX(I) = DY(I)
+      DY(I) = DTEMP1
+   30 CONTINUE
+      IF( N .LT. 3 ) RETURN
+   40 MP1 = M + 1
+      DO 50 I = MP1,N,3
+      DTEMP1 = DX(I)
+      DTEMP2 = DX(I+1)
+      DTEMP3 = DX(I+2)
+      DX(I) = DY(I)
+      DX(I+1) = DY(I+1)
+      DX(I+2) = DY(I+2)
+      DY(I) = DTEMP1
+      DY(I+1) = DTEMP2
+      DY(I+2) = DTEMP3
+   50 CONTINUE
+      RETURN
+   60 CONTINUE
+C
+C     CODE FOR EQUAL, POSITIVE, NONUNIT INCREMENTS.
+C
+      NS = N*INCX
+      DO 70 I=1,NS,INCX
+      DTEMP1 = DX(I)
+      DX(I) = DY(I)
+      DY(I) = DTEMP1
+   70      CONTINUE
+      RETURN
+      END
+      INTEGER FUNCTION IDAMAX(N,DX,INCX)
+C
+C     FIND SMALLEST INDEX OF MAXIMUM MAGNITUDE OF DOUBLE PRECISION DX.
+C     IDAMAX =      FIRST I, I = 1 TO N, TO MINIMIZE  ABS(DX(1-INCX+I*INCX))
+C
+      DOUBLE PRECISION DX(*),DMAX,XMAG
+      IDAMAX = 0
+      IF(N.LE.0) RETURN
+      IDAMAX = 1
+      IF(N.LE.1)RETURN
+      IF(INCX.EQ.1)GOTO 20
+C
+C       CODE FOR INCREMENTS NOT EQUAL TO 1.
+C
+      DMAX = DABS(DX(1))
+      NS = N*INCX
+      II = 1
+        DO 10 I = 1,NS,INCX
+        XMAG = DABS(DX(I))
+        IF(XMAG.LE.DMAX) GO TO 5
+        IDAMAX = II
+        DMAX = XMAG
+    5        II = II + 1
+   10        CONTINUE
+      RETURN
+C
+C       CODE FOR INCREMENTS EQUAL TO 1.
+C
+   20 DMAX = DABS(DX(1))
+      DO 30 I = 2,N
+        XMAG = DABS(DX(I))
+        IF(XMAG.LE.DMAX) GO TO 30
+        IDAMAX = I
+        DMAX = XMAG
+   30 CONTINUE
+      RETURN
+      END
+      REAL FUNCTION SDSDOT(N,SB,SX,INCX,SY,INCY)
+C
+C     RETURNS S.P. RESULT WITH DOT PRODUCT ACCUMULATED IN D.P.
+C     SDSDOT = SB + SUM FOR I = 0 TO N-1 OF SX(LX+I*INCX)*SY(LY+I*INCY),
+C     WHERE LX = 1 IF INCX .GE. 0, ELSE LX = (-INCX)*N, AND LY IS
+C     DEFINED IN A SIMILAR WAY USING INCY.
+C
+      REAL            SX(*),SY(*),SB
+      DOUBLE PRECISION DSDOT
+C
+      DSDOT = DBLE(SB)
+      IF(N .LE. 0) GO TO 30
+      IF(INCX.EQ.INCY.AND.INCX.GT.0) GO TO 40
+      KX = 1
+      KY = 1
+      IF(INCX.LT.0) KX = 1+(1-N)*INCX
+      IF(INCY.LT.0) KY = 1+(1-N)*INCY
+        DO 10 I = 1,N
+        DSDOT = DSDOT + DBLE(SX(KX))*DBLE(SY(KY))
+        KX = KX + INCX
+        KY = KY + INCY
+   10        CONTINUE
+   30 SDSDOT = SNGL(DSDOT)
+      RETURN
+   40 CONTINUE
+      NS = N*INCX
+        DO 50 I=1,NS,INCX
+        DSDOT = DSDOT + DBLE(SX(I))*DBLE(SY(I))
+   50        CONTINUE
+      SDSDOT = SNGL(DSDOT)
+      RETURN
+      END
+     
