@@ -2413,9 +2413,13 @@ C     ..
       COMMON /MACH1/ MACTYP
       COMMON /MACH2/ MACHIN(0:20)
       CHARACTER*7 MACHIN
-      DOUBLE PRECISION Z(0:11)
+      DOUBLE PRECISION Z(0:12)
       DOUBLE PRECISION X02AAF
 C
+
+#ifdef x86_64
+      DATA Z(12) /0.1382D-75/
+#else
 C Unknown
       DATA Z(0) /0.1382D-75/
 C IBM
@@ -2440,10 +2444,11 @@ C Generic UNIX (tested on SunOS3.4)
       DATA Z(10) /5.9D-39/
 C Apollo
       DATA Z(11) /5.9D-39/
+#endif
 C
       X02AGF = Z(MACTYP)
 C
-      IF (MACTYP .LE. 0 .OR. MACTYP .GT. 11) THEN
+      IF (MACTYP .LE. 0 .OR. MACTYP .GT. 12) THEN
         WRITE(6,*) '***WARNING*** X02AGF illegal MACTYP=',MACTYP
 C       A FUDGE:
         X02AGF = X02AAF(X)
