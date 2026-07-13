@@ -35,6 +35,7 @@ C
       NPAGES = 0
       CPUTIME = 0.0
 #ifdef x86_64
+      call cpu_time(cputime)
 #else
 
 C
