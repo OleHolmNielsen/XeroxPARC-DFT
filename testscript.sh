@@ -35,7 +35,8 @@ NDIM13=$NDIM3
 NG1MAX=20
 NG2MAX=20
 NG3MAX=20
-NCMPLX=2
+# NCMPLX=2
+NCMPLX=1
 export NTYPMX NSPIN NDIM1 NDIM2 NDIM3 NDIM4 NDIM6 NDIM8 NDIM9 NDIM13 \
 NG1MAX NG2MAX NG3MAX NCMPLX
  
@@ -67,6 +68,15 @@ EOF
 0 0 0 0 0 0
 EOF
 fi
+
+if [[ $? -ne 0 ]]
+then
+	echo "Program $PROGRAM exited with errors"
+	exit 1
+fi
+sleep 10
+
+# ==================================================================================
 
 if [[ $RUN213 -eq 1 ]]
 then
@@ -100,9 +110,18 @@ EOF
 -1
 1
 EOF
+
+if [[ $? -ne 0 ]]
+then
+	echo "Program $PROGRAM exited with errors"
+	exit 1
+fi
     # Move the output file to become input file for K207
     mv fort.10 fort.4
+sleep 10
 fi
+
+# ==================================================================================
 
 if [[ $RUN214 = 1 ]]
 then  
@@ -117,9 +136,18 @@ $line
 EOF
     make $PROGRAM
     ./$PROGRAM
+
+if [[ $? -ne 0 ]]
+then
+	echo "Program $PROGRAM exited with errors"
+	exit 1
+fi
     # Move the output file to become input file for K207
     mv fort.10 fort.4
+sleep 10
 fi
+
+# ==================================================================================
 
 if [[ $RUN207 = 1 ]]
 then
@@ -196,6 +224,12 @@ EOF
 5            Stop, keep potential
 -1           No eigenvalues kept
 EOF
+
+if [[ $? -ne 0 ]]
+then
+	echo "Program $PROGRAM exited with errors"
+	exit 1
+fi
     # Saving the data file:
     # $HOME/archive fort.10 $CRYSTAL.dat
     # rm EVFILE fort.15 fort.14 fort.13
