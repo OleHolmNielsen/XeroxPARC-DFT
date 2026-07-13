@@ -73,7 +73,9 @@ C
       DATA DAYS /'st', 'nd', 'rd', 17*'th', 'st', 'nd', 'rd',
      +           7*'th', 'st'/
 C
-      if (iyear .lt. 80 .or. iyear .gt. 99
+C     Correct for the passing of year 2000
+      if (iyear .lt. 100) iyear = 1900 + iyear
+      if (iyear .lt. 80 .or. iyear .gt. 2099
      +  .or. imonth .le. 0 .or. imonth .gt. 12
      +  .or. iday .le. 0 .or. iday .gt. 31) then
         write (iout,*) 'DAYPRT: bad arguments=',IYEAR,IMONTH,IDAY
@@ -87,7 +89,7 @@ C
 C
       WRITE (IOUT,100) IDAY, DAYS(IDAY), 
      +  MONTHS(IMONTH)(1:MM), IYEAR
-100   FORMAT (T46,'Date: ',I2,A,' of ',A,', 19',I2.2)
+100   FORMAT (T46,'Date: ',I2,A,' of ',A,', ',I4.4)
       RETURN
       END
 c     subroutine IDATE (IMONTH,IDAY,IYEAR)
