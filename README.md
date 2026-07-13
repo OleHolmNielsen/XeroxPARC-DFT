@@ -71,6 +71,19 @@ Potentials currently available:
 - Hamann-Schlüter-Chiang non-local (`POT16`)
 - Bell Labs 1982 "Periodic Table" non-local (`POT17`)
 
+K214: Potential File Processing
+============================================================================
+
+Purpose:
+
+- Read a file with ionic and screened potentials and modify it to create an improved starting point for a new calculation with a different lattice structure.
+
+Method: 
+
+- Add the screening potential from a previous self-consistent calculation
+- Combine with V(IONIC) 
+- Include a screened term of DELTA-V(IONIC)
+
 K207 self-consistent DFT (Density Functional Theory) calculation of Total Energy, Forces, and Stresses
 ============================================================================================================
 
