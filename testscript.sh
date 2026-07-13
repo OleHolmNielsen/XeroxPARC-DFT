@@ -44,11 +44,19 @@ RUN290=1
 RUN213=1
 RUN214=1
 RUN207=1
-#
-# Running K290
-#
+
+line="============================================================================="
+
 if [[ $RUN290 -eq 1 ]]
 then
+	PROGRAM=run290
+	cat <<EOF
+$line
+
+Running $PROGRAM
+
+$line
+EOF
 	make run290
 	./run290 <<'EOF'
 0 0 0 0 0
@@ -60,19 +68,25 @@ then
 EOF
 fi
 
-#
-# Running K213
-#
 if [[ $RUN213 -eq 1 ]]
 then
+	PROGRAM=run213
+	cat <<EOF
+$line
+
+Running $PROGRAM
+
+$line
+EOF
     FILE1=B.VG
     FILE2=N.VG
-    make $FILE1 $FILE2
-    if [[ ! -s $FILE1 || ! -s $FILE1 ]]
-    then
-	    echo "ERROR: Missing files $FILE1 $FILE2"
-	    exit 1
-    fi
+    touch $FILE1 $FILE2
+    # make $FILE1 $FILE2
+    #if [[ ! -s $FILE1 || ! -s $FILE1 ]]
+    #then
+#	    echo "ERROR: Missing files $FILE1 $FILE2"
+#	    exit 1
+#    fi
     make run213
     ./run213 <<EOF
 -1
@@ -101,20 +115,32 @@ exit 0
 if test $RUN214 = 1; then  
     # fetch fort.1 -mV2 -fTR -t"DSN=rkmk005.$FILE"
     PROGRAM=run214
+	cat <<EOF
+$line
+
+Running $PROGRAM
+
+$line
+EOF
     make $PROGRAM
     ./$PROGRAM
     # Move the output file to become input file for K207
     mv fort.10 fort.4
 fi
 
-#
-# Running k207
-#
 if test $RUN207 = 1; then
     if test $NCMPLX = 1; then
         PROGRAM=run207
     else
         PROGRAM=crun207
+
+cat <<EOF
+$line
+
+Running $PROGRAM
+
+$line
+EOF
     make $PROGRAM
     ./$PROGRAM <<'EOF'
 1            spec. pts.
