@@ -78,25 +78,19 @@ Running $PROGRAM
 
 $line
 EOF
-    FILE1=B.VG
-    FILE2=N.VG
-    touch $FILE1 $FILE2
-    # make $FILE1 $FILE2
-    #if [[ ! -s $FILE1 || ! -s $FILE1 ]]
-    #then
-#	    echo "ERROR: Missing files $FILE1 $FILE2"
-#	    exit 1
-#    fi
+    # Potential 17 = Bell Labs 1982 "periodic table" (Bachelet-Hamann-Schluter,
+    # Phys. Rev. B 26, 4199 (1982)).  Both B and N are in the POT17 parameter
+    # database, so no external pseudopotential files are needed.
+    # The alternative is potential 20 (numerically generated), which reads
+    # Fourier-transformed potentials from B.VG and N.VG - files not present here.
     make run213
     ./run213 <<EOF
 -1
 0 0 0 0 0
 0 0
 -1
-20
-$FILE1
-20
-$FILE2
+17
+17
 0.8
 -1
 0 0
