@@ -67,10 +67,13 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
   Remember that nice code [Preprocessors](https://en.wikipedia.org/wiki/Preprocessor)
   did not exist at the time.
 
+Running the set of codes
+=============================
+
 A run of the code consists of several sequential code steps described in the sections below.
 
 K290: Analyses the crystal structure and generates Special k-points and symmetry operations
-=================================================================================================
+-----------------------------------------------------------------------------------------------
 
 History:
 
@@ -95,7 +98,7 @@ Notes:
 - In cases where the point group of the crystal does not contain inversion, inversion is artificially added in order to make use of the hermiticity of the Hamiltonian.
 
 K213: Preparation of an input file with pseudopotential for running K207
-============================================================================
+-----------------------------------------------------------------------------------------------
 
 History:
 
@@ -124,7 +127,7 @@ Potentials currently available:
 - Bell Labs 1982 "Periodic Table" non-local (`POT17`)
 
 Bell Labs 1982 "Periodic Table" non-local pseudopotentials
-----------------------------------------------------------------
+.............................................................
 
 The subroutine `PARM17` (file `paramete.for`) hardcodes pseudopotential parameters for ten elements.
 
@@ -145,7 +148,7 @@ numerical data reproduced here for use with the POT17 pseudopotential in this co
 This file covers all 94 (H through Pu).
 
 K214: Potential File Processing
-============================================================================
+-----------------------------------------------------------------------------------------------
 
 Purpose:
 
@@ -158,7 +161,7 @@ Method:
 - Include a screened term of DELTA-V(IONIC)
 
 K207 self-consistent DFT (Density Functional Theory) calculation of Total Energy, Forces, and Stresses
-============================================================================================================
+-----------------------------------------------------------------------------------------------
 
 Purpose:
 
