@@ -1,13 +1,14 @@
 Xerox PARC (Palo Alto Research Center) DFT plane-wave code
 ============================================================
 
-This historical project preserves the DFT plane-wave code written originally
-by **Karel Kunc]** <krl.kunc@gmail.com> and **Richard M. Martin** <rmartin@illinois.edu>
+This historical project preserves the [DFT](https://en.wikipedia.org/wiki/Density_functional_theory)
+plane-wave code written originally
+by **Karel Kunc]** (<krl.kunc@gmail.com>) and **Richard M. Martin** (<rmartin@illinois.edu>)
 at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (Palo Alto Research Center) during 1979-1981.
 
 The present version of the original code was further developed by Ole Holm Nielsen at Xerox PARC during 1982-1983.
 
-Author of this page: **Ole Holm Nielsen** <Ole.H.Nielsen@fysik.dtu.dk>.
+Author of this page: **Ole Holm Nielsen** (<Ole.H.Nielsen@fysik.dtu.dk>).
 
 Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
 
@@ -24,15 +25,15 @@ The following publications document the theory behind the codes:
 
 * *Theory of structural properties of covalent semiconductors*,
   H. Wendel and Richard M. Martin,
-  [Phys. Rev. B 19, 5251, 1979](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.19.5251)
+  [Phys. Rev. B 19, 5251, 1979](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.19.5251).
 
 * *Density-functional calculation of static and dynamic properties of GaAs*,
   K. Kunc and Richard M. Martin,
-  [Phys. Rev. B 24, 2311(R), 1981](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.24.2311)
+  [Phys. Rev. B 24, 2311(R), 1981](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.24.2311).
 
 * *Ab Initio Force Constants of GaAs: A New Approach to Calculation of Phonons and Dielectric Properties*,
   K. Kunc and Richard M. Martin,
-  [Phys. Rev. Lett. 48, 406, 1982](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.406)
+  [Phys. Rev. Lett. 48, 406, 1982](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.406).
 
 * *Theory of static structural properties, crystal stability, and phase transformations: Application to Si and Ge*,
   M. T. Yin and Marvin L. Cohen,
@@ -40,7 +41,7 @@ The following publications document the theory behind the codes:
 
 * *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*,
   O. H. Nielsen and Richard M. Martin
-  [Phys. Rev. B 32, 3792, 1985](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.32.3792)
+  [Phys. Rev. B 32, 3792, 1985](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.32.3792).
 
 K290: Analyses the crystal structure and generates Special k-points and symmetry operations
 =================================================================================================
