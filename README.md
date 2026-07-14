@@ -2,20 +2,20 @@ Xerox PARC (Palo Alto Research Center) DFT plane-wave code
 ============================================================
 
 This historical project preserves the DFT plane-wave code written originally
-by Karel Kunc and Richard M. Martin at the Xerox PARC (Palo Alto Research Center) during 1979-1981.
+by Karel Kunc and Richard M. Martin at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company))
+(Palo Alto Research Center) during 1979-1981.
 
-The code was further developed by Ole Holm Nielsen at Xerox PARC during 1982-1983.
+The present version of the original code was further developed by Ole Holm Nielsen at Xerox PARC during 1982-1983.
 
-Author of this page: Ole.H.Nielsen@fysik.dtu.dk
+Author of this page: Ole Holm Nielsen, E-mail Ole.H.Nielsen@fysik.dtu.dk.
 
-Homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
+Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
 
-The code implements Total Energy, Forces, and Stresses
-with a pseudopotential plane-wave basis set.
+The code implements Total Energy, Forces, and Stresses with a pseudopotential plane-wave basis set.
 
-The code is written in Fortran-77, the most modern Fortran compiler at the time.
+The code is written in Fortran-77, which was the most modern Fortran compiler at the time.
 
-A run of the code consists of three sequential code steps in the sections below.
+A run of the code consists of several sequential code steps described in the sections below.
 
 K290: Analyses the crystal structure and generates Special k-points and symmetry operations
 =================================================================================================
@@ -70,6 +70,27 @@ Potentials currently available:
 - Berkeley ionic (`POT15`)
 - Hamann-Schlüter-Chiang non-local (`POT16`)
 - Bell Labs 1982 "Periodic Table" non-local (`POT17`)
+
+Bell Labs 1982 "Periodic Table" non-local pseudopotentials
+----------------------------------------------------------------
+
+The subroutine `PARM17` (file `paramete.for`) hardcodes pseudopotential parameters for ten elements.
+
+In `bhs_table4.md` and the CSV-file `bhs_table4.csv`
+we show a Machine-readable transcription of **Table IV** of the publication:
+
+> G. B. Bachelet, D. R. Hamann and M. Schlüter,
+> *"Pseudopotentials that work: From H to Pu"*,
+> Phys. Rev. B **26**, 4199 (1982). doi:10.1103/PhysRevB.26.4199
+
+with the correction from the erratum
+
+> Phys. Rev. B **29**, 2309 (1984). doi:10.1103/PhysRevB.29.2309
+
+The article is © 1982 American Physical Society; the tabulated parameters are
+numerical data reproduced here for use with the POT17 pseudopotential in this code.
+
+This file covers all 94 (H through Pu).
 
 K214: Potential File Processing
 ============================================================================
