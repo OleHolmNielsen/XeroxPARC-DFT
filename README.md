@@ -67,6 +67,26 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
   Remember that nice code [Preprocessors](https://en.wikipedia.org/wiki/Preprocessor)
   did not exist at the time.
 
+Building the code
+.....................
+
+The user will have to configure his system with required software tools.
+We have used a [Linux](https://en.wikipedia.org/wiki/Linux) on an Intel-based 
+[x86-64](https://en.wikipedia.org/wiki/X86-64) CPU.
+
+A [Fortran-77](https://en.wikipedia.org/wiki/Fortran) compiler is required.
+In 2026 we can compile the code using the Open Source [GNU Fortran](https://en.wikipedia.org/wiki/GNU_Fortran)
+but other compilers might also work.
+There is a [GFortran installation guide](https://fortran-lang.org/learn/os_setup/install_gfortran/).
+
+The Linux [make command](https://en.wikipedia.org/wiki/Make_(software)) 
+together with the [Makefile](Makefile) designed for GNU Fortran compilation
+is used to build object modules and executable codes.
+
+The [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
+library for linear algebra operations is required.
+An Open Source library is [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS).
+
 Running the set of codes
 =============================
 
