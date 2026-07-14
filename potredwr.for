@@ -44,7 +44,7 @@ C     READING THE HEADING OF FILE
 C
       WRITE (IOUT,*) 'POTRED: reading unit ', IFILE
       READ (IFILE) NPRGR,IDAY,MONTH,IYEAR,IVERSN,MACTIP
-      IF (MACTIP .GT. 11 .OR. MACTIP .LT. 0) MACTIP = 0
+      IF (MACTIP .GT. 12 .OR. MACTIP .LT. 0) MACTIP = 0
       WRITE (IOUT,120) NPRGR,IVERSN,MACHIN(MACTIP)
 120   FORMAT ('0Reading data from file created by program K',I3,
      +' (ver.',I3,') on ',A,' computer')
