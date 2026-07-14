@@ -55,6 +55,8 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
 
 * Arrays had to be allocated with static dimensions in the [main program entry-point](https://en.wikipedia.org/wiki/Entry_point)
   (in the ``run2xx.for`` files) since dynamically allocatable arrays were not yet in the Fortran standard.
+  Therefore the scripts must define static dimension variables such as ``NDIM1, NDIM2, NDIM3``, etc.,
+  to generate ``run2xx.for`` files from the ``run2xx.start`` files.
 
 * The code works both with either Real and Complex matrices (the former being much faster than the latter)
   depending on the symmetry properties of the crystal.
