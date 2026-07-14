@@ -4,19 +4,13 @@ Xerox PARC (Palo Alto Research Center) DFT plane-wave code
 This historical project preserves the [DFT](https://en.wikipedia.org/wiki/Density_functional_theory)
 plane-wave code written originally
 by **Karel Kunc]** (<krl.kunc@gmail.com>) and **Richard M. Martin** (<rmartin@illinois.edu>)
-at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (Palo Alto Research Center) during 1979-1981.
+at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
 The present version of the original code was further developed by Ole Holm Nielsen at Xerox PARC during 1982-1983.
 
 Author of this page: **Ole Holm Nielsen** (<Ole.H.Nielsen@fysik.dtu.dk>).
 
 Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
-
-The code implements Total Energy, Forces, and Stresses with a pseudopotential plane-wave basis set.
-
-The code is written in Fortran-77, which was the most modern Fortran compiler at the time.
-
-A run of the code consists of several sequential code steps described in the sections below.
 
 Publications
 ------------------
@@ -42,6 +36,16 @@ The following publications document the theory behind the codes:
 * *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*,
   O. H. Nielsen and Richard M. Martin
   [Phys. Rev. B 32, 3792, 1985](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.32.3792).
+
+About the code
+-----------------
+
+The code in this historical project implements Total Energy, Forces, and Stresses
+with a pseudopotential plane-wave basis set.
+
+The code is written in Fortran-77, which was the most modern Fortran compiler at the time of writing.
+
+A run of the code consists of several sequential code steps described in the sections below.
 
 K290: Analyses the crystal structure and generates Special k-points and symmetry operations
 =================================================================================================
