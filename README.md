@@ -75,7 +75,7 @@ An example of a script running the codes is in the file [testscript.sh](testscri
 
 Firstly, create a structure file (Fortran unit 2) describing the
 [Bravais lattice](https://en.wikipedia.org/wiki/Bravais_lattice)
-and the atomic positions in the unit cell:
+and the atoms in the unit cell:
 
 * Lattice vectors a1, a2, a3
 * Atomic numbers and coordinates
