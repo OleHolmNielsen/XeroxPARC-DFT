@@ -35,8 +35,8 @@ NDIM13=$NDIM3
 NG1MAX=20
 NG2MAX=20
 NG3MAX=20
-# NCMPLX=2
-NCMPLX=1
+NCMPLX=2
+# NCMPLX=1
 export NTYPMX NSPIN NDIM1 NDIM2 NDIM3 NDIM4 NDIM6 NDIM8 NDIM9 NDIM13 \
 NG1MAX NG2MAX NG3MAX NCMPLX
  
@@ -74,7 +74,7 @@ then
 	echo "Program $PROGRAM exited with errors"
 	exit 1
 fi
-sleep 10
+read -p "Press Enter to continue"
 
 # ==================================================================================
 
@@ -118,7 +118,7 @@ then
 fi
     # Move the output file to become input file for K207
     mv fort.10 fort.4
-sleep 10
+read -p "Press Enter to continue"
 fi
 
 # ==================================================================================
@@ -144,7 +144,7 @@ then
 fi
     # Move the output file to become input file for K207
     mv fort.10 fort.4
-sleep 10
+read -p "Press Enter to continue"
 fi
 
 # ==================================================================================
