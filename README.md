@@ -44,8 +44,28 @@ About the code
 
 The code in this historical project implements Total Energy, Forces, and Stresses
 with a pseudopotential plane-wave basis set.
+It must be emphasized that this code was used for cutting-edge research during the 1980ies,
+but is now more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
+which preserves the code for posterity.
 
-The code is written in Fortran-77, which was the most modern Fortran compiler at the time of writing.
+The code is written in [Fortran-77](https://en.wikipedia.org/wiki/Fortran),
+which was the most modern standard Fortran compiler at the time of writing.
+
+Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipedia.org/wiki/Fortran):
+
+* Arrays had to be allocated with static dimensions in the  
+  [Main program entry-point](https://en.wikipedia.org/wiki/Entry_point)
+  (the ``run2xx.for`` files)
+  since dynamically allocatable arrays were not yet in the Fortran standard.
+
+* The code works both with either Real and Complex matrices (the former being much faster than the latter)
+  depending on the symmetry properties of the crystal.
+  Therefore a number of ``xxx.diff`` files are used to generate the Complex code version 
+  from the Real version.
+  The Fortran compiler will likely issue warnings about ``passed COMPLEX(4) to REAL(4)``
+  (or similar) due to the dirty programming tricks employed in the code.
+  Remember that nice code [Preprocessors](https://en.wikipedia.org/wiki/Preprocessor)
+  did not exist at the time.
 
 A run of the code consists of several sequential code steps described in the sections below.
 
