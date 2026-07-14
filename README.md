@@ -1,5 +1,8 @@
 # Xerox PARC (Palo Alto Research Center) DFT plane-wave code
 
+Purpose of this project
+===========================0
+
 This historical project preserves the [DFT](https://en.wikipedia.org/wiki/Density_functional_theory)
 [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) 
 [pseudo-potential](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
@@ -67,7 +70,7 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
   did not exist at the time.
 
 Building the code
-.....................
+---------------------
 
 The user will have to configure his system with required software tools.
 We have used a [Linux](https://en.wikipedia.org/wiki/Linux) on an Intel-based 
