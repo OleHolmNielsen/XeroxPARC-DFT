@@ -5,12 +5,13 @@ This historical project preserves the [DFT](https://en.wikipedia.org/wiki/Densit
 [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) 
 [pseudo-potential](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 code written originally
-by **Karel Kunc]** (<krl.kunc@gmail.com>) and **Richard M. Martin** (<rmartin@illinois.edu>)
+by [Karel Kunc]](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
+and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
 The present version of the original code was further developed by Ole Holm Nielsen at Xerox PARC during 1982-1983.
 
-Author of this page: **Ole Holm Nielsen** (<Ole.H.Nielsen@fysik.dtu.dk>).
+Author of this page: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
 
 Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
 
