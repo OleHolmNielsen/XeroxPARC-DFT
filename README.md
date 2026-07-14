@@ -17,6 +17,31 @@ The code is written in Fortran-77, which was the most modern Fortran compiler at
 
 A run of the code consists of several sequential code steps described in the sections below.
 
+Publications
+------------------
+
+The following publications document the theory behind the codes:
+
+* *Theory of structural properties of covalent semiconductors*,
+  H. Wendel and Richard M. Martin,
+  [Phys. Rev. B 19, 5251, 1979](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.19.5251)
+
+* *Density-functional calculation of static and dynamic properties of GaAs*,
+  K. Kunc and Richard M. Martin,
+  [Phys. Rev. B 24, 2311(R), 1981](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.24.2311)
+
+* *Ab Initio Force Constants of GaAs: A New Approach to Calculation of Phonons and Dielectric Properties*,
+  K. Kunc and Richard M. Martin,
+  [Phys. Rev. Lett. 48, 406, 1982](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.406)
+
+* *Theory of static structural properties, crystal stability, and phase transformations: Application to Si and Ge*,
+  M. T. Yin and Marvin L. Cohen,
+  [Phys. Rev. B 26, 5668, 1982](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.5668).
+
+* *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*,
+  O. H. Nielsen and Richard M. Martin
+  [Phys. Rev. B 32, 3792, 1985](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.32.3792)
+
 K290: Analyses the crystal structure and generates Special k-points and symmetry operations
 =================================================================================================
 
@@ -28,7 +53,7 @@ History:
 
 Purpose:
 
-- Setting up special k-points and creatiing a "crystallographic" file for band structure calculations.
+- Setting up special k-points and creating a "crystallographic" file for band structure calculations.
 
 Generation of special points in k-space for an arbitrary lattice, following the method of:
 
