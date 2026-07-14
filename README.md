@@ -28,7 +28,7 @@ History:
 
 Purpose:
 
-- Playing with special points and creation of a "crystallographic" file for band structure calculations.
+- Setting up special k-points and creatiing a "crystallographic" file for band structure calculations.
 
 Generation of special points in k-space for an arbitrary lattice, following the method of:
 
