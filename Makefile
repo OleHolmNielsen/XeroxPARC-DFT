@@ -268,7 +268,7 @@ testion: testion.o ionion.o usage.o unixus.o \
 clean:
 	rm -f *.f *.bak *.orig *~ 
 	rm -f run290 run290.for run213 run213.for run214 run214.for run207.for run207 crun207 core listing
-	rm -f cdiagon.for cdiaham.for ceval.for ckinetic.for clowper.for clumat.for cmixvg.for cputnl.for cro5.for crowham.for crwev.for cvnlkka.for cvnlkknum.for
+	rm -f crun207.for cdiagon.for cdiaham.for ceval.for ckinetic.for clowper.for clumat.for cmixvg.for cputnl.for cro5.for crowham.for crwev.for cvnlkka.for cvnlkknum.for
 	rm -f *.o fort.* EVFILE
 
 #
