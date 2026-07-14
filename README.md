@@ -73,7 +73,14 @@ Running the set of codes
 A run of the code consists of several sequential code steps described in the sections below.
 An example of a script running the codes is in the file [testscript.sh](testscript.sh).
 
-Firstly, create a structure file (Fortran unit 2) with atomic numbers and coordinates,
+Firstly, create a structure file (Fortran unit 2) describing the
+[Bravais lattice](https://en.wikipedia.org/wiki/Bravais_lattice)
+and the atomic positions in the unit cell:
+
+* Lattice vectors a1, a2, a3
+* Atomic numbers and coordinates
+* Unit cell size (Angstrom)
+
 for example:
 
 ```
