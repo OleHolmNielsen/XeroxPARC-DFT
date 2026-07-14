@@ -188,12 +188,14 @@ Purpose:
 
 - Selfconsistent calculation of band structure and total energy, Hellmann-Feynman forces and stress for semiconductors and metals.
 
+ToDo: Further explanations
+
 Input files
-===============
+...................
 
 * TBD
 
 Output files
-===============
+...................
 
 * TBD
