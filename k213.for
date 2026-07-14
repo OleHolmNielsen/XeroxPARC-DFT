@@ -536,7 +536,7 @@ C A CLEAN-UP OF POTENTIALS:
 C
 1150  WRITE (IUNIT7,1160)
 1160  FORMAT ('0Do you wish a clean-up in the above list of resulting',
-     +'potentials ?'/
+     +' potentials ?'/
      +' if yes, enter a small positive epsilon and the program will '/
      +' cancel all components of potentials (re and im separately),'/
      +' which are (in absolute value) smaller than epsilon.'/
