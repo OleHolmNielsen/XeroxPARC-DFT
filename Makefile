@@ -88,9 +88,7 @@ run214: run214.o $(OBJ_214)                                    \
 # Program K207 (real version)
 #
 
-# OBJ_207 = alphaz.o    apwsum.o     cfft.o    dblas.o     compit.o   \
-# IBM AIX version with BLAS built in:
-OBJ_207 = alphaz.o    apwsum.o     cfft.o    dsdot.o    compit.o   \
+OBJ_207 = alphaz.o    apwsum.o     cfft.o    dsdot.o     compit.o    \
           diagon.o    diaham.o     efermi.o  eigen.o     eisherm.o  \
           eps1.o      eval.o       exch4.o   gcode.o     gkcut.o    \
           gshell.o    ionion.o     kinetic.o lookup.o    lowper.o   \
@@ -116,7 +114,8 @@ apollo_special_1:
 # Program K207 (complex version)
 #
 
-OBJ_207c = alphaz.o    apwsum.o     cfft.o     compit.o    dblas.o    \
+# OBJ_207c = alphaz.o    apwsum.o     cfft.o     compit.o    dblas.o    
+OBJ_207c = alphaz.o    apwsum.o     cfft.o     compit.o    \
            cdiagon.o   cdiaham.o    efermi.o   eigen.o     eisherm.o  \
            eps1.o      ceval.o      exch4.o    gcode.o     gkcut.o    \
            gshell.o    ionion.o     ckinetic.o lookup.o    clowper.o  \
