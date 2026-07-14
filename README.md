@@ -71,6 +71,20 @@ Running the set of codes
 =============================
 
 A run of the code consists of several sequential code steps described in the sections below.
+An example of a script running the codes is in the file [testscript.sh](testscript.sh).
+
+Firstly, create a structure file (Fortran unit 2) with atomic numbers and coordinates,
+for example:
+
+```
+ 1-cell Boron Nitride
+ 2
+ 0.0 0.5 0.5      0.5 0.0 0.5     0.5 0.5 0.0
+ 5         -0.125    -0.125    -0.125
+ 7          0.125     0.125     0.125
+ 3.00
+```
+
 
 K290: Analyses the crystal structure and generates Special k-points and symmetry operations
 -----------------------------------------------------------------------------------------------
