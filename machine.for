@@ -15,7 +15,7 @@ C     8 ..... Fujitsu VP-100/200/400 (= Amdahl 1XXX = Siemens)
 C     9 ..... VAX + MAP attached processor
 C     10 .... Generic UNIX (tested on SunOS3.4 and 4.0)
 C     11 .... Apollo Domain/OS "UNIX"
-C     12 .... IBM AIX XL Fortran
+C     12 .... Linux x86_64
 C
 C     Use machine names in all programs:
       COMMON /MACH1/ MACTYP
@@ -37,6 +37,6 @@ C
       MACHIN(9) = 'MAP+VAX'
       MACHIN(10) = 'SunUNIX'
       MACHIN(11) = 'Apollo'
-      MACHIN(12) = 'Linux_x86'
+      MACHIN(12) = 'x86_64'
       RETURN
       END
