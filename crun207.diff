@@ -1,0 +1,52 @@
+119,131c119,131
+< C     PARAMETER (LREAL = .FALSE.)
+< C     EQUIVALENCE
+< C    +  (HAMR,SATGR,RSPACE,SORT,SHIFT,CHI),
+< C    +  (HAMI,EXCG,SATGI,WK,INVCHI,IPG),
+< C    +  (CEV,EISWRK,MUXCG),
+< C    +  (CWF4,ROTEMP,CCI,RTABLE),
+< C    +  (IWF5,CCR),
+< C    +  (VNLL,HRSUB,VNEW),
+< C    +  (HISUB,RLIST),
+< C    +  (RWF3,SRSUB,IDIFF),
+< C    +  (SISUB,INDEX),
+< C    +  (LWORK,VRSUB),
+< C    +  (DIAG,FORCWK)
+---
+>       PARAMETER (LREAL = .FALSE.)
+>       EQUIVALENCE
+>      +  (HAMR,SATGR,RSPACE,SORT,SHIFT,CHI),
+>      +  (HAMI,EXCG,SATGI,WK,INVCHI,IPG),
+>      +  (CEV,EISWRK,MUXCG),
+>      +  (CWF4,ROTEMP,CCI,RTABLE),
+>      +  (IWF5,CCR),
+>      +  (VNLL,HRSUB,VNEW),
+>      +  (HISUB,RLIST),
+>      +  (RWF3,SRSUB,IDIFF),
+>      +  (SISUB,INDEX),
+>      +  (LWORK,VRSUB),
+>      +  (DIAG,FORCWK)
+134,144c134,144
+<        PARAMETER (LREAL = .TRUE.)
+<        EQUIVALENCE
+<      +  (HAMR,HAMI,SATGR,SATGI,RSPACE,SORT,WK,CHI),
+<      +  (CCR,CCI,IWF5,EXCG,INVCHI,IPG),
+<      +  (CEV,EISWRK,MUXCG),
+<      +  (CWF4,HRSUB,HISUB),
+<      +  (ROTEMP,RWF3,SRSUB,SISUB,VNEW),
+<      +  (VNLL,VRSUB,VISUB,RTABLE),
+<      +  (GK,RLIST),
+<      +  (CWF1,IDIFF),
+<      +  (DIAG,FORCWK,INDEX)
+---
+> C      PARAMETER (LREAL = .TRUE.)
+> C      EQUIVALENCE
+> C    +  (HAMR,HAMI,SATGR,SATGI,RSPACE,SORT,WK,CHI),
+> C    +  (CCR,CCI,IWF5,EXCG,INVCHI,IPG),
+> C    +  (CEV,EISWRK,MUXCG),
+> C    +  (CWF4,HRSUB,HISUB),
+> C    +  (ROTEMP,RWF3,SRSUB,SISUB,VNEW),
+> C    +  (VNLL,VRSUB,VISUB,RTABLE),
+> C    +  (GK,RLIST),
+> C    +  (CWF1,IDIFF),
+> C    +  (DIAG,FORCWK,INDEX)

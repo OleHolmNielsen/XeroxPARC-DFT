@@ -1,0 +1,24 @@
+19,23c19,23
+< C     COMPLEX CWF1,Z
+< C     REALP(Z) = REAL(Z)
+< C     AIMGG(Z) = AIMAG(Z)
+< C     LOC(I,J) = (I*I-I)/2 + J
+< C     IF (LREAL) WRITE(IOUT,*) '***LUMAT*** LREAL =',LREAL
+---
+>       COMPLEX CWF1,Z
+>       REALP(Z) = REAL(Z)
+>       AIMGG(Z) = AIMAG(Z)
+>       LOC(I,J) = (I*I-I)/2 + J
+>       IF (LREAL) WRITE(IOUT,*) '***LUMAT*** LREAL =',LREAL
+26,30c26,30
+<       REAL CWF1
+<       REALP(X) = X
+<       AIMGG(X) = 0.0*X
+<       LOC(I,J) = (I*I-I)/2 + J
+<       IF (.NOT. LREAL) WRITE(IOUT,*) '***LUMAT*** LREAL=',LREAL
+---
+> C     REAL CWF1
+> C     REALP(X) = X
+> C     AIMGG(X) = 0.0*X
+> C     LOC(I,J) = (I*I-I)/2 + J
+> C     IF (.NOT. LREAL) WRITE(IOUT,*) '***LUMAT*** LREAL=',LREAL

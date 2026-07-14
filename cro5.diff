@@ -1,0 +1,20 @@
+49,52c49,52
+< C     COMPLEX CEV,CONJUG,SUM,FACTOR,Z,ZERO
+< C     CONJUG(Z) = CONJG(Z)
+< C     ZERO = (0.0,0.0)
+< C     IF (LREAL) WRITE(IOUT,*) '***RO5*** LREAL =',LREAL
+---
+>       COMPLEX CEV,CONJUG,SUM,FACTOR,Z,ZERO
+>       CONJUG(Z) = CONJG(Z)
+>       ZERO = (0.0,0.0)
+>       IF (LREAL) WRITE(IOUT,*) '***RO5*** LREAL =',LREAL
+55,58c55,58
+<       REAL CEV,CONJUG,SUM,FACTOR
+<       CONJUG(X) = X
+<       ZERO = 0.0
+<       IF (.NOT. LREAL) WRITE(IOUT,*) '***RO5*** LREAL =',LREAL
+---
+> C     REAL CEV,CONJUG,SUM,FACTOR
+> C     CONJUG(X) = X
+> C     ZERO = 0.0
+> C     IF (.NOT. LREAL) WRITE(IOUT,*) '***RO5*** LREAL =',LREAL

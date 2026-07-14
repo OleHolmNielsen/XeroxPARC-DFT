@@ -1,0 +1,16 @@
+28,30c28,30
+<       REAL CEV,WK,CMX
+<       CMX(X1,X2) = X1
+<       IF (.NOT. LREAL) WRITE(IOUT,*) '***DIAGON*** LREAL =',LREAL
+---
+> C     REAL CEV,WK,CMX
+> C     CMX(X1,X2) = X1
+> C     IF (.NOT. LREAL) WRITE(IOUT,*) '***DIAGON*** LREAL =',LREAL
+33,35c33,35
+< C     COMPLEX CEV,WK,CMX
+< C     CMX(X1,X2) = CMPLX(X1,X2)
+< C     IF (LREAL) WRITE(IOUT,*) '***DIAGON LREAL =',LREAL
+---
+>       COMPLEX CEV,WK,CMX
+>       CMX(X1,X2) = CMPLX(X1,X2)
+>       IF (LREAL) WRITE(IOUT,*) '***DIAGON LREAL =',LREAL

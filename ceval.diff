@@ -1,0 +1,26 @@
+27,31c27,31
+<       REAL CEV,WK,CWF1
+<       REALP(X) = X
+<       AIMGG(X) = 0.0*X
+<       ZERO = 0.0
+<       IF (.NOT. LREAL) WRITE(IOUT,*) '***EVAL*** LREAL =',LREAL
+---
+> C     REAL CEV,WK,CWF1
+> C     REALP(X) = X
+> C     AIMGG(X) = 0.0*X
+> C     ZERO = 0.0
+> C     IF (.NOT. LREAL) WRITE(IOUT,*) '***EVAL*** LREAL =',LREAL
+34,39c34,39
+< C     COMPLEX CEV,WK,CWF1,Z,ZERO
+< C     REAL REALP,AIMGG
+< C     REALP(Z) = REAL(Z)
+< C     AIMGG(Z) = AIMAG(Z)
+< C     ZERO = CMPLX(0.0,0.0)
+< C     IF (LREAL) WRITE(IOUT,*) '***EVAL*** LREAL =',LREAL
+---
+>       COMPLEX CEV,WK,CWF1,Z,ZERO
+>       REAL REALP,AIMGG
+>       REALP(Z) = REAL(Z)
+>       AIMGG(Z) = AIMAG(Z)
+>       ZERO = CMPLX(0.0,0.0)
+>       IF (LREAL) WRITE(IOUT,*) '***EVAL*** LREAL =',LREAL

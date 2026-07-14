@@ -1,0 +1,12 @@
+74,75c74,75
+<       REAL VK1K2(*), STRESS(6,*)
+<       PARAMETER (LREALI = .TRUE.)
+---
+> C     REAL VK1K2(*), STRESS(6,*)
+> C     PARAMETER (LREALI = .TRUE.)
+78,79c78,79
+< C     COMPLEX VK1K2(*), STRESS(6,*)
+< C     PARAMETER (LREALI = .FALSE.)
+---
+>       COMPLEX VK1K2(*), STRESS(6,*)
+>       PARAMETER (LREALI = .FALSE.)

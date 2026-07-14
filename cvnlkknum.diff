@@ -1,0 +1,24 @@
+85,87c85,87
+< C     COMPLEX STRESS,VK1K2
+< C     COMPLEX CMX
+< C     CMX(X1,X2) = CMPLX(X1,X2)
+---
+>       COMPLEX STRESS,VK1K2
+>       COMPLEX CMX
+>       CMX(X1,X2) = CMPLX(X1,X2)
+90,92c90,92
+<       REAL STRESS,VK1K2
+<       REAL CMX
+<       CMX(X1,X2) = X1
+---
+> C     REAL STRESS,VK1K2
+> C     REAL CMX
+> C     CMX(X1,X2) = X1
+100c100
+< C     IF (LREAL) WRITE(IOUT,*) '***VNLKK*** LREAL = ',LREAL
+---
+>       IF (LREAL) WRITE(IOUT,*) '***VNLKK*** LREAL = ',LREAL
+102c102
+<       IF (.NOT. LREAL) WRITE(IOUT,*) '***VNLKK*** LREAL = ',LREAL
+---
+> C     IF (.NOT. LREAL) WRITE(IOUT,*) '***VNLKK*** LREAL = ',LREAL

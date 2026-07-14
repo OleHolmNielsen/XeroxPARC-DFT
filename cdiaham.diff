@@ -1,0 +1,20 @@
+32,35c32,35
+< C     COMPLEX CWF1,CWF4,VNLL,Z
+< C     REAL REALP
+< C     REALP(Z) = REAL(Z)
+< C     IF (LREAL) WRITE(IOUT,*) '***DIAHAM*** LREAL =',LREAL
+---
+>       COMPLEX CWF1,CWF4,VNLL,Z
+>       REAL REALP
+>       REALP(Z) = REAL(Z)
+>       IF (LREAL) WRITE(IOUT,*) '***DIAHAM*** LREAL =',LREAL
+38,41c38,41
+<       REAL CWF1,CWF4,VNLL
+<       REAL REALP
+<       REALP(X) = X
+<       IF (.NOT. LREAL) WRITE(IOUT,*) '***DIAHAM*** LREAL =',LREAL
+---
+> C     REAL CWF1,CWF4,VNLL
+> C     REAL REALP
+> C     REALP(X) = X
+> C     IF (.NOT. LREAL) WRITE(IOUT,*) '***DIAHAM*** LREAL =',LREAL
