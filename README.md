@@ -89,8 +89,8 @@ The [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
 library for linear algebra operations is required.
 An Open Source library is [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS).
 
-We have used [EasyBuild](https://github.com/easybuilders/easybuild) to install our compilers and libraries
-as software modules.
+On our HPC system we have used [EasyBuild](https://github.com/easybuilders/easybuild)
+to install our compilers and libraries as software modules.
 The set of Open Source software modules is then simply enabled by:
 ```
 module load foss
