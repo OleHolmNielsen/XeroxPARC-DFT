@@ -2,7 +2,9 @@ Xerox PARC (Palo Alto Research Center) DFT plane-wave code
 ============================================================
 
 This historical project preserves the [DFT](https://en.wikipedia.org/wiki/Density_functional_theory)
-plane-wave code written originally
+[plane-wave](https://en.wikipedia.org/wiki/Plane_wave) 
+[pseudo-potential](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
+code written originally
 by **Karel Kunc]** (<krl.kunc@gmail.com>) and **Richard M. Martin** (<rmartin@illinois.edu>)
 at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
