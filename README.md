@@ -54,10 +54,8 @@ which was the most modern standard Fortran compiler at the time of writing.
 
 Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipedia.org/wiki/Fortran):
 
-* Arrays had to be allocated with static dimensions in the  
-  [Main program entry-point](https://en.wikipedia.org/wiki/Entry_point)
-  (the ``run2xx.for`` files)
-  since dynamically allocatable arrays were not yet in the Fortran standard.
+* Arrays had to be allocated with static dimensions in the [Main program entry-point](https://en.wikipedia.org/wiki/Entry_point)
+  (in the ``run2xx.for`` files) since dynamically allocatable arrays were not yet in the Fortran standard.
 
 * The code works both with either Real and Complex matrices (the former being much faster than the latter)
   depending on the symmetry properties of the crystal.
