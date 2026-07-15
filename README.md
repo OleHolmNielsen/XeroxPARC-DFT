@@ -89,18 +89,20 @@ The [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
 library for linear algebra operations is required.
 An Open Source library is [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS).
 
-On our HPC system we have used [EasyBuild](https://github.com/easybuilders/easybuild)
-to install our compilers and libraries as software modules.
-The set of Open Source software modules is then simply enabled by:
+A simple solution for an RPM-based Linux distribution, such as Red Hat Enterprise Linux or AlmaLinux,
+is to install these system packages::
 ```
-module load foss
+sudo dnf install gcc-gfortran make openblas
 ```
+On Ubuntu or similar Linux distributions can probably be installed using ``apt-get``.
 
 Running the set of codes
 =============================
 
 A run of the code consists of several sequential code steps described in the sections below.
 An example of a script running the codes is in the file [testscript.sh](testscript.sh).
+This script uses the ``make`` command to build the codes, then runs them with the input 
+data given in the script.
 
 Firstly, create a structure file (Fortran unit 2) describing the
 [Bravais lattice](https://en.wikipedia.org/wiki/Bravais_lattice)
