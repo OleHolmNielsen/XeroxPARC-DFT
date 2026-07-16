@@ -103,7 +103,7 @@ is to install these system packages:
 ```
 sudo dnf install gcc-gfortran make openblas
 ```
-On Ubuntu or similar Linux distributions can probably be installed similar to this:
+On Ubuntu or similar Linux distributions the packages can probably be installed similar to this:
 ```
 sudo apt install rsync make build-essential gfortran libopenblas
 ```
