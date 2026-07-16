@@ -11,7 +11,14 @@ by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
-The present version of the original code was further developed by Ole Holm Nielsen at Xerox PARC during 1982-1983.
+The present version of the original code was further developed by
+Ole Holm Nielsen at Xerox PARC during 1982-1983,
+and at NORDITA and University of Copenhagen until about 1990.
+There have been other users of the code, and probably most users
+have made independent improvements over the years,
+leading to some divergence of the code.
+This was all before the Internet and software version control
+changed the way we write codes.
 
 Author of this page: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
 
