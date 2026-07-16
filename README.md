@@ -83,7 +83,7 @@ Downloading and building the code
 
 Some standard [Linux](https://en.wikipedia.org/wiki/Linux) tools are needed. 
 A simple solution
-(for an RPM-based Linux distribution such as Red Hat Enterprise Linux or AlmaLinux)
+(for an RPM-based Linux distribution such as *Red Hat Enterprise Linux* or *AlmaLinux*)
 is to install these system packages:
 ```
 sudo dnf install git gcc-gfortran make openblas
