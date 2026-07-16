@@ -143,7 +143,7 @@ History:
 
 - Written on September 12, 1979.
 - IBM-retouched on October 27, 1980.
-- Generation of special points modified on May 26, 1982 by OHN.
+- Generation of special points modified on May 26, 1982 by Ole Holm Nielsen.
 
 Purpose:
 
@@ -195,16 +195,11 @@ Bell Labs 1982 "Periodic Table" non-local pseudopotentials
 
 The subroutine `PARM17` (file `paramete.for`) hardcodes pseudopotential parameters for ten elements.
 
-In `bhs_table4.md` and the CSV-file `bhs_table4.csv`
+In [bhs_table4.md](bhs_table4.md) and the CSV-file [bhs_table4.csv](bhs_table4.csv)
 we show a Machine-readable transcription of **Table IV** of the publication:
 
-> G. B. Bachelet, D. R. Hamann and M. Schlüter,
-> *"Pseudopotentials that work: From H to Pu"*,
-> Phys. Rev. B **26**, 4199 (1982). doi:10.1103/PhysRevB.26.4199
-
-with the correction from the erratum
-
-> Phys. Rev. B **29**, 2309 (1984). doi:10.1103/PhysRevB.29.2309
+- [G. B. Bachelet, D. R. Hamann and M. Schlüter, Phys. Rev. B **26**, 4199 (1982)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.4199)
+  with the correction from the erratum [Phys. Rev. B **29**, 2309 (1984)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.29.2309)
 
 The article is © 1982 American Physical Society; the tabulated parameters are
 numerical data reproduced here for use with the POT17 pseudopotential in this code.
