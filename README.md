@@ -78,8 +78,24 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
   Remember that nice code [Preprocessors](https://en.wikipedia.org/wiki/Preprocessor)
   did not exist at the time.
 
-Building the code
----------------------
+Downloading and building the code
+---------------------------------------
+
+Some standard Linux tools are needed.  A simple solution
+(for an RPM-based Linux distribution such as Red Hat Enterprise Linux or AlmaLinux)
+is to install these system packages:
+```
+sudo dnf install git gcc-gfortran make openblas
+```
+On Ubuntu or similar Linux distributions the packages can probably be installed similar to this:
+```
+sudo apt install git make build-essential gfortran libopenblas
+```
+
+Then download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki/GitHub) repository by:
+```
+git clone https://github.com/OleHolmNielsen/XeroxPARC-DFT.git
+```
 
 The user will have to configure his system with required software tools.
 We have used a [Linux](https://en.wikipedia.org/wiki/Linux) on an Intel-based 
@@ -97,16 +113,6 @@ is used to build object modules and executable codes.
 The [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
 library for linear algebra operations is required.
 An Open Source library is [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS).
-
-A simple solution for an RPM-based Linux distribution, such as Red Hat Enterprise Linux or AlmaLinux,
-is to install these system packages:
-```
-sudo dnf install gcc-gfortran make openblas
-```
-On Ubuntu or similar Linux distributions the packages can probably be installed similar to this:
-```
-sudo apt install rsync make build-essential gfortran libopenblas
-```
 
 Running the set of codes
 =============================
