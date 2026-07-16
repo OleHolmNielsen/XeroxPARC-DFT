@@ -97,22 +97,23 @@ Then download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki
 git clone https://github.com/OleHolmNielsen/XeroxPARC-DFT.git
 ```
 
-The user will have to configure the computer with the software tools shown above (or similar).
+The user will have to configure the computer with the software tools shown above (or similar):
+
+* A [Fortran-77](https://en.wikipedia.org/wiki/Fortran) compiler is required.
+  In 2026 we can compile the code using the Open Source [GNU Fortran](https://en.wikipedia.org/wiki/GNU_Fortran)
+  but other compilers might also work.
+  There is a [GFortran installation guide](https://fortran-lang.org/learn/os_setup/install_gfortran/).
+
+* The Linux [make command](https://en.wikipedia.org/wiki/Make_(software)) 
+  together with the [Makefile](Makefile) designed for GNU Fortran compilation
+  is used to build object modules and executable codes.
+
+* The [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
+  library for linear algebra operations is required.
+  An Open Source library is [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS).
+
 We have tested the code on a [Linux](https://en.wikipedia.org/wiki/Linux)
-Intel-based [x86-64](https://en.wikipedia.org/wiki/X86-64) CPU.
-
-A [Fortran-77](https://en.wikipedia.org/wiki/Fortran) compiler is required.
-In 2026 we can compile the code using the Open Source [GNU Fortran](https://en.wikipedia.org/wiki/GNU_Fortran)
-but other compilers might also work.
-There is a [GFortran installation guide](https://fortran-lang.org/learn/os_setup/install_gfortran/).
-
-The Linux [make command](https://en.wikipedia.org/wiki/Make_(software)) 
-together with the [Makefile](Makefile) designed for GNU Fortran compilation
-is used to build object modules and executable codes.
-
-The [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
-library for linear algebra operations is required.
-An Open Source library is [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS).
+Intel-based [x86-64](https://en.wikipedia.org/wiki/X86-64) system.
 
 Running the set of codes
 =============================
