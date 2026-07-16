@@ -18,7 +18,7 @@ There have been other users of the code, and probably most users
 have made independent improvements over the years,
 leading to some divergence of the code.
 This was all before the Internet and software version control
-changed the way we write codes.
+changed the way we maintain codes.
 
 Author of this page: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
 
@@ -52,8 +52,10 @@ The following publications document the theory behind the codes:
 About the code
 -----------------
 
-The code in this historical project implements Total Energy, Forces, and Stresses
-with a pseudopotential plane-wave basis set.
+The code in this historical project implements Total Energy, Forces, and Stresses with a
+[pseudo-potential](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
+[plane-wave](https://en.wikipedia.org/wiki/Plane_wave) 
+basis set.
 It must be emphasized that this code was used for cutting-edge research during the 1980ies,
 but is now more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
 which preserves the code for posterity.
