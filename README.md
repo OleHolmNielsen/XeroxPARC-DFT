@@ -97,9 +97,9 @@ Then download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki
 git clone https://github.com/OleHolmNielsen/XeroxPARC-DFT.git
 ```
 
-The user will have to configure his system with required software tools.
-We have used a [Linux](https://en.wikipedia.org/wiki/Linux) on an Intel-based 
-[x86-64](https://en.wikipedia.org/wiki/X86-64) CPU.
+The user will have to configure the computer with the software tools shown above (or similar).
+We have tested the code on a [Linux](https://en.wikipedia.org/wiki/Linux)
+Intel-based [x86-64](https://en.wikipedia.org/wiki/X86-64) CPU.
 
 A [Fortran-77](https://en.wikipedia.org/wiki/Fortran) compiler is required.
 In 2026 we can compile the code using the Open Source [GNU Fortran](https://en.wikipedia.org/wiki/GNU_Fortran)
