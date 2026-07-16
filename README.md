@@ -99,11 +99,14 @@ library for linear algebra operations is required.
 An Open Source library is [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS).
 
 A simple solution for an RPM-based Linux distribution, such as Red Hat Enterprise Linux or AlmaLinux,
-is to install these system packages::
+is to install these system packages:
 ```
 sudo dnf install gcc-gfortran make openblas
 ```
-On Ubuntu or similar Linux distributions can probably be installed using ``apt-get``.
+On Ubuntu or similar Linux distributions can probably be installed similar to this:
+```
+sudo apt install rsync make build-essential gfortran libopenblas
+```
 
 Running the set of codes
 =============================
