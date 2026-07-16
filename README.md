@@ -81,7 +81,8 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
 Downloading and building the code
 ---------------------------------------
 
-Some standard Linux tools are needed.  A simple solution
+Some standard [Linux](https://en.wikipedia.org/wiki/Linux) tools are needed. 
+A simple solution
 (for an RPM-based Linux distribution such as Red Hat Enterprise Linux or AlmaLinux)
 is to install these system packages:
 ```
