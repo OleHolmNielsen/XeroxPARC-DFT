@@ -35,7 +35,7 @@ Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
 Publications
 ------------------
 
-Richard Martin's book [Electronic Structure: Basic Theory and Practical Methods (2nd Edition)]
+Richard Martin's book [Electronic Structure: Basic Theory and Practical Methods, 2nd Edition]
 (https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition)
 constitutes an authoritative overview of the field up to 2020,
 including also historical methods.
