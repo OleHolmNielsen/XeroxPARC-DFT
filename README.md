@@ -67,7 +67,7 @@ Pseudopotentials available in 1979-1982
 
 State-of-the-art [pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 available in 1979-1982 were implemented in the code
-K213 (Preparation of an input file with pseudopotential for running K207) discussed below:
+K213 (*Preparation of an input file with pseudopotential for running K207*) discussed below:
 
 - Appelbaum-Hamann 
 - Berkeley ionic 
@@ -75,7 +75,7 @@ K213 (Preparation of an input file with pseudopotential for running K207) discus
 - Bell Labs 1982 "Periodic Table" non-local 
 
 Bell Labs 1982 "Periodic Table" non-local pseudopotentials
-.............................................................
+----------------------------------------------------------
 
 The subroutine `PARM17` (file `paramete.for`) hardcodes pseudopotential parameters for ten elements.
 
