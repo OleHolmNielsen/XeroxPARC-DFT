@@ -14,9 +14,17 @@ at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Re
 The present version of the original code was further developed by
 Ole Holm Nielsen at Xerox PARC during 1982-1983,
 and at NORDITA and University of Copenhagen until about 1990.
-There have been other users of the code, and probably most users
-have made independent improvements over the years,
-leading to some divergence of the code.
+
+[Richard Needs](https://www.phy.cam.ac.uk/profile/prof-richard-needs/) 
+working in the [Volker Heine](https://www.phy.cam.ac.uk/profile/prof-volker-heine/) group at the
+[Cavendish Laboratory](https://www.phy.cam.ac.uk/) of [University of Cambridge](https://www.cam.ac.uk/)
+continued the work at Xerox PARC and Cavendish after Ole Holm Nielsen.
+
+Later on, there have been other users of the code, especially in the 
+[Richard Martin](https://physics.illinois.edu/people/directory/profile/rmartin) group
+at [University of Illinois Urbana-Champaign](https://illinois.edu/).
+Probably most users have made independent improvements over the years,
+leading to unavoidable divergence of the code.
 This was all before the Internet and software version control
 changed the way we maintain codes.
 
