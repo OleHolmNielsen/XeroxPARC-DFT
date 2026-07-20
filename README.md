@@ -15,9 +15,9 @@ The present version of the original code was further developed by
 Ole Holm Nielsen at Xerox PARC during 1982-1983,
 and at NORDITA and University of Copenhagen until about 1990.
 
-[Richard Needs](https://www.phy.cam.ac.uk/profile/prof-richard-needs/) 
+[Richard Needs](https://www.phy.cam.ac.uk/profile/prof-richard-needs/),
 working in the [Volker Heine](https://www.phy.cam.ac.uk/profile/prof-volker-heine/) group at the
-[Cavendish Laboratory](https://www.phy.cam.ac.uk/) of [University of Cambridge](https://www.cam.ac.uk/)
+[Cavendish Laboratory](https://www.phy.cam.ac.uk/) of [University of Cambridge](https://www.cam.ac.uk/),
 continued the work at Xerox PARC and Cavendish after Ole Holm Nielsen.
 
 Later on, there have been other users of the code, especially in the 
