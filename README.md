@@ -3,7 +3,7 @@
 Purpose of this project
 ===========================
 
-This historical project preserves the [DFT](https://en.wikipedia.org/wiki/Density_functional_theory)
+This historical project preserves the *Density Functional Theory* [DFT](https://en.wikipedia.org/wiki/Density_functional_theory)
 [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) 
 [pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 code written originally
@@ -77,7 +77,7 @@ K213 (*Preparation of an input file with pseudopotential for running K207*) disc
 Bell Labs 1982 "Periodic Table" non-local pseudopotentials
 ----------------------------------------------------------
 
-The subroutine `PARM17` (file `paramete.for`) hardcodes pseudopotential parameters for ten elements.
+The subroutine `PARM17` (in file `paramete.for`) hardcodes pseudopotential parameters for ten elements.
 
 In [bhs_table4.md](bhs_table4.md) and the CSV-file [bhs_table4.csv](bhs_table4.csv)
 we show a Machine-readable transcription of **Table IV** of the publication:
