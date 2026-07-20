@@ -74,11 +74,9 @@ K213 (*Preparation of an input file with pseudopotential for running K207*) disc
 - Hamann-Schlüter-Chiang non-local 
 - Bell Labs 1982 "Periodic Table" non-local 
 
-Bell Labs 1982 "Periodic Table" non-local pseudopotentials
-----------------------------------------------------------
 
-The subroutine `PARM17` (in file `paramete.for`) hardcodes pseudopotential parameters for ten elements.
-
+The subroutine `PARM17` (in file `paramete.for`) hardcodes pseudopotential parameters for ten elements of the
+Bell Labs 1982 "Periodic Table" non-local pseudopotentials.
 In [bhs_table4.md](bhs_table4.md) and the CSV-file [bhs_table4.csv](bhs_table4.csv)
 we show a Machine-readable transcription of **Table IV** of the publication:
 
