@@ -72,8 +72,13 @@ K213 (*Preparation of an input file with pseudopotential for running K207*) disc
 - Appelbaum-Hamann 
 - Berkeley ionic 
 - Hamann-Schlüter-Chiang non-local 
-- Bell Labs 1982 "Periodic Table" non-local 
+- Bell Labs 1982 "Periodic Table" non-local pseudopotentials
 
+To set things in perspective, what we **did not have back then** include more modern pseudopotentials such as:
+
+- [Kleinman-Bylander: Efficacious Form for Model Pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.1425)
+- [Ultra-soft pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.41.7892)
+- [Projector augmented wave method](https://en.wikipedia.org/wiki/Projector_augmented_wave_method) (PAW)
 
 The subroutine `PARM17` (in file `paramete.for`) hardcodes pseudopotential parameters for ten elements of the
 Bell Labs 1982 "Periodic Table" non-local pseudopotentials.
@@ -99,6 +104,9 @@ and [Wigner interpolation](https://journals.aps.org/pr/abstract/10.1103/PhysRev.
 the K207 code implements the [Ceperley-Alder: Ground State of the Electron Gas by a Stochastic Method](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.45.566)
 correlation calculated by a [Quantum Monte Carlo](https://en.wikipedia.org/wiki/Quantum_Monte_Carlo) method,
 which was by far the most accurate functional available in 1980.
+
+To set things in perspective, what we **did not have back then** include more modern Exchange and Correlation methods 
+which are described in Chapters 8 and 9 of Richard Martin's book listed above.
 
 About the code
 -----------------
