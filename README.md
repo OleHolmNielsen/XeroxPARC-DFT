@@ -28,7 +28,7 @@ leading to unavoidable divergence of the code.
 This was all before the Internet and software version control
 changed the way we maintain codes.
 
-Author of this page: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
+Author of this project: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
 
 Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
 
@@ -45,6 +45,12 @@ The following publications document the theory behind the codes in the present p
 * *Theory of structural properties of covalent semiconductors*,
   H. Wendel and Richard M. Martin,
   [Phys. Rev. B 19, 5251, 1979](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.19.5251).
+
+* *Relaxation of Polar Ge-GaAs (100) Interfaces: Self-Consistent Calculations of Total Energy*. K. KUNC, R. M. MARTIN,
+  [Proc. 15th Int. Conf. Phys. Semiconductors, Kyoto, 1980 (S. Tanaka et al., eds.): J. Phys. Soc. Japan 49 - Suppl. A, 1117 - 1120 (1980)](https://books.google.dk/books/about/Proceedings_of_the_15th_International_Co.html?id=vDIT0QEACAAJ)
+
+* *Ab initio Force Constants of Germanium*. K. KUNC, R. M. MARTIN,
+  Proc. 1st Int. Conf. Phonon Physics, Bloomington, Indiana, 1981 (W. E. Bron, ed.): J. Phys. (Paris) 42 - Suppl. C6, 649 - 651 (1981)  
 
 * *Density-functional calculation of static and dynamic properties of GaAs*,
   K. Kunc and Richard M. Martin,
