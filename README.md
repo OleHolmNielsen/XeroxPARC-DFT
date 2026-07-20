@@ -5,7 +5,7 @@ Purpose of this project
 
 This historical project preserves the [DFT](https://en.wikipedia.org/wiki/Density_functional_theory)
 [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) 
-[pseudo-potential](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
+[pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 code written originally
 by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
@@ -35,7 +35,12 @@ Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
 Publications
 ------------------
 
-The following publications document the theory behind the codes:
+Richard Martin's book [Electronic Structure: Basic Theory and Practical Methods (2nd Edition)]
+(https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition)
+constitutes an authoritative overview of the field up to 2020,
+including also historical methods.
+
+The following publications document the theory behind the codes in the present project:
 
 * *Theory of structural properties of covalent semiconductors*,
   H. Wendel and Richard M. Martin,
@@ -56,6 +61,46 @@ The following publications document the theory behind the codes:
 * *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*,
   O. H. Nielsen and Richard M. Martin
   [Phys. Rev. B 32, 3792, 1985](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.32.3792).
+
+Pseudopotentials available in 1979-1982
+-------------------------------------------
+
+State-of-the-art [pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
+available in 1979-1982 were implemented in the code
+K213 (Preparation of an input file with pseudopotential for running K207) discussed below:
+
+- Appelbaum-Hamann 
+- Berkeley ionic 
+- Hamann-Schlüter-Chiang non-local 
+- Bell Labs 1982 "Periodic Table" non-local 
+
+Bell Labs 1982 "Periodic Table" non-local pseudopotentials
+.............................................................
+
+The subroutine `PARM17` (file `paramete.for`) hardcodes pseudopotential parameters for ten elements.
+
+In [bhs_table4.md](bhs_table4.md) and the CSV-file [bhs_table4.csv](bhs_table4.csv)
+we show a Machine-readable transcription of **Table IV** of the publication:
+
+- [G. B. Bachelet, D. R. Hamann and M. Schlüter, Phys. Rev. B **26**, 4199 (1982)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.4199)
+  with the correction from the erratum [Phys. Rev. B **29**, 2309 (1984)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.29.2309)
+
+The article is © 1982 American Physical Society; the tabulated parameters are
+numerical data reproduced here for use with the POT17 pseudopotential in this code.
+
+This file covers all 94 (H through Pu).
+
+Exchange-correlation (XC) energy functionals
+---------------------------------------------------
+
+In 1979-1982 very few [Exchange-correlation](https://en.wikipedia.org/wiki/Local-density_approximation)
+energy functionals were in existence!
+
+Besides the old [Slater X-alpha](https://journals.aps.org/pr/abstract/10.1103/PhysRev.81.385) method,
+and [Wigner interpolation](https://journals.aps.org/pr/abstract/10.1103/PhysRev.46.1002),
+the K207 code implements the [Ceperley-Alder: Ground State of the Electron Gas by a Stochastic Method](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.45.566)
+correlation calculated by a [Quantum Monte Carlo](https://en.wikipedia.org/wiki/Quantum_Monte_Carlo) method,
+which was by far the most accurate functional available in 1980.
 
 About the code
 -----------------
@@ -195,32 +240,16 @@ Purpose::
   - combination of the total ionic pseudopotential from the individual atomic ones,
   - definition of the initial pseudopotential for the first run of the self-consistent loop.
 
-Initial pseudopotential:
+- These pseudopotentials were implemented:
+
+  - Appelbaum-Hamann (`POT13`)
+  - Berkeley ionic (`POT15`)
+  - Hamann-Schlüter-Chiang non-local (`POT16`)
+  - Bell Labs 1982 "Periodic Table" non-local (`POT17`)
+
+The initial pseudopotential:
 
 - The initial pseudopotential for the self-consistent loop is chosen to be the ionic one, screened by the dielectric function of a free electron gas.
-
-Potentials currently available:
-
-- Appelbaum-Hamann (`POT13`)
-- Berkeley ionic (`POT15`)
-- Hamann-Schlüter-Chiang non-local (`POT16`)
-- Bell Labs 1982 "Periodic Table" non-local (`POT17`)
-
-Bell Labs 1982 "Periodic Table" non-local pseudopotentials
-.............................................................
-
-The subroutine `PARM17` (file `paramete.for`) hardcodes pseudopotential parameters for ten elements.
-
-In [bhs_table4.md](bhs_table4.md) and the CSV-file [bhs_table4.csv](bhs_table4.csv)
-we show a Machine-readable transcription of **Table IV** of the publication:
-
-- [G. B. Bachelet, D. R. Hamann and M. Schlüter, Phys. Rev. B **26**, 4199 (1982)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.4199)
-  with the correction from the erratum [Phys. Rev. B **29**, 2309 (1984)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.29.2309)
-
-The article is © 1982 American Physical Society; the tabulated parameters are
-numerical data reproduced here for use with the POT17 pseudopotential in this code.
-
-This file covers all 94 (H through Pu).
 
 K214: Potential File Processing
 -----------------------------------------------------------------------------------------------
