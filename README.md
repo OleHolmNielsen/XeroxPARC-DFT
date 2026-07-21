@@ -3,7 +3,7 @@
 Purpose of this project
 ===========================
 
-This historical project preserves the *Density Functional Theory* [DFT](https://en.wikipedia.org/wiki/Density_functional_theory)
+This historical project preserves the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
 [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) 
 [pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 code written originally
