@@ -173,6 +173,7 @@ The user will have to configure the computer with the software tools shown above
 * The Linux [make command](https://en.wikipedia.org/wiki/Make_(software)) 
   together with the [Makefile](Makefile) designed for GNU Fortran compilation
   is used to build object modules and executable codes.
+  The [patch](https://en.wikipedia.org/wiki/Patch_(Unix)) command is used here.
 
 * The [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
   library for linear algebra operations is required.
