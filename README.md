@@ -151,11 +151,11 @@ A simple solution
 (for an RPM-based Linux distribution such as *Red Hat Enterprise Linux* or *AlmaLinux*)
 is to install these system packages:
 ```
-sudo dnf install git gcc-gfortran make openblas
+sudo dnf install git gcc-gfortran make patch openblas
 ```
 On Ubuntu or similar Linux distributions the packages can probably be installed similar to this:
 ```
-sudo apt install git make build-essential gfortran libopenblas
+sudo apt install git make build-essential patch gfortran libopenblas
 ```
 
 Then download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki/GitHub) repository by:
