@@ -64,6 +64,9 @@ The following publications document the theory behind the codes in the present p
   M. T. Yin and Marvin L. Cohen,
   [Phys. Rev. B 26, 5668, 1982](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.5668).
 
+* *First-Principles Calculation of Stress*, O. H. Nielsen and Richard M. Martin,
+  [Phys. Rev. Lett. 50, 697, 1983](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.50.697).
+
 * *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*,
   O. H. Nielsen and Richard M. Martin
   [Phys. Rev. B 32, 3792, 1985](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.32.3792).
