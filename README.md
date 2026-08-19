@@ -11,7 +11,7 @@ by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
-This project does *not* aim for a complete coverage of the field,
+This project does *not* aim to give a complete coverage of the field,
 nor does it attempt to cover subsequent developments and the works of other groups.
 For such an overview the reader is referrred to Richard Martin's book
 cited in the *Publications* section.
@@ -29,14 +29,14 @@ Developers of the code
 
 The original code by Kunc and Martin was further developed by
 Ole Holm Nielsen working at Xerox PARC during 1982-1983,
-and later at NORDITA and University of Copenhagen until about 1990.
+and later at [NORDITA](https://nordita.org/) and [University of Copenhagen](https://nbi.ku.dk/english/) until about 1990.
 
 [Richard Needs](https://www.phy.cam.ac.uk/profile/prof-richard-needs/),
 working in the [Volker Heine](https://www.phy.cam.ac.uk/profile/prof-volker-heine/) group at the
 [Cavendish Laboratory](https://www.phy.cam.ac.uk/) of [University of Cambridge](https://www.cam.ac.uk/),
 continued the work at Xerox PARC and Cavendish after Ole Holm Nielsen.
 
-Later on, there have been other users of the code at multiple institutions, particularly in the 
+Later on there have been other users of the code at multiple institutions, particularly in the 
 [Richard Martin](https://physics.illinois.edu/people/directory/profile/rmartin) group
 at [University of Illinois Urbana-Champaign](https://illinois.edu/).
 Probably most of these users have made independent improvements to the code over the years,
@@ -58,7 +58,7 @@ and highlights the first and groundbreaking scientific methods and computational
 made in this field.
 As is well-known, DFT calculations have become a sprawling scientific endeavour
 in numerous fields of science,
-and occupying a large fraction of supercomputer time world-wide.
+and occupying large amounts of supercomputer time world-wide.
 
 In chronological order the fundamental papers are:
 
@@ -133,9 +133,9 @@ Exchange-correlation (XC) energy functionals
 
 In 1979-1982 very few [Exchange-correlation](https://en.wikipedia.org/wiki/Local-density_approximation)
 energy functionals were in existence!
-Besides the old [Slater X-alpha](https://journals.aps.org/pr/abstract/10.1103/PhysRev.81.385) method,
+Besides the old [Slater X-alpha](https://journals.aps.org/pr/abstract/10.1103/PhysRev.81.385) method
 and [Wigner interpolation](https://journals.aps.org/pr/abstract/10.1103/PhysRev.46.1002),
-the [K207](k207.for) code implements the
+the [K207](k207.for) module implements the
 [Ceperley-Alder](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.45.566)
 correlation calculated by a [Quantum Monte Carlo](https://en.wikipedia.org/wiki/Quantum_Monte_Carlo) method,
 which was by far the most accurate functional available in 1980.
@@ -147,8 +147,11 @@ which are described in Chapters 8 and 9 of Richard Martin's book listed in *Publ
 Reciprocal lattice sampling by "special k-points"
 -------------------------------------------------
 
-Generation of special points in the [Reciprocal lattice](https://en.wikipedia.org/wiki/Reciprocal_lattice)
-(a.k.a. "k-space") for an arbitrary lattice follows the method of
+Integration over the [Brillouin zone](https://en.wikipedia.org/wiki/Brillouin_zone) 
+can be approximated by a weighted sum over a discrete set of "special k-points". 
+
+In the present code, special k-points in the [Reciprocal lattice](https://en.wikipedia.org/wiki/Reciprocal_lattice)
+for an arbitrary lattice follows the method of
 [Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188)
 and [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897).
 This is implemented in the [K290](k290.for) module
@@ -205,8 +208,7 @@ The user will have to configure the computer with these software tools (or simil
   library for linear algebra operations is required.
   An Open Source library is [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS).
 
-A simple solution
-(for an RPM-based Linux distribution such as *Red Hat Enterprise Linux* or *AlmaLinux*)
+A simple solution for an RPM-based Linux distribution such as *Red Hat Enterprise Linux* or *AlmaLinux*
 is to install the following system packages:
 ```
 sudo dnf install git gcc-gfortran make patch openblas
