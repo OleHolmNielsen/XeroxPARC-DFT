@@ -133,11 +133,10 @@ Exchange-correlation (XC) energy functionals
 
 In 1979-1982 very few [Exchange-correlation](https://en.wikipedia.org/wiki/Local-density_approximation)
 energy functionals were in existence!
-
 Besides the old [Slater X-alpha](https://journals.aps.org/pr/abstract/10.1103/PhysRev.81.385) method,
 and [Wigner interpolation](https://journals.aps.org/pr/abstract/10.1103/PhysRev.46.1002),
 the [K207](k207.for) code implements the
-[Ceperley-Alder: Ground State of the Electron Gas by a Stochastic Method](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.45.566)
+[Ceperley-Alder](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.45.566)
 correlation calculated by a [Quantum Monte Carlo](https://en.wikipedia.org/wiki/Quantum_Monte_Carlo) method,
 which was by far the most accurate functional available in 1980.
 
@@ -148,10 +147,9 @@ Reciprocal lattice sampling by "special k-points"
 -------------------------------------------------
 
 Generation of special points in the [Reciprocal lattice](https://en.wikipedia.org/wiki/Reciprocal_lattice)
-(a.k.a. "k-space") for an arbitrary lattice follows the method of:
-
-- [Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188)
-- [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897)
+(a.k.a. "k-space") for an arbitrary lattice follows the method of
+[Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188)
+and [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897).
 
 About the code
 =====================
