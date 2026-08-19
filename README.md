@@ -116,10 +116,10 @@ Pseudopotentials
 
 State-of-the-art [pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 available in 1979-1982 are implemented in the code module
-[K213](k213.for) (*Preparation of an input file with pseudopotential for running K207*) including
-
-[Appelbaum-Hamann pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.8.1777),
-[Berkeley ionic pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.1738),
+[K213](k213.for) (*Preparation of an input file with pseudopotential for running K207*) including the
+following forms of pseudopotentials:
+[Appelbaum-Hamann](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.8.1777),
+[Berkeley ionic](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.1738),
 [Hamann-Schlüter-Chiang norm-conserving pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.43.1494),
 and Bell Labs [Pseudopotentials that work: From H to Pu](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.4199)
 
@@ -127,9 +127,6 @@ To set things in perspective, what we **did not have back then** include more mo
 [Kleinman-Bylander: Efficacious Form for Model Pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.1425),
 [Ultra-soft pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.41.7892),
 and [Projector augmented wave method](https://en.wikipedia.org/wiki/Projector_augmented_wave_method) (PAW).
-
-The subroutine `PARM17` (in file [paramete.for](paramete.for)) hardcodes pseudopotential parameters for ten elements of the
-Bell Labs 1982 "Periodic Table" non-local pseudopotentials.
 
 Exchange-correlation (XC) energy functionals
 ---------------------------------------------------
