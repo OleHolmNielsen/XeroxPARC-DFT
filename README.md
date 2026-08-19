@@ -99,43 +99,37 @@ In chronological order the fundamental papers are:
 
 * *First-Principles Calculation of Stress*, O. H. Nielsen and Richard M. Martin,
   [Phys. Rev. Lett. 50, 697, 1983](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.50.697)
-  and *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*,
+  and *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*.
   O. H. Nielsen and Richard M. Martin
   [Phys. Rev. B 32, 3792, 1985](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.32.3792).
   These papers contain the first derivation of the *Stress Theorem* for calculating the 
-  macroscopic stress tensor in quantum mechanics, and applies this in DFT calculations.
-  The second paper presents the explicit formulas for the *Stress Tensor* terms expressed in a plane-wave basis set.
+  macroscopic stress tensor in quantum mechanics, and applies this theory in DFT calculations.
+  The second paper presents explicit formulas for the *Stress Tensor* terms expressed in a plane-wave basis set.
 
-Pseudopotentials available in 1979-1982
--------------------------------------------
+Prerequisites to pseudopotential DFT calculations
+======================================================
+
+We list some important prerequisite methods which were available for DFT calculations in 1979-1982.
+
+Pseudopotentials 
+-------------------------------
 
 State-of-the-art [pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
-available in 1979-1982 were implemented in the code module
-[K213](k213.for) (*Preparation of an input file with pseudopotential for running K207*) including:
+available in 1979-1982 are implemented in the code module
+[K213](k213.for) (*Preparation of an input file with pseudopotential for running K207*) including
 
-- Appelbaum-Hamann 
-- Berkeley ionic 
-- Hamann-Schlüter-Chiang non-local 
-- Bell Labs 1982 "Periodic Table" non-local pseudopotentials
+[Appelbaum-Hamann pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.8.1777),
+[Berkeley ionic pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.1738),
+[Hamann-Schlüter-Chiang norm-conserving pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.43.1494),
+and Bell Labs [Pseudopotentials that work: From H to Pu](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.4199)
 
-To set things in perspective, what we **did not have back then** include more modern pseudopotentials such as:
-
-- [Kleinman-Bylander: Efficacious Form for Model Pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.1425)
-- [Ultra-soft pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.41.7892)
-- [Projector augmented wave method](https://en.wikipedia.org/wiki/Projector_augmented_wave_method) (PAW)
+To set things in perspective, what we **did not have back then** include more modern pseudopotentials including for example
+[Kleinman-Bylander: Efficacious Form for Model Pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.1425),
+[Ultra-soft pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.41.7892),
+and [Projector augmented wave method](https://en.wikipedia.org/wiki/Projector_augmented_wave_method) (PAW).
 
 The subroutine `PARM17` (in file [paramete.for](paramete.for)) hardcodes pseudopotential parameters for ten elements of the
 Bell Labs 1982 "Periodic Table" non-local pseudopotentials.
-In [bhs_table4.md](bhs_table4.md) and the CSV-file [bhs_table4.csv](bhs_table4.csv)
-we show a Machine-readable transcription of **Table IV** of the publication:
-
-- [G. B. Bachelet, D. R. Hamann and M. Schlüter, Phys. Rev. B **26**, 4199 (1982)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.4199)
-  with the correction from the erratum [Phys. Rev. B **29**, 2309 (1984)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.29.2309)
-
-The article is © 1982 American Physical Society; the tabulated parameters are
-numerical data reproduced here for use with the POT17 pseudopotential in this code.
-
-This file covers all 94 (H through Pu).
 
 Exchange-correlation (XC) energy functionals
 ---------------------------------------------------
