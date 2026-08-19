@@ -121,7 +121,7 @@ following forms of pseudopotentials:
 [Appelbaum-Hamann](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.8.1777),
 [Berkeley ionic](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.1738),
 [Hamann-Schlüter-Chiang norm-conserving pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.43.1494),
-and Bell Labs [Pseudopotentials that work: From H to Pu](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.4199)
+and Bell Labs [Pseudopotentials that work: From H to Pu](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.4199).
 
 To set things in perspective, what we **did not have back then** include more modern pseudopotentials including for example
 [Kleinman-Bylander: Efficacious Form for Model Pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.1425),
@@ -178,27 +178,12 @@ Downloading and building the code
 ---------------------------------------
 
 Some standard [Linux](https://en.wikipedia.org/wiki/Linux) tools are needed. 
-A simple solution
-(for an RPM-based Linux distribution such as *Red Hat Enterprise Linux* or *AlmaLinux*)
-is to install these system packages:
-```
-sudo dnf install git gcc-gfortran make patch openblas
-```
-On Ubuntu or similar Linux distributions the packages can probably be installed similar to this:
-```
-sudo apt install git make build-essential patch gfortran libopenblas
-```
+The user will have to configure the computer with these software tools (or similar):
 
-Then download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki/GitHub) repository by:
-```
-git clone https://github.com/OleHolmNielsen/XeroxPARC-DFT.git
-```
-
-The user will have to configure the computer with the software tools shown above (or similar):
-
-* A [Fortran-77](https://en.wikipedia.org/wiki/Fortran) compiler is required.
-  In 2026 we can compile the code using the Open Source [GNU Fortran](https://en.wikipedia.org/wiki/GNU_Fortran)
-  but other compilers might also work.
+* A [Fortran-77](https://en.wikipedia.org/wiki/Fortran)-compatible compiler is required.
+  For example, in 2026 we can compile the code using the
+  Open Source [GNU Fortran](https://en.wikipedia.org/wiki/GNU_Fortran),
+  but other compilers may also work.
   There is a [GFortran installation guide](https://fortran-lang.org/learn/os_setup/install_gfortran/).
 
 * The Linux [make command](https://en.wikipedia.org/wiki/Make_(software)) 
@@ -209,6 +194,21 @@ The user will have to configure the computer with the software tools shown above
 * The [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
   library for linear algebra operations is required.
   An Open Source library is [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS).
+
+A simple solution
+(for an RPM-based Linux distribution such as *Red Hat Enterprise Linux* or *AlmaLinux*)
+is to install the following system packages:
+```
+sudo dnf install git gcc-gfortran make patch openblas
+```
+On Ubuntu or similar Linux distributions the packages can probably be installed similar to this:
+```
+sudo apt install git make build-essential patch gfortran libopenblas
+```
+Then download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki/GitHub) repository by:
+```
+git clone https://github.com/OleHolmNielsen/XeroxPARC-DFT.git
+```
 
 We have tested the code on a [Linux](https://en.wikipedia.org/wiki/Linux)
 Intel-based [x86-64](https://en.wikipedia.org/wiki/X86-64) system.
