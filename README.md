@@ -140,7 +140,8 @@ the [K207](k207.for) code implements the
 correlation calculated by a [Quantum Monte Carlo](https://en.wikipedia.org/wiki/Quantum_Monte_Carlo) method,
 which was by far the most accurate functional available in 1980.
 
-To set things in perspective, what we **did not have back then** include more modern Exchange and Correlation methods 
+To set things in perspective, what we **did not have back then** include modern
+[Exchange-correlation](https://en.wikipedia.org/wiki/Local-density_approximation) methods 
 which are described in Chapters 8 and 9 of Richard Martin's book listed in *Publications* above.
 
 Reciprocal lattice sampling by "special k-points"
