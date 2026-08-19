@@ -9,12 +9,16 @@ This historical project preserves the [Density Functional Theory](https://en.wik
 code written originally
 by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
-at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
+working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
 This project does *not* aim for a complete coverage of the field,
 nor does it attempt to cover subsequent developments and the works of other groups.
 For such an overview the reader is referrred to Richard Martin's book
 cited in the *Publications* section.
+
+It must be emphasized that this code was used for cutting-edge research during the 1980ies,
+but is now more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
+which preserves the code for posterity.
 
 Author of this project: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
 
@@ -147,9 +151,6 @@ The code in this historical project implements
 calculations of *Total Energy*, *Forces*, and *Stresses* using 
 [pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 in a [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) basis set.
-It must be emphasized that this code was used for cutting-edge research during the 1980ies,
-but is now more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
-which preserves the code for posterity.
 
 The code is written in [Fortran-77](https://en.wikipedia.org/wiki/Fortran),
 which was the most modern standard Fortran compiler at the time of writing.
