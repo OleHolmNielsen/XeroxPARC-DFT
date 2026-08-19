@@ -144,8 +144,8 @@ To set things in perspective, what we **did not have back then** include modern
 [Exchange-correlation](https://en.wikipedia.org/wiki/Local-density_approximation) methods 
 which are described in Chapters 8 and 9 of Richard Martin's book listed in *Publications* above.
 
-Reciprocal lattice sampling by "special k-points"
--------------------------------------------------
+Reciprocal lattice integration by "special k-points"
+-----------------------------------------------------------
 
 Integration over the [Reciprocal lattice](https://en.wikipedia.org/wiki/Reciprocal_lattice)
 [Brillouin zone](https://en.wikipedia.org/wiki/Brillouin_zone) (BZ)
