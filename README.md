@@ -76,7 +76,7 @@ In chronological order the fundamental papers are:
 
 * *Ab initio Force Constants of Germanium*. K. KUNC, R. M. MARTIN,
   Proc. 1st Int. Conf. Phonon Physics, Bloomington, Indiana, 1981 (W. E. Bron, ed.): J. Phys. (Paris) 42 - Suppl. C6, 649 - 651 (1981).
-  Calculation of interatomic force constants for phonons.
+  The first calculation of interatomic force constants for calculating phonon spectra.
 
 * *Density-functional calculation of static and dynamic properties of GaAs*,
   K. Kunc and Richard M. Martin,
@@ -87,14 +87,15 @@ In chronological order the fundamental papers are:
 * *Ab Initio Force Constants of GaAs: A New Approach to Calculation of Phonons and Dielectric Properties*,
   K. Kunc and Richard M. Martin,
   [Phys. Rev. Lett. 48, 406, 1982](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.406).
-  It is shown that self-consistent calculations of the electronic charge density in large periodic cells
+  It is shown for the first time that self-consistent calculations of the electronic charge density in large periodic cells
   containing a single displaced atom provide all the information needed for ab initio determination
   of force constants, phonon dispersion curves, effective charges, and the static dielectric constant. 
 
 * *Theory of static structural properties, crystal stability, and phase transformations: Application to Si and Ge*,
   M. T. Yin and Marvin L. Cohen,
   [Phys. Rev. B 26, 5668, 1982](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.5668).
-  This paper presents the explicit formulas for the *Total Energy* terms expressed in a plane-wave basis set.
+  This paper published explicit formulas for the pseudo-potential *Total Energy* terms expressed in a plane-wave basis set.
+  The present project had developed these formulas independently.
 
 * *First-Principles Calculation of Stress*, O. H. Nielsen and Richard M. Martin,
   [Phys. Rev. Lett. 50, 697, 1983](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.50.697)
