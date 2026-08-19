@@ -147,11 +147,11 @@ which are described in Chapters 8 and 9 of Richard Martin's book listed in *Publ
 Reciprocal lattice sampling by "special k-points"
 -------------------------------------------------
 
-Integration over the [Brillouin zone](https://en.wikipedia.org/wiki/Brillouin_zone) 
+Integration over the [Reciprocal lattice](https://en.wikipedia.org/wiki/Reciprocal_lattice)
+[Brillouin zone](https://en.wikipedia.org/wiki/Brillouin_zone) (BZ)
 can be approximated by a weighted sum over a discrete set of "special k-points". 
 
-In the present code, special k-points in the [Reciprocal lattice](https://en.wikipedia.org/wiki/Reciprocal_lattice)
-for an arbitrary lattice follows the method of
+In the present code, special k-points in the BZ for an arbitrary lattice follows the method of
 [Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188)
 and [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897).
 This is implemented in the [K290](k290.for) module
