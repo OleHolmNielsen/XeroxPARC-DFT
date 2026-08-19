@@ -24,12 +24,12 @@ Author of this project: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/
 
 Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
 
-Development of the code
+Developers of the code
 ---------------------------
 
-The present version of the original code was further developed by
-Ole Holm Nielsen at Xerox PARC during 1982-1983,
-and at NORDITA and University of Copenhagen until about 1990.
+The original code by Kunc and Martin was further developed by
+Ole Holm Nielsen working at Xerox PARC during 1982-1983,
+and later at NORDITA and University of Copenhagen until about 1990.
 
 [Richard Needs](https://www.phy.cam.ac.uk/profile/prof-richard-needs/),
 working in the [Volker Heine](https://www.phy.cam.ac.uk/profile/prof-volker-heine/) group at the
@@ -67,7 +67,7 @@ In chronological order the fundamental papers are:
   [Phys. Rev. B 19, 5251, 1979](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.19.5251).
   This paper laid the foundations for solving the pseudopotential
   [Hamiltonian](https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics))
-  eigenvalue problem in a plane-wave basis set.
+  [eigenvalue problem](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) in a plane-wave basis set.
 
 * *Relaxation of Polar Ge-GaAs (100) Interfaces: Self-Consistent Calculations of Total Energy*. K. KUNC, R. M. MARTIN,
   [Proc. 15th Int. Conf. Phys. Semiconductors, Kyoto, 1980 (S. Tanaka et al., eds.): J. Phys. Soc. Japan 49 - Suppl. A, 1117 - 1120 (1980)](https://books.google.dk/books/about/Proceedings_of_the_15th_International_Co.html?id=vDIT0QEACAAJ).
