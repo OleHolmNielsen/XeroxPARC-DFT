@@ -151,6 +151,8 @@ Generation of special points in the [Reciprocal lattice](https://en.wikipedia.or
 (a.k.a. "k-space") for an arbitrary lattice follows the method of
 [Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188)
 and [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897).
+This is implemented in the [K290](k290.for) module
+(*Analyses the crystal structure and generates Special k-points and symmetry operations*).
 
 About the code
 =====================
@@ -248,7 +250,6 @@ for example:
  7          0.125     0.125     0.125
  3.00
 ```
-
 
 K290: Analyses the crystal structure and generates Special k-points and symmetry operations
 -----------------------------------------------------------------------------------------------
