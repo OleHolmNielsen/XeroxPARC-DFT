@@ -11,6 +11,18 @@ by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
+This project does *not* aim for a complete coverage of the field,
+nor does it attempt to cover subsequent developments and the works of other groups.
+For such an overview the reader is referrred to Richard Martin's book
+cited in the *Publications* section.
+
+Author of this project: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
+
+Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
+
+Development of the code
+---------------------------
+
 The present version of the original code was further developed by
 Ole Holm Nielsen at Xerox PARC during 1982-1983,
 and at NORDITA and University of Copenhagen until about 1990.
@@ -20,17 +32,12 @@ working in the [Volker Heine](https://www.phy.cam.ac.uk/profile/prof-volker-hein
 [Cavendish Laboratory](https://www.phy.cam.ac.uk/) of [University of Cambridge](https://www.cam.ac.uk/),
 continued the work at Xerox PARC and Cavendish after Ole Holm Nielsen.
 
-Later on, there have been other users of the code, especially in the 
+Later on, there have been other users of the code at multiple institutions, especially in the 
 [Richard Martin](https://physics.illinois.edu/people/directory/profile/rmartin) group
 at [University of Illinois Urbana-Champaign](https://illinois.edu/).
-Probably most users have made independent improvements over the years,
-leading to unavoidable divergence of the code.
-This was all before the Internet and software version control
-changed the way we maintain codes.
-
-Author of this project: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
-
-Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
+Probably most of these users have made independent improvements to the code over the years,
+leading to unavoidable divergences in the many versions of the code.
+This all happened before the Internet and software version control changed the way we maintain codes.
 
 Publications
 ------------------
@@ -45,38 +52,52 @@ The following publications document the theory behind the codes in the present p
 * *Theory of structural properties of covalent semiconductors*,
   H. Wendel and Richard M. Martin,
   [Phys. Rev. B 19, 5251, 1979](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.19.5251).
+  This paper laid the foundations for solving the pseudopotential
+  [Hamiltonian](https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics))
+  eigenvalue problem in a plane-wave basis set.
 
 * *Relaxation of Polar Ge-GaAs (100) Interfaces: Self-Consistent Calculations of Total Energy*. K. KUNC, R. M. MARTIN,
-  [Proc. 15th Int. Conf. Phys. Semiconductors, Kyoto, 1980 (S. Tanaka et al., eds.): J. Phys. Soc. Japan 49 - Suppl. A, 1117 - 1120 (1980)](https://books.google.dk/books/about/Proceedings_of_the_15th_International_Co.html?id=vDIT0QEACAAJ)
+  [Proc. 15th Int. Conf. Phys. Semiconductors, Kyoto, 1980 (S. Tanaka et al., eds.): J. Phys. Soc. Japan 49 - Suppl. A, 1117 - 1120 (1980)](https://books.google.dk/books/about/Proceedings_of_the_15th_International_Co.html?id=vDIT0QEACAAJ).
+  This paper is the first published use of [Hellmann-Feynman forces](https://en.wikipedia.org/wiki/Hellmann%E2%80%93Feynman_theorem) 
+  using DFT calculations for structural optimizations.
 
 * *Ab initio Force Constants of Germanium*. K. KUNC, R. M. MARTIN,
-  Proc. 1st Int. Conf. Phonon Physics, Bloomington, Indiana, 1981 (W. E. Bron, ed.): J. Phys. (Paris) 42 - Suppl. C6, 649 - 651 (1981)  
+  Proc. 1st Int. Conf. Phonon Physics, Bloomington, Indiana, 1981 (W. E. Bron, ed.): J. Phys. (Paris) 42 - Suppl. C6, 649 - 651 (1981).
+  Calculation of interatomic force constants for phonons.
 
 * *Density-functional calculation of static and dynamic properties of GaAs*,
   K. Kunc and Richard M. Martin,
   [Phys. Rev. B 24, 2311(R), 1981](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.24.2311).
+  This paper presents results of "direct" calculations of structure and lattice dynamics of GaAs
+  using local forms of the ionic pseudopotentials and the density functional.
 
 * *Ab Initio Force Constants of GaAs: A New Approach to Calculation of Phonons and Dielectric Properties*,
   K. Kunc and Richard M. Martin,
   [Phys. Rev. Lett. 48, 406, 1982](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.406).
+  It is shown that self-consistent calculations of the electronic charge density in large periodic cells
+  containing a single displaced atom provide all the information needed for ab initio determination
+  of force constants, phonon dispersion curves, effective charges, and the static dielectric constant. 
 
 * *Theory of static structural properties, crystal stability, and phase transformations: Application to Si and Ge*,
   M. T. Yin and Marvin L. Cohen,
   [Phys. Rev. B 26, 5668, 1982](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.5668).
+  This paper presents the explicit formulas for the *Total Energy* terms expressed in a plane-wave basis set.
 
 * *First-Principles Calculation of Stress*, O. H. Nielsen and Richard M. Martin,
-  [Phys. Rev. Lett. 50, 697, 1983](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.50.697).
-
-* *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*,
+  [Phys. Rev. Lett. 50, 697, 1983](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.50.697)
+  and *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*,
   O. H. Nielsen and Richard M. Martin
   [Phys. Rev. B 32, 3792, 1985](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.32.3792).
+  These papers contain the first derivation of the *Stress Theorem* for calculating the 
+  macroscopic stress tensor in quantum mechanics, and applies this in DFT calculations.
+  The second paper presents the explicit formulas for the *Stress Tensor* terms expressed in a plane-wave basis set.
 
 Pseudopotentials available in 1979-1982
 -------------------------------------------
 
 State-of-the-art [pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
-available in 1979-1982 were implemented in the code
-K213 (*Preparation of an input file with pseudopotential for running K207*) discussed below:
+available in 1979-1982 were implemented in the code module
+[K213](k213.for) (*Preparation of an input file with pseudopotential for running K207*) including:
 
 - Appelbaum-Hamann 
 - Berkeley ionic 
@@ -89,7 +110,7 @@ To set things in perspective, what we **did not have back then** include more mo
 - [Ultra-soft pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.41.7892)
 - [Projector augmented wave method](https://en.wikipedia.org/wiki/Projector_augmented_wave_method) (PAW)
 
-The subroutine `PARM17` (in file `paramete.for`) hardcodes pseudopotential parameters for ten elements of the
+The subroutine `PARM17` (in file [paramete.for](paramete.for)) hardcodes pseudopotential parameters for ten elements of the
 Bell Labs 1982 "Periodic Table" non-local pseudopotentials.
 In [bhs_table4.md](bhs_table4.md) and the CSV-file [bhs_table4.csv](bhs_table4.csv)
 we show a Machine-readable transcription of **Table IV** of the publication:
@@ -110,20 +131,22 @@ energy functionals were in existence!
 
 Besides the old [Slater X-alpha](https://journals.aps.org/pr/abstract/10.1103/PhysRev.81.385) method,
 and [Wigner interpolation](https://journals.aps.org/pr/abstract/10.1103/PhysRev.46.1002),
-the K207 code implements the [Ceperley-Alder: Ground State of the Electron Gas by a Stochastic Method](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.45.566)
+the [K207](k207.for) code implements the
+[Ceperley-Alder: Ground State of the Electron Gas by a Stochastic Method](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.45.566)
 correlation calculated by a [Quantum Monte Carlo](https://en.wikipedia.org/wiki/Quantum_Monte_Carlo) method,
 which was by far the most accurate functional available in 1980.
 
 To set things in perspective, what we **did not have back then** include more modern Exchange and Correlation methods 
-which are described in Chapters 8 and 9 of Richard Martin's book listed above.
+which are described in Chapters 8 and 9 of Richard Martin's book listed in *Publications* above.
 
 About the code
------------------
+=====================
 
-The code in this historical project implements Total Energy, Forces, and Stresses with a
-[pseudo-potential](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
-[plane-wave](https://en.wikipedia.org/wiki/Plane_wave) 
-basis set.
+The code in this historical project implements
+[Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
+calculations of *Total Energy*, *Forces*, and *Stresses* using 
+[pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
+in a [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) basis set.
 It must be emphasized that this code was used for cutting-edge research during the 1980ies,
 but is now more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
 which preserves the code for posterity.
@@ -135,14 +158,17 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
 * Arrays had to be allocated with static dimensions in the [main program entry-point](https://en.wikipedia.org/wiki/Entry_point)
   (in the ``run2xx.for`` files) since dynamically allocatable arrays were not yet in the Fortran standard.
   Therefore the scripts must define static dimension variables such as ``NDIM1, NDIM2, NDIM3``, etc.,
-  to generate ``run2xx.for`` files from the ``run2xx.start`` files.
+  to generate ``run2xx.for`` files from the ``run2xx.start`` files [run290.start](run290.start),
+  [run213.start](run213.start), and [run207.start](run207.start).
 
-* The code works both with either Real and Complex matrices (the former being much faster than the latter)
+* The code works both with either Real or Complex
+  [Fortran number](https://www.tutorialspoint.com/fortran/fortran_numbers.htm) matrices
+  (the former working much faster than the latter)
   depending on the symmetry properties of the crystal.
   Therefore a number of ``xxx.diff`` files are used to generate the Complex code version 
   from the Real version.
   The Fortran compiler will likely issue warnings about ``passed COMPLEX(4) to REAL(4)``
-  (or similar) due to the dirty programming tricks employed in the code.
+  (or similar) due to the "dirty" programming tricks employed in the code.
   Remember that nice code [Preprocessors](https://en.wikipedia.org/wiki/Preprocessor)
   did not exist at the time.
 
@@ -188,10 +214,11 @@ Intel-based [x86-64](https://en.wikipedia.org/wiki/X86-64) system.
 Running the set of codes
 =============================
 
-A run of the code consists of several sequential code steps described in the sections below.
+A run of the code consists of several sequential code steps *K290*, *K213*, and *K207*
+described in the sections below.
 An example of a script running the codes is in the file [testscript.sh](testscript.sh).
-This script uses the ``make`` command to build the codes, then runs them with the input 
-data given in the script.
+This script uses the Linux/UNIX [make](https://en.wikipedia.org/wiki/Make_(software))
+command to build the codes, then runs them with the input data given in the script.
 
 Firstly, create a structure file (Fortran unit 2) describing the
 [Bravais lattice](https://en.wikipedia.org/wiki/Bravais_lattice)
@@ -281,17 +308,15 @@ Method:
 - Include a screened term of DELTA-V(IONIC)
 
 K207 self-consistent DFT (Density Functional Theory) calculation of Total Energy, Forces, and Stresses
------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
 
 Purpose:
 
 - Selfconsistent calculation of band structure and total energy, Hellmann-Feynman forces and stress for semiconductors and metals.
 
-ToDo: Further explanations
-
 Input files
 
-* ToDo
+* Input files from *K290* and *K213*.
 
 Output files
 
