@@ -36,12 +36,14 @@ working in the [Volker Heine](https://www.phy.cam.ac.uk/profile/prof-volker-hein
 [Cavendish Laboratory](https://www.phy.cam.ac.uk/) of [University of Cambridge](https://www.cam.ac.uk/),
 continued the work at Xerox PARC and Cavendish after Ole Holm Nielsen.
 
-Later on, there have been other users of the code at multiple institutions, especially in the 
+Later on, there have been other users of the code at multiple institutions, particularly in the 
 [Richard Martin](https://physics.illinois.edu/people/directory/profile/rmartin) group
 at [University of Illinois Urbana-Champaign](https://illinois.edu/).
 Probably most of these users have made independent improvements to the code over the years,
 leading to unavoidable divergences in the many versions of the code.
-This all happened before the Internet and software version control changed the way we maintain codes.
+This all happened before the [Internet](https://en.wikipedia.org/wiki/Internet) became ubiquitous,
+and software [version control](https://en.wikipedia.org/wiki/Version_control)
+changed the way we maintain computer codes.
 
 Publications
 ------------------
@@ -49,9 +51,16 @@ Publications
 Richard Martin's book
 [Electronic Structure: Basic Theory and Practical Methods, 2nd Edition](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition)
 constitutes an authoritative overview of the field up to 2020,
-including also historical methods.
+covering also historical methods.
 
-The following publications document the theory behind the codes in the present project:
+The following publications document the theory behind the original codes in the present project,
+and highlights the first and groundbreaking scientific methods and computational simulations
+made in this field.
+As is well-known, DFT calculations have become a sprawling scientific endeavour
+in numerous fields of science,
+and occupying a large fraction of supercomputer time world-wide.
+
+In chronological order the fundamental papers are:
 
 * *Theory of structural properties of covalent semiconductors*,
   H. Wendel and Richard M. Martin,
