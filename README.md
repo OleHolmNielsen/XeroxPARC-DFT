@@ -148,10 +148,10 @@ Reciprocal lattice sampling by "special k-points"
 -------------------------------------------------
 
 Generation of special points in the [Reciprocal lattice](https://en.wikipedia.org/wiki/Reciprocal_lattice)
-(a.k.a. k-space) for an arbitrary lattice follows the method of:
+(a.k.a. "k-space") for an arbitrary lattice follows the method of:
 
 - [Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188)
-- Modified by [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897)
+- [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897)
 
 About the code
 =====================
@@ -264,17 +264,18 @@ Purpose:
 
 - Setting up special k-points and creating a "crystallographic" file for band structure calculations.
 
-Generation of special points in k-space for an arbitrary lattice, following the method of:
+Generation of special points in k-space for an arbitrary lattice, following the method of
 
-- [Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188)
-- Modified by [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897)
-- Modified also by Ole Holm Nielsen ("symmetrization")
+[Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188),
+[MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897),
+and modified by Ole Holm Nielsen for "symmetrization"
 
 Notes:
 
 - Testing their efficiency and preparation of the "structural" file for running the self-consistent band structure programs.
 
-- In cases where the point group of the crystal does not contain inversion, inversion is artificially added in order to make use of the hermiticity of the Hamiltonian.
+- In cases where the point group of the crystal does not contain inversion,
+  inversion is artificially added in order to make use of the hermiticity of the Hamiltonian.
 
 K213: Preparation of an input file with pseudopotential for running K207
 -----------------------------------------------------------------------------------------------
