@@ -144,6 +144,15 @@ which was by far the most accurate functional available in 1980.
 To set things in perspective, what we **did not have back then** include more modern Exchange and Correlation methods 
 which are described in Chapters 8 and 9 of Richard Martin's book listed in *Publications* above.
 
+Reciprocal lattice sampling by "special k-points"
+-------------------------------------------------
+
+Generation of special points in the [Reciprocal lattice](https://en.wikipedia.org/wiki/Reciprocal_lattice)
+(a.k.a. k-space) for an arbitrary lattice follows the method of:
+
+- [Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188)
+- Modified by [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897)
+
 About the code
 =====================
 
