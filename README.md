@@ -128,7 +128,7 @@ and Bell Labs [Pseudopotentials that work: From H to Pu](https://journals.aps.or
 
 To set things in perspective, what we **did not have back then** include more modern pseudopotentials including for example
 [Kleinman-Bylander pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.1425),
-[Ultra-soft pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.41.7892),
+[Ultra-soft pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.41.7892) (USPP),
 and [Projector augmented wave method](https://en.wikipedia.org/wiki/Projector_augmented_wave_method) (PAW).
 
 Exchange-correlation (XC) energy functionals
@@ -179,12 +179,12 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
   to generate ``run2xx.for`` files from the ``run2xx.start`` files [run290.start](run290.start),
   [run213.start](run213.start), and [run207.start](run207.start).
 
-* The code works both with either Real or Complex
-  [Fortran number](https://www.tutorialspoint.com/fortran/fortran_numbers.htm) matrices
+* The code works both with matrices of either *Real* or *Complex*
+  [Fortran number](https://www.tutorialspoint.com/fortran/fortran_numbers.htm) 
   (the former working much faster than the latter)
   depending on the symmetry properties of the crystal.
-  Therefore a number of ``xxx.diff`` files are used to generate the Complex code version 
-  from the Real version.
+  Therefore a number of ``xxx.diff`` files are used to generate the *Complex* code version 
+  from the *Real* version.
   The Fortran compiler will likely issue warnings about ``passed COMPLEX(4) to REAL(4)``
   (or similar) due to the "dirty" programming tricks employed in the code.
   Remember that nice code [Preprocessors](https://en.wikipedia.org/wiki/Preprocessor)
@@ -193,10 +193,18 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
 Downloading and building the code
 ---------------------------------------
 
-Some standard [Linux](https://en.wikipedia.org/wiki/Linux) tools are needed. 
+You can download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki/GitHub) repository by:
+```
+git clone https://github.com/OleHolmNielsen/XeroxPARC-DFT.git
+```
+
+We have tested the code on a [Linux](https://en.wikipedia.org/wiki/Linux)
+Intel-based [x86-64](https://en.wikipedia.org/wiki/X86-64) system.
+
+Some standard [Linux](https://en.wikipedia.org/wiki/Linux) tools are needed for building the code. 
 The user will have to configure the computer with these software tools (or similar):
 
-* A [Fortran-77](https://en.wikipedia.org/wiki/Fortran) compatible compiler is required.
+* A [Fortran-77](https://en.wikipedia.org/wiki/Fortran) compatible compiler.
   For example, in 2026 we can compile the code using the
   Open Source [GNU Fortran](https://en.wikipedia.org/wiki/GNU_Fortran),
   but other compilers may also work.
@@ -211,8 +219,9 @@ The user will have to configure the computer with these software tools (or simil
   library for linear algebra operations is required.
   An Open Source library is [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS).
 
-A simple solution for an RPM-based Linux distribution such as *Red Hat Enterprise Linux* or *AlmaLinux*
-is to install the following system packages:
+Most Linux distributions can install these tools using their [Package Manager](https://en.wikipedia.org/wiki/Package_manager) system.
+For an RPM-based Linux distribution such as *Red Hat Enterprise Linux* or *AlmaLinux*
+you can install the following packages:
 ```
 sudo dnf install git gcc-gfortran make patch openblas
 ```
@@ -220,13 +229,6 @@ On Ubuntu or similar Linux distributions the packages can probably be installed 
 ```
 sudo apt install git make build-essential patch gfortran libopenblas
 ```
-Then download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki/GitHub) repository by:
-```
-git clone https://github.com/OleHolmNielsen/XeroxPARC-DFT.git
-```
-
-We have tested the code on a [Linux](https://en.wikipedia.org/wiki/Linux)
-Intel-based [x86-64](https://en.wikipedia.org/wiki/X86-64) system.
 
 Running the set of codes
 =============================
