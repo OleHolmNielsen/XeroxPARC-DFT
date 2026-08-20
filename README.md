@@ -5,13 +5,13 @@ Purpose of this project
 
 This historical project preserves the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
 [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) 
-[pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
+[pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 code written originally
 by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
-This project does *not* aim to give a complete coverage of the field,
+This project does *not* aim to give a complete coverage of the scientific field,
 nor does it attempt to cover subsequent developments and the works of other groups.
 For such an overview the reader is referrred to Richard Martin's book
 cited in the *Publications* section.
@@ -19,6 +19,8 @@ cited in the *Publications* section.
 It must be emphasized that this code was used for cutting-edge research during the 1980ies,
 but is now more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
 which preserves the code for posterity.
+The present code is at the very root of plane-wave pseudopotential calculations,
+and many newer codes may have been inspired by this work.
 
 Author of this project: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
 
@@ -39,8 +41,8 @@ continued the work at Xerox PARC and Cavendish after Ole Holm Nielsen.
 Later on there have been other users of the code at multiple institutions, particularly in the 
 [Richard Martin](https://physics.illinois.edu/people/directory/profile/rmartin) group
 at [University of Illinois Urbana-Champaign](https://illinois.edu/).
-Probably most of these users have made independent improvements to the code over the years,
-leading to unavoidable divergences in the many versions of the code.
+Probably many of these users have made independent improvements to the code over the years,
+leading to unavoidable divergences and multiple versions of the code.
 This all happened before the [Internet](https://en.wikipedia.org/wiki/Internet) became ubiquitous,
 and software [version control](https://en.wikipedia.org/wiki/Version_control)
 changed the way we maintain computer codes.
@@ -53,7 +55,8 @@ Richard Martin's book
 constitutes an authoritative overview of the field up to 2020,
 covering also historical methods.
 
-The following publications document the theory behind the original codes in the present project,
+The following publications document the theory and computational methods
+behind the original codes in the present project,
 and highlights the first and groundbreaking scientific methods and computational simulations
 made in this field.
 As is well-known, DFT calculations have become a sprawling scientific endeavour
@@ -76,12 +79,12 @@ In chronological order the fundamental papers are:
 
 * *Ab initio Force Constants of Germanium*. K. KUNC, R. M. MARTIN,
   Proc. 1st Int. Conf. Phonon Physics, Bloomington, Indiana, 1981 (W. E. Bron, ed.): J. Phys. (Paris) 42 - Suppl. C6, 649 - 651 (1981).
-  The first calculation of interatomic force constants for calculating phonon spectra.
+  This paper presents the first calculations of interatomic force constants for calculating phonon spectra.
 
 * *Density-functional calculation of static and dynamic properties of GaAs*,
   K. Kunc and Richard M. Martin,
   [Phys. Rev. B 24, 2311(R), 1981](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.24.2311).
-  This paper presents results of "direct" calculations of structure and lattice dynamics of GaAs
+  This paper presents the first "direct" calculations of structure and lattice dynamics of a semiconductor
   using local forms of the ionic pseudopotentials and the density functional.
 
 * *Ab Initio Force Constants of GaAs: A New Approach to Calculation of Phonons and Dielectric Properties*,
@@ -94,7 +97,7 @@ In chronological order the fundamental papers are:
 * *Theory of static structural properties, crystal stability, and phase transformations: Application to Si and Ge*,
   M. T. Yin and Marvin L. Cohen,
   [Phys. Rev. B 26, 5668, 1982](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.5668).
-  This paper published explicit formulas for the pseudo-potential *Total Energy* terms expressed in a plane-wave basis set.
+  This paper published explicit formulas for the pseudopotential *Total Energy* terms expressed in a plane-wave basis set.
   The present project had developed these formulas independently.
 
 * *First-Principles Calculation of Stress*, O. H. Nielsen and Richard M. Martin,
@@ -114,7 +117,7 @@ We list some important prerequisite methods which were available for DFT calcula
 Pseudopotentials 
 -------------------------------
 
-State-of-the-art [pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
+State-of-the-art [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 available in 1979-1982 are implemented in the code module
 [K213](k213.for) (*Preparation of an input file with pseudopotential for running K207*) including the
 following forms of pseudopotentials:
@@ -124,7 +127,7 @@ following forms of pseudopotentials:
 and Bell Labs [Pseudopotentials that work: From H to Pu](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.4199).
 
 To set things in perspective, what we **did not have back then** include more modern pseudopotentials including for example
-[Kleinman-Bylander: Efficacious Form for Model Pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.1425),
+[Kleinman-Bylander pseudopotentials](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.1425),
 [Ultra-soft pseudopotentials](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.41.7892),
 and [Projector augmented wave method](https://en.wikipedia.org/wiki/Projector_augmented_wave_method) (PAW).
 
@@ -163,7 +166,7 @@ About the code
 The code in this historical project implements
 [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
 calculations of *Total Energy*, *Forces*, and *Stresses* using 
-[pseudo-potentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
+[pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 in a [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) basis set.
 
 The code is written in [Fortran-77](https://en.wikipedia.org/wiki/Fortran),
@@ -193,7 +196,7 @@ Downloading and building the code
 Some standard [Linux](https://en.wikipedia.org/wiki/Linux) tools are needed. 
 The user will have to configure the computer with these software tools (or similar):
 
-* A [Fortran-77](https://en.wikipedia.org/wiki/Fortran)-compatible compiler is required.
+* A [Fortran-77](https://en.wikipedia.org/wiki/Fortran) compatible compiler is required.
   For example, in 2026 we can compile the code using the
   Open Source [GNU Fortran](https://en.wikipedia.org/wiki/GNU_Fortran),
   but other compilers may also work.
