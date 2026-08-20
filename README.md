@@ -193,7 +193,11 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
 Downloading and building the code
 ---------------------------------------
 
-You can download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki/GitHub) repository by:
+You can download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki/GitHub)
+repository [main page](https://github.com/OleHolmNielsen/XeroxPARC-DFT/tree/main) 
+by clicking on the green button ``<> Code`` near the top.
+If you have installed the [git command](https://www.kernel.org/pub/software/scm/git/docs/git-clone.html)
+the download is simply:
 ```
 git clone https://github.com/OleHolmNielsen/XeroxPARC-DFT.git
 ```
