@@ -63,13 +63,11 @@ covering also historical methods.
 
 The following publications from the PARC group document the theory and computational methods
 behind the original codes in the present project,
-and highlights some of the first and groundbreaking scientific methods and computational simulations
-made in this field.
-As is well-known, DFT calculations have become a sprawling scientific endeavour
-in numerous fields of science,
-and occupying large amounts of supercomputer time world-wide.
+and they highlight some of the first and groundbreaking scientific and computational methods created in this field.
+As is well-known, DFT calculations have become a sprawling scientific endeavour in numerous fields of science,
+and they occupy large amounts of supercomputer time world-wide.
 
-In chronological order the fundamental papers are:
+In chronological order the fundamental papers from the PARC group are:
 
 * *Charge Density and Structural Properties of Covalent Semiconductors*,
   H. Wendel and Richard M. Martin,
@@ -81,7 +79,7 @@ In chronological order the fundamental papers are:
   These papers laid the foundations for the PARC DFT codes for solving the pseudopotential
   [Hamiltonian](https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics))
   [eigenvalue problem](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) 
-  and obtain the total energy with a plane-wave basis set,
+  and obtain the total energy within a plane-wave basis set,
   but the calculations were not fully self-consistent. 
 
 * *Relaxation of Polar Ge-GaAs (100) Interfaces: Self-Consistent Calculations of Total Energy*,
@@ -89,7 +87,7 @@ In chronological order the fundamental papers are:
   in *Proc. 15th Int. Conf. Phys. Semiconductors, Kyoto, 1980 (S. Tanaka et al., eds.)*:
   [J. Phys. Soc. Japan 49 - Suppl. A, 1117 - 1120 (1980)](https://www.jps.or.jp//books/jpsjs/49A/jpsj.49sa.1117.pdf).
   This paper is the first publication of fully self-consistent calculations made with the PARC code.
-  The calculations optimized the structure using the total energy and derived band offsets.  
+  The calculations optimized the structure using the total energy, and derived band offsets.  
 
 * *Ab initio Force Constants of Germanium*. K. KUNC, R. M. MARTIN,
   in *Proc. 1st Int. Conf. Phonon Physics, Bloomington, Indiana, 1981 (W. E. Bron, ed.)*:
@@ -97,7 +95,7 @@ In chronological order the fundamental papers are:
   This paper presents interatomic force constants for calculating phonon spectra.
   To our knowledge it is the first published use of
   [Hellmann-Feynman forces](https://en.wikipedia.org/wiki/Hellmann%E2%80%93Feynman_theorem)
-  evaluated using DFT calculations.
+  evaluated from DFT calculations.
 
 * *Density-functional calculation of static and dynamic properties of GaAs*,
   K. Kunc and Richard M. Martin,
@@ -140,6 +138,21 @@ The following selected papers reported DFT calculations:
 * *Theory of static structural properties, crystal stability, and phase transformations: Application to Si and Ge*,
   M. T. Yin and Marvin L. Cohen,
   [Phys. Rev. B 26, 5668, 1982](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.5668).
+
+For calculating [static dielectric properties](https://en.wikipedia.org/wiki/Relative_permittivity)
+there was a series of papers by Kunc, Resta and Tosatti:
+
+* *External fields in the Self-Consistent Theory of Electronic states:  A new method for direct evaluation of Macroscopic and Microscopic dielectric response*,
+  K. Kunc and R. Resta,
+  [Phys. Rev. Letters 51, 686 (1983)](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.51.686).
+
+* *Direct evaluation of the inverse dielectric matrix in semiconductors*,
+  K. Kunc and E. Tosatti,
+  [Phys. Rev. B 29, 7045 (R) (1984)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.29.7045).
+
+* *Self-consistent theory of electronic states and dielectric response in semiconductors*,
+  R. Resta, K. Kunc,
+  [Phys. Rev. B34, 7146 (1986)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.34.7146).
 
 Prerequisites to pseudopotential DFT calculations
 ======================================================
