@@ -16,10 +16,9 @@ Kunc and Martin developed in the following papers the
 self-consistent DFT calculation methods for obtaining *Total Energy* and *Forces*.
 Minimization of the *Total Energy* for obtaining crystal structures etc. 
 using various optimization algorithms was to some extent a hand-held process.
-We refer to the *Publications* section below for references.
 
 The present historical project does *not* aim to give a complete coverage of the scientific field,
-nor does it attempt to cover subsequent developments and the works of other groups.
+nor does it attempt to survey subsequent developments and the works of other groups.
 For such an overview the reader is referrred to Richard Martin's book
 cited in the *Publications* section.
 
@@ -62,7 +61,7 @@ Richard Martin's book
 constitutes an authoritative overview of the field up to 2020,
 covering also historical methods.
 
-The following publications document the theory and computational methods
+The following publications from the PARC group document the theory and computational methods
 behind the original codes in the present project,
 and highlights some of the first and groundbreaking scientific methods and computational simulations
 made in this field.
