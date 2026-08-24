@@ -15,7 +15,7 @@ This new scientific development started was with two papers by Wendel and Martin
 Kunc and Martin developed in the following papers the
 self-consistent DFT calculation methods for obtaining *Total Energy* and *Forces*.
 Minimization of the *Total Energy* for obtaining crystal structures etc. 
-using various optimization algorithms was to some extent a hand-held process.
+using various optimization algorithms was to some extent a hand-held process at the time.
 
 The present historical project does *not* aim to give a complete coverage of the scientific field,
 nor does it attempt to survey subsequent developments and the works of other groups.
@@ -23,7 +23,7 @@ For such an overview the reader is referrred to Richard Martin's book
 cited in the *Publications* section.
 
 It must be emphasized that this code was used for cutting-edge research during the 1980ies,
-but is now more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
+but is today more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
 which preserves the code for posterity.
 The present code is at the very root of plane-wave pseudopotential calculations,
 and many newer codes may have been inspired by this work.
@@ -35,8 +35,8 @@ Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
 Developers of the code
 ---------------------------
 
-The original code by Kunc and Martin was further developed by
-Ole Holm Nielsen working at Xerox PARC during 1982-1983,
+The original code was designed and written by Kunc and Martin at PARC.
+It was further developed by Ole Holm Nielsen at PARC during 1982-1983,
 and later at [NORDITA](https://nordita.org/) and [University of Copenhagen](https://nbi.ku.dk/english/) until about 1990.
 
 [Richard Needs](https://www.phy.cam.ac.uk/profile/prof-richard-needs/),
