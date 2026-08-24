@@ -11,7 +11,14 @@ by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
-This project does *not* aim to give a complete coverage of the scientific field,
+This new scientific development started was with two papers by Wendel and Martin.
+Kunc and Martin developed in the following papers the
+self-consistent DFT calculation methods for obtaining *Total Energy* and *Forces*.
+Minimization of the *Total Energy* for obtaining crystal structures etc. 
+using various optimization algorithms was to some extent a hand-held process.
+We refer to the *Publications* section below for references.
+
+The present historical project does *not* aim to give a complete coverage of the scientific field,
 nor does it attempt to cover subsequent developments and the works of other groups.
 For such an overview the reader is referrred to Richard Martin's book
 cited in the *Publications* section.
@@ -57,7 +64,7 @@ covering also historical methods.
 
 The following publications document the theory and computational methods
 behind the original codes in the present project,
-and highlights the first and groundbreaking scientific methods and computational simulations
+and highlights some of the first and groundbreaking scientific methods and computational simulations
 made in this field.
 As is well-known, DFT calculations have become a sprawling scientific endeavour
 in numerous fields of science,
@@ -65,49 +72,75 @@ and occupying large amounts of supercomputer time world-wide.
 
 In chronological order the fundamental papers are:
 
+* *Charge Density and Structural Properties of Covalent Semiconductors*,
+  H. Wendel and Richard M. Martin,
+  [Phys. Rev. Lett. 40, 950, 1978](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.40.950).
+
 * *Theory of structural properties of covalent semiconductors*,
   H. Wendel and Richard M. Martin,
   [Phys. Rev. B 19, 5251, 1979](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.19.5251).
-  This paper laid the foundations for solving the pseudopotential
+  These papers laid the foundations for the PARC DFT codes for solving the pseudopotential
   [Hamiltonian](https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics))
-  [eigenvalue problem](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) in a plane-wave basis set.
+  [eigenvalue problem](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) 
+  and obtain the total energy with a plane-wave basis set,
+  but the calculations were not fully self-consistent. 
 
-* *Relaxation of Polar Ge-GaAs (100) Interfaces: Self-Consistent Calculations of Total Energy*. K. KUNC, R. M. MARTIN,
-  [Proc. 15th Int. Conf. Phys. Semiconductors, Kyoto, 1980 (S. Tanaka et al., eds.): J. Phys. Soc. Japan 49 - Suppl. A, 1117 - 1120 (1980)](https://books.google.dk/books/about/Proceedings_of_the_15th_International_Co.html?id=vDIT0QEACAAJ).
-  This paper is the first published use of [Hellmann-Feynman forces](https://en.wikipedia.org/wiki/Hellmann%E2%80%93Feynman_theorem) 
-  using DFT calculations for structural optimizations.
+* *Relaxation of Polar Ge-GaAs (100) Interfaces: Self-Consistent Calculations of Total Energy*,
+  K. KUNC, R. M. MARTIN,
+  in *Proc. 15th Int. Conf. Phys. Semiconductors, Kyoto, 1980 (S. Tanaka et al., eds.)*:
+  [J. Phys. Soc. Japan 49 - Suppl. A, 1117 - 1120 (1980)](https://www.jps.or.jp//books/jpsjs/49A/jpsj.49sa.1117.pdf).
+  This paper is the first publication of fully self-consistent calculations made with the PARC code.
+  The calculations optimized the structure using the total energy and derived band offsets.  
 
 * *Ab initio Force Constants of Germanium*. K. KUNC, R. M. MARTIN,
-  Proc. 1st Int. Conf. Phonon Physics, Bloomington, Indiana, 1981 (W. E. Bron, ed.): J. Phys. (Paris) 42 - Suppl. C6, 649 - 651 (1981).
-  This paper presents the first calculations of interatomic force constants for calculating phonon spectra.
+  in *Proc. 1st Int. Conf. Phonon Physics, Bloomington, Indiana, 1981 (W. E. Bron, ed.)*:
+  [J. Phys. (Paris) 42 - Suppl. C6, 649 - 651 (1981)](https://jphyscol.journaldephysique.org/articles/jphyscol/abs/1981/06/jphyscol198142C6189/jphyscol198142C6189.html).
+  This paper presents interatomic force constants for calculating phonon spectra.
+  To our knowledge it is the first published use of
+  [Hellmann-Feynman forces](https://en.wikipedia.org/wiki/Hellmann%E2%80%93Feynman_theorem)
+  evaluated using DFT calculations.
 
 * *Density-functional calculation of static and dynamic properties of GaAs*,
   K. Kunc and Richard M. Martin,
   [Phys. Rev. B 24, 2311(R), 1981](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.24.2311).
-  This paper presents the first "direct" calculations of structure and lattice dynamics of a semiconductor
+  To our knowledge this paper presents the first "direct" calculations of structure and lattice dynamics of a semiconductor
   using local forms of the ionic pseudopotentials and the density functional.
 
 * *Ab Initio Force Constants of GaAs: A New Approach to Calculation of Phonons and Dielectric Properties*,
   K. Kunc and Richard M. Martin,
   [Phys. Rev. Lett. 48, 406, 1982](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.48.406).
-  It is shown for the first time that self-consistent calculations of the electronic charge density in large periodic cells
+  It is shown that self-consistent calculations of the electronic charge density in large periodic cells
   containing a single displaced atom provide all the information needed for ab initio determination
   of force constants, phonon dispersion curves, effective charges, and the static dielectric constant. 
+
+* *First-Principles Calculation of Stress*, O. H. Nielsen and Richard M. Martin,
+  [Phys. Rev. Lett. 50, 697, 1983](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.50.697)
+  This is the first derivation of the *Stress Theorem* for calculating the 
+  macroscopic stress tensor in quantum mechanics, and this theory is applied in DFT calculations.
+
+* *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*,
+  O. H. Nielsen and Richard M. Martin
+  [Phys. Rev. B 32, 3792, 1985](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.32.3792).
+  This paper has explicit formulas for the *Stress Tensor* terms in DFT
+  when expressed in a plane-wave basis set.
+
+Other parallel developments
+-----------------------------------
+
+To our knowledge the main other development of similar DFT codes
+was done independently at [UC Berkeley](https://www.berkeley.edu/).
+The following selected papers reported DFT calculations:
+
+* *Momentum-space formalism for the total energy of solids*,
+  J Ihm, A Zunger and M L Cohen,
+  [J. Phys. C: Solid State Phys. 12 4409, 1979](https://iopscience.iop.org/article/10.1088/0022-3719/12/21/009).
+
+* *Microscopic Theory of the Phase Transformation and Lattice Dynamics of Si*,
+  M. T. Yin and Marvin L. Cohen, [Phys. Rev. Lett. 45, 1004, 1980 ](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.45.1004).
 
 * *Theory of static structural properties, crystal stability, and phase transformations: Application to Si and Ge*,
   M. T. Yin and Marvin L. Cohen,
   [Phys. Rev. B 26, 5668, 1982](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.5668).
-  This paper published explicit formulas for the pseudopotential *Total Energy* terms expressed in a plane-wave basis set.
-  The present project had developed these formulas independently.
-
-* *First-Principles Calculation of Stress*, O. H. Nielsen and Richard M. Martin,
-  [Phys. Rev. Lett. 50, 697, 1983](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.50.697)
-  and *Stresses in semiconductors: Ab initio calculations on Si, Ge, and GaAs*.
-  O. H. Nielsen and Richard M. Martin
-  [Phys. Rev. B 32, 3792, 1985](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.32.3792).
-  These papers contain the first derivation of the *Stress Theorem* for calculating the 
-  macroscopic stress tensor in quantum mechanics, and applies this theory in DFT calculations.
-  The second paper presents explicit formulas for the *Stress Tensor* terms expressed in a plane-wave basis set.
 
 Prerequisites to pseudopotential DFT calculations
 ======================================================
@@ -195,7 +228,7 @@ Downloading and building the code
 
 You can download a copy of the code from the [GitHub](https://en.wikipedia.org/wiki/GitHub)
 repository [main page](https://github.com/OleHolmNielsen/XeroxPARC-DFT/tree/main) 
-by clicking on the green button ``<> Code`` near the top.
+by clicking on the green ``<> Code`` button near the top.
 If you have installed the [git command](https://www.kernel.org/pub/software/scm/git/docs/git-clone.html)
 the download is simply:
 ```
@@ -204,7 +237,6 @@ git clone https://github.com/OleHolmNielsen/XeroxPARC-DFT.git
 
 We have tested the code on a [Linux](https://en.wikipedia.org/wiki/Linux)
 Intel-based [x86-64](https://en.wikipedia.org/wiki/X86-64) system.
-
 Some standard [Linux](https://en.wikipedia.org/wiki/Linux) tools are needed for building the code. 
 The user will have to configure the computer with these software tools (or similar):
 
@@ -273,13 +305,9 @@ History:
 
 Purpose:
 
-- Setting up special k-points and creating a "crystallographic" file for band structure calculations.
-
-Generation of special points in k-space for an arbitrary lattice, following the method of
-
-[Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188),
-[MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897),
-and modified by Ole Holm Nielsen for "symmetrization"
+- Determine the symmetry operations for the lattice structure in the input file.
+- Setting up "special k-points" (see above).
+- Creating a "crystallographic" file for band structure calculations.
 
 Notes:
 
