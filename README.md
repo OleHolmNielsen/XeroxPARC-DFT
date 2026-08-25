@@ -146,7 +146,8 @@ Other parallel developments
 
 To our knowledge the main other development of similar DFT codes
 was done independently in the [Marvin Cohen](https://en.wikipedia.org/wiki/Marvin_L._Cohen) 
-group at [UC Berkeley](https://www.berkeley.edu/).
+group at [University of California, Berkeley](https://en.wikipedia.org/wiki/University_of_California,_Berkeley).
+
 The following selected papers reported DFT calculations:
 
 * *Momentum-space formalism for the total energy of solids*,
