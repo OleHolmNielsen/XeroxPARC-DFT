@@ -121,6 +121,21 @@ In chronological order the fundamental papers from the PARC group are:
   This paper has explicit formulas for the *Stress Tensor* terms in DFT
   when expressed in a plane-wave basis set.
 
+For calculating [static dielectric properties](https://en.wikipedia.org/wiki/Relative_permittivity)
+there was a series of papers by Kunc, Resta and Tosatti:
+
+* *External fields in the Self-Consistent Theory of Electronic states:  A new method for direct evaluation of Macroscopic and Microscopic dielectric response*,
+  K. Kunc and R. Resta,
+  [Phys. Rev. Letters 51, 686 (1983)](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.51.686).
+
+* *Direct evaluation of the inverse dielectric matrix in semiconductors*,
+  K. Kunc and E. Tosatti,
+  [Phys. Rev. B 29, 7045 (R) (1984)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.29.7045).
+
+* *Self-consistent theory of electronic states and dielectric response in semiconductors*,
+  R. Resta, K. Kunc,
+  [Phys. Rev. B34, 7146 (1986)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.34.7146).
+
 Other parallel developments
 -----------------------------------
 
@@ -138,21 +153,6 @@ The following selected papers reported DFT calculations:
 * *Theory of static structural properties, crystal stability, and phase transformations: Application to Si and Ge*,
   M. T. Yin and Marvin L. Cohen,
   [Phys. Rev. B 26, 5668, 1982](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.26.5668).
-
-For calculating [static dielectric properties](https://en.wikipedia.org/wiki/Relative_permittivity)
-there was a series of papers by Kunc, Resta and Tosatti:
-
-* *External fields in the Self-Consistent Theory of Electronic states:  A new method for direct evaluation of Macroscopic and Microscopic dielectric response*,
-  K. Kunc and R. Resta,
-  [Phys. Rev. Letters 51, 686 (1983)](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.51.686).
-
-* *Direct evaluation of the inverse dielectric matrix in semiconductors*,
-  K. Kunc and E. Tosatti,
-  [Phys. Rev. B 29, 7045 (R) (1984)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.29.7045).
-
-* *Self-consistent theory of electronic states and dielectric response in semiconductors*,
-  R. Resta, K. Kunc,
-  [Phys. Rev. B34, 7146 (1986)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.34.7146).
 
 Prerequisites to pseudopotential DFT calculations
 ======================================================
