@@ -110,6 +110,8 @@ In chronological order the fundamental papers from the PARC group are:
   containing a single displaced atom provide all the information needed for ab initio determination
   of force constants, phonon dispersion curves, effective charges, and the static dielectric constant. 
 
+The theory of the quantum mechanical *Stress Tensor* was developed in these papers:
+
 * *First-Principles Calculation of Stress*, O. H. Nielsen and Richard M. Martin,
   [Phys. Rev. Lett. 50, 697, 1983](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.50.697)
   This is the first derivation of the *Stress Theorem* for calculating the 
