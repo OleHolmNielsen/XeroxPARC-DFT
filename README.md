@@ -11,7 +11,7 @@ by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
-This new scientific development started was with two papers by Wendel and Martin.
+This new scientific development started with two papers by Wendel and Martin cited below.
 Kunc and Martin developed in the following papers the
 self-consistent DFT calculation methods for obtaining *Total Energy* and *Forces*.
 Minimization of the *Total Energy* for obtaining crystal structures etc. 
@@ -147,7 +147,6 @@ Other parallel developments
 To our knowledge the main other development of similar DFT codes
 was done independently in the [Marvin Cohen](https://en.wikipedia.org/wiki/Marvin_L._Cohen) 
 group at [University of California, Berkeley](https://en.wikipedia.org/wiki/University_of_California,_Berkeley).
-
 The following selected papers reported DFT calculations:
 
 * *Momentum-space formalism for the total energy of solids*,
