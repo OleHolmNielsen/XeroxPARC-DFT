@@ -87,7 +87,7 @@ In chronological order the fundamental papers from the PARC group are:
 * *Relaxation of Polar Ge-GaAs (100) Interfaces: Self-Consistent Calculations of Total Energy*,
   K. KUNC, R. M. MARTIN,
   in [Proc. 15th Int. Conf. Phys. Semiconductors, Kyoto, 1980 (S. Tanaka et al., eds.)](https://www.jps.or.jp//books/jpsjs/49A/jpsj.49sa-toc.html):
-  [J. Phys. Soc. Japan 49 - Suppl. A, 1117 - 1120 (1980)](https://www.jps.or.jp//books/jpsjs/49A/jpsj.49sa.1117.pdf)
+  [J. Phys. Soc. Japan 49 - Suppl. A, 1117 - 1120 (1980)](https://www.jps.or.jp//books/jpsjs/49A/jpsj.49sa.1117.pdf).
   This paper is the first publication of fully self-consistent calculations made with the PARC code.
   The calculations optimized the structure using the total energy and also derived band offsets.  
 
