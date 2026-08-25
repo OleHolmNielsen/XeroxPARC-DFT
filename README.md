@@ -14,8 +14,10 @@ working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo
 This new scientific development started with two papers by Wendel and Martin cited below.
 Kunc and Martin developed in the following papers the
 self-consistent DFT calculation methods for obtaining *Total Energy* and *Forces*.
+Nielsen and Martin developed the theory of the *Stress tensor*.
 Minimization of the *Total Energy* for obtaining crystal structures etc. 
-using various optimization algorithms was to some extent a hand-held process at the time.
+using various optimization algorithms was to some extent a hand-held process at the time
+where computers were orders of magnitude slower than today.
 
 The present historical project does *not* aim to give a complete coverage of the scientific field,
 nor does it attempt to survey subsequent developments and the works of other groups.
