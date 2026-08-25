@@ -93,7 +93,7 @@ In chronological order the fundamental papers from the PARC group are:
 
 * *Ab initio Force Constants of Germanium*. K. KUNC, R. M. MARTIN,
   in *Proc. 1st Int. Conf. Phonon Physics, Bloomington, Indiana, 1981 (W. E. Bron, ed.)*:
-  [J. Phys. (Paris) 42 - Suppl. C6, 649 - 651 (1981)](https://jphyscol.journaldephysique.org/articles/jphyscol/abs/1981/06/jphyscol198142C6189/jphyscol198142C6189.html).
+  [J. Phys. (Paris) 42 - Suppl. C6, 649 - 651 (1981)](https://jphyscol.journaldephysique.org/articles/jphyscol/abs/1981/06/jphyscol198142C6189/jphyscol198142C6189.html)
   [DOI](https://doi.org/10.1051/jphyscol:19816189).
   This paper presents interatomic force constants for calculating phonon spectra.
   To our knowledge it is the first published use of
