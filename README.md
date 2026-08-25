@@ -72,6 +72,8 @@ In chronological order the fundamental papers from the PARC group are:
 * *Charge Density and Structural Properties of Covalent Semiconductors*,
   H. Wendel and Richard M. Martin,
   [Phys. Rev. Lett. 40, 950, 1978](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.40.950).
+  Presents a practical scheme to calculate the charge density and total energy
+  of crystals as a function of atomic displacements.
 
 * *Theory of structural properties of covalent semiconductors*,
   H. Wendel and Richard M. Martin,
