@@ -213,10 +213,13 @@ which generates input files for the [K207](k207.for) module.
 
 The main [K207](k207.for) DFT calculation module is distinguished
 by working with **any kind of lattice symmetry**.
-It can work with either *Real* or *Complex* matrices and wavefunctions,
+It can work with either *Real* or *Complex*
+[Fortran number](https://www.tutorialspoint.com/fortran/fortran_numbers.htm)
+matrices and wavefunctions,
 depending on whether the lattice includes the
 [inversion symmetry](https://en.wikipedia.org/wiki/Point_reflection) or not.
-This important feature of the code may have been unique in the DFT field back in 1979-1982.
+This important feature of the code may to our knowledge
+have been unique in the DFT field back in 1979-1982.
 
 Reciprocal lattice integration by "special k-points"
 -----------------------------------------------------------
@@ -230,8 +233,8 @@ In the present code, special k-points in the BZ for an arbitrary lattice follows
 and [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897).
 This is implemented in the [K290](k290.for) module.
 
-One can apply symmetry operations to the "special k-points" so that 
-integrals can cover the entire BZ.
+Symmetry operations are then applied to the "special k-points" 
+in the *irreducible* BZ so that integrals cover the entire first BZ.
 
 About the code
 =====================
