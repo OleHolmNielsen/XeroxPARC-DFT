@@ -200,6 +200,24 @@ To set things in perspective, what we **did not have back then** include modern
 [Exchange-correlation](https://en.wikipedia.org/wiki/Local-density_approximation) methods 
 which are described in Chapters 8 and 9 of Richard Martin's book listed in *Publications* above.
 
+Crystal symmetry analysis
+----------------------------
+
+The [Crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) is very important,
+and symmetry analysis can reduce significantly the amount of computations for, e.g.,
+the covalent semiconductors which we mainly studied with the present DFT code.
+
+The lattice symmetry analysis is implemented in the [K290](k290.for) module
+(*Analyses the crystal structure and generates Special k-points and symmetry operations*)
+which generates input files for the [K207](k207.for) module.
+
+The main [K207](k207.for) DFT calculation module is distinguished
+by working with **any kind of lattice symmetry**.
+It can work with either *Real* or *Complex* matrices and wavefunctions,
+depending on whether the lattice includes the
+[inversion symmetry](https://en.wikipedia.org/wiki/Point_reflection) or not.
+This important feature of the code may have been unique in the DFT field back in 1979-1982.
+
 Reciprocal lattice integration by "special k-points"
 -----------------------------------------------------------
 
@@ -210,8 +228,10 @@ can be approximated by a weighted sum over a discrete set of "special k-points".
 In the present code, special k-points in the BZ for an arbitrary lattice follows the method of
 [Monkhorst and Pack, *Phys. Rev. B* **13** (1976) 5188](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.13.5188)
 and [MacDonald, *Phys. Rev. B* **18** (1978) 5897](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.18.5897).
-This is implemented in the [K290](k290.for) module
-(*Analyses the crystal structure and generates Special k-points and symmetry operations*).
+This is implemented in the [K290](k290.for) module.
+
+One can apply symmetry operations to the "special k-points" so that 
+integrals can cover the entire BZ.
 
 About the code
 =====================
