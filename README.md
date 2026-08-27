@@ -218,7 +218,7 @@ It can work with either *Real* or *Complex*
 matrices and wavefunctions,
 depending on whether the lattice includes the
 [inversion symmetry](https://en.wikipedia.org/wiki/Point_reflection) or not.
-This important feature of the code may to our knowledge
+This important symmetry feature of the code may to our knowledge
 have been unique in the DFT field back in 1979-1982.
 
 Reciprocal lattice integration by "special k-points"
