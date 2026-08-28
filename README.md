@@ -215,7 +215,7 @@ The main [K207](k207.for) DFT calculation module is distinguished
 by working with **any kind of lattice symmetry**.
 It can work with either *Real* or *Complex*
 [Fortran number](https://www.tutorialspoint.com/fortran/fortran_numbers.htm)
-matrices and wavefunctions.
+matrices and wavefunctions as required by the lattice symmetry.
 To our knowledge this important feature of the [K207](k207.for) module was 
 unique in the DFT field back in 1979-1982.
 
