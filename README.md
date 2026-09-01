@@ -321,8 +321,8 @@ Conventions for Fortran unit names and array dimensions
 -------------------------------------------------------------
 
 In Fortran files are managed through [logical units identifiers](https://docs.oracle.com/cd/E19957-01/805-4940/6j4m1u7oj/index.html)
-which can be from 0 to 99,
-and the files on disk are named as ``fort.NN`` where ``NN`` is the unit number.
+``NN`` which can be from 0 to 99,
+and the files on disk are named as ``fort.NN``.
 
 The file [consts.for](consts.for) defines Fortran unit numbers as well as 
 a number of [physical constants](https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.41.375)
@@ -353,15 +353,14 @@ NTYPMX=2 Max number of atomic types
 NSPIN=1 FOR NON-POLARIZED, 2 FOR SPIN-POLARIZED
 NDIM1=7000 VARIABLE DIMENSION OF THE ARRAYS IGLIST AND G2LIST (NUMBER OF THE GENERATED POINTS IN REC. SPACE)
 NDIM2=500  VARIABLE DIMENSION OF THE TABLES NTAB, G2TAB
-NDIM3=150
-NDIM4=800
-NDIM6=32768
-NDIM8=4
-NDIM9=2
-NDIM13=same as NDIM3
-NG1MAX=20
-NG2MAX=20
-NG3MAX=20
+NDIM3=150  MAXIMUM DIMENSION OF THE ``A MATRIX``
+NDIM4=800  MAXIMUM DIMENSION OF THE ``B MATRIX``
+NDIM5=NDIM3+NDIM4    MAXIMUM DIMENSION OF THE ``H MATRIX``
+NDIM6=32768  MAXIMUM NUMBER OF PLANE WAVES FOR SPECIAL POINTS SET
+NDIM8=4  MAXIMUM NUMBER OF EIGENVALUES OF H MATRIX REQUIRED
+NDIM9=2  MAXIMUM NUMBER OF ATOMS
+NDIM13   MAXIMUM NUMBER OF EIGENVALUES REQUIRED
+NG1MAX=20, NG2MAX=20, NG3MAX=20 Dimension of G-vector array LIST(-NG1MAX:NG1MAX,-NG2MAX:NG2MAX,-NG3MAX:NG3MAX)
 ```
 
 Lattice structure file
