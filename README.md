@@ -346,7 +346,7 @@ to define static dimension variables such as ``NDIM1, NDIM2, NDIM3``, etc.,
 and generate ``run2xx.for`` files from the ``run2xx.start`` files [run290.start](run290.start),
 [run213.start](run213.start), and [run207.start](run207.start).
 
-Typical values and meaning of the **array dimensions** are as follows:
+Typical values and meaning of the **array dimensions** in [dimensions.sh](dimensions.sh) are as follows:
 ```
 NCMPLX=1 for real matrices, 2 for complex ones
 NTYPMX=2 Max number of atomic types
