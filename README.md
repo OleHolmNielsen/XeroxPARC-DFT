@@ -320,9 +320,9 @@ command to build the codes, then runs them with the input data given in the scri
 Fortran unit names and array dimensions
 ------------------------------------------------
 
-In Fortran files are managed through [logical units identifiers](https://docs.oracle.com/cd/E19957-01/805-4940/6j4m1u7oj/index.html)
-``NN`` which can be from 0 to 99,
-and the files on disk are named as ``fort.NN``.
+In the Fortran language, input/output files are managed through
+[logical units identifiers](https://docs.oracle.com/cd/E19957-01/805-4940/6j4m1u7oj/index.html)
+``NN`` which can be from 0 to 99, and the files on disk are named as ``fort.NN``.
 
 The file [consts.for](consts.for) defines Fortran unit numbers as well as 
 a number of [physical constants](https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.41.375)
