@@ -317,8 +317,8 @@ An example of a script running the codes is in the file [testscript.sh](testscri
 This script uses the Linux/UNIX [make](https://en.wikipedia.org/wiki/Make_(software))
 command to build the codes, then runs them with the input data given in the script.
 
-Conventions for Fortran unit names and array dimensions
--------------------------------------------------------------
+Fortran unit names and array dimensions
+------------------------------------------------
 
 In Fortran files are managed through [logical units identifiers](https://docs.oracle.com/cd/E19957-01/805-4940/6j4m1u7oj/index.html)
 ``NN`` which can be from 0 to 99,
@@ -340,22 +340,23 @@ used throughout the code.
 12 ..... BRIEF SUMMARY OF OUTPUT (FOR LONG-DISTANCE COMPUTING)
 20+I ... I=1,2,...NTYPMX UNITS ASSOCIATED WITH ATOMIC FILES
 ```
-The Fortran **array dimensions** used must be specified in the file [dimensions.sh](dimensions.sh)
-which is used by the [Makefile](Makefile) 
+The Fortran **array dimensions** used for a specific simulation
+must be specified in the file [dimensions.sh](dimensions.sh).
+This file is used by the [Makefile](Makefile) 
 to define static dimension variables such as ``NDIM1, NDIM2, NDIM3``, etc.,
-and generate ``run2xx.for`` files from the ``run2xx.start`` files [run290.start](run290.start),
+and to generate ``run2xx.for`` files from the ``run2xx.start`` files [run290.start](run290.start),
 [run213.start](run213.start), and [run207.start](run207.start).
 
-Typical values and meaning of the **array dimensions** in [dimensions.sh](dimensions.sh) are as follows:
+Typical values and the meaning of the **array dimensions** in [dimensions.sh](dimensions.sh) are as follows:
 ```
 NCMPLX=1 for real matrices, 2 for complex ones
 NTYPMX=2 Max number of atomic types
 NSPIN=1 FOR NON-POLARIZED, 2 FOR SPIN-POLARIZED
 NDIM1=7000 VARIABLE DIMENSION OF THE ARRAYS IGLIST AND G2LIST (NUMBER OF THE GENERATED POINTS IN REC. SPACE)
 NDIM2=500  VARIABLE DIMENSION OF THE TABLES NTAB, G2TAB
-NDIM3=150  MAXIMUM DIMENSION OF THE ``A MATRIX``
-NDIM4=800  MAXIMUM DIMENSION OF THE ``B MATRIX``
-NDIM5=NDIM3+NDIM4    MAXIMUM DIMENSION OF THE ``H MATRIX``
+NDIM3=150  MAXIMUM DIMENSION OF THE "A MATRIX"
+NDIM4=800  MAXIMUM DIMENSION OF THE "B MATRIX"
+NDIM5=NDIM3+NDIM4    MAXIMUM DIMENSION OF THE "H MATRIX"
 NDIM6=32768  MAXIMUM NUMBER OF PLANE WAVES FOR SPECIAL POINTS SET
 NDIM8=4  MAXIMUM NUMBER OF EIGENVALUES OF H MATRIX REQUIRED
 NDIM9=2  MAXIMUM NUMBER OF ATOMS
