@@ -303,9 +303,9 @@ you can install the following packages:
 ```
 sudo dnf install git gcc-gfortran make patch openblas
 ```
-On Ubuntu or similar Linux distributions the packages can probably be installed similar to this:
+On Ubuntu or similar Linux distributions the required packages can be installed like this:
 ```
-sudo apt install git make build-essential patch gfortran libopenblas
+sudo apt install git make build-essential patch gfortran libopenblas-dev
 ```
 
 Running the set of codes
