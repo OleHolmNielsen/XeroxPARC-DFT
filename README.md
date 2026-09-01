@@ -317,6 +317,31 @@ An example of a script running the codes is in the file [testscript.sh](testscri
 This script uses the Linux/UNIX [make](https://en.wikipedia.org/wiki/Make_(software))
 command to build the codes, then runs them with the input data given in the script.
 
+Conventions for file names and array dimensions
+---------------------------------------------------
+
+In Fortran files are managed through [logical units identifiers](https://docs.oracle.com/cd/E19957-01/805-4940/6j4m1u7oj/index.html)
+which can be from 0 to 99,
+and the files on disk are named as ``fort.NN`` where ``NN`` is the unit number.
+
+In the present code we by convention use the Fortran unit numbers as defined in the file [run207.for](run207.for):
+```
+2 ...... INPUT OF CRYSTAL STRUCTURE
+3 ...... INPUT OF SPECIAL POINTS INFORMATION
+4 ...... INPUT OF POTENTIAL FOR SELFCONSISTENCY
+5 ...... ON-LINE INPUT
+6 ...... ON-LINE OUTPUT
+7 ...... ON-LINE OUTPUT, LESS IMPORTANT INFORMATION
+8 ...... ON-LINE OUTPUT, EVEN LESS IMPORTANT INFORMATION
+10 ..... OUTPUT OF POTENTIAL FOR SELFCONSISTENCY
+11 ..... FILE FOR TEMPORARY STORAGE OF NONLOCAL MATRIX ELEMENTS
+12 ..... BRIEF SUMMARY OF OUTPUT (FOR LONG-DISTANCE COMPUTING)
+20+I ... I=1,2,...NTYPMX UNITS ASSOCIATED WITH ATOMIC FILES
+```
+
+Lattice structure file
+--------------------------
+
 Firstly, create a structure file (Fortran unit 2) describing the
 [Bravais lattice](https://en.wikipedia.org/wiki/Bravais_lattice)
 and the atoms in the unit cell:
