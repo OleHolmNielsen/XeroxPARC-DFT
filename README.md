@@ -340,7 +340,7 @@ used throughout the code.
 12 ..... BRIEF SUMMARY OF OUTPUT (FOR LONG-DISTANCE COMPUTING)
 20+I ... I=1,2,...NTYPMX UNITS ASSOCIATED WITH ATOMIC FILES
 ```
-The **array dimensions** used must be specified in the file [dimensions.sh](dimensions.sh)
+The Fortran **array dimensions** used must be specified in the file [dimensions.sh](dimensions.sh)
 which is used by the [Makefile](Makefile) 
 to define static dimension variables such as ``NDIM1, NDIM2, NDIM3``, etc.,
 and generate ``run2xx.for`` files from the ``run2xx.start`` files [run290.start](run290.start),
