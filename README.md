@@ -317,14 +317,16 @@ An example of a script running the codes is in the file [testscript.sh](testscri
 This script uses the Linux/UNIX [make](https://en.wikipedia.org/wiki/Make_(software))
 command to build the codes, then runs them with the input data given in the script.
 
-Conventions for file names and array dimensions
----------------------------------------------------
+Conventions for Fortran unit names and array dimensions
+-------------------------------------------------------------
 
 In Fortran files are managed through [logical units identifiers](https://docs.oracle.com/cd/E19957-01/805-4940/6j4m1u7oj/index.html)
 which can be from 0 to 99,
 and the files on disk are named as ``fort.NN`` where ``NN`` is the unit number.
 
-In the present code we by convention use the Fortran unit numbers as defined in the file [run207.for](run207.for):
+The file [consts.for](consts.for) defines Fortran unit numbers as well as 
+a number of [physical constants](https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.41.375)
+used throughout the code.
 ```
 2 ...... INPUT OF CRYSTAL STRUCTURE
 3 ...... INPUT OF SPECIAL POINTS INFORMATION
@@ -338,11 +340,34 @@ In the present code we by convention use the Fortran unit numbers as defined in 
 12 ..... BRIEF SUMMARY OF OUTPUT (FOR LONG-DISTANCE COMPUTING)
 20+I ... I=1,2,...NTYPMX UNITS ASSOCIATED WITH ATOMIC FILES
 ```
+The **array dimensions** used must be specified in the file [dimensions.sh](dimensions.sh)
+which is used by the [Makefile](Makefile) 
+to define static dimension variables such as ``NDIM1, NDIM2, NDIM3``, etc.,
+and generate ``run2xx.for`` files from the ``run2xx.start`` files [run290.start](run290.start),
+[run213.start](run213.start), and [run207.start](run207.start).
+
+Typical values and meaning of the **array dimensions** are as follows:
+```
+NCMPLX=1 for real matrices, 2 for complex ones
+NTYPMX=2 Max number of atomic types
+NSPIN=1 FOR NON-POLARIZED, 2 FOR SPIN-POLARIZED
+NDIM1=7000 VARIABLE DIMENSION OF THE ARRAYS IGLIST AND G2LIST (NUMBER OF THE GENERATED POINTS IN REC. SPACE)
+NDIM2=500  VARIABLE DIMENSION OF THE TABLES NTAB, G2TAB
+NDIM3=150
+NDIM4=800
+NDIM6=32768
+NDIM8=4
+NDIM9=2
+NDIM13=same as NDIM3
+NG1MAX=20
+NG2MAX=20
+NG3MAX=20
+```
 
 Lattice structure file
 --------------------------
 
-Firstly, create a structure file (Fortran unit 2) describing the
+Firstly, create a structure file (Fortran unit 2 file ``fort.2``) describing the
 [Bravais lattice](https://en.wikipedia.org/wiki/Bravais_lattice)
 and the atoms in the unit cell:
 
