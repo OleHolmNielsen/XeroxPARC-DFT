@@ -76,6 +76,7 @@ then
 	echo "Program $PROGRAM exited with errors"
 	exit 1
 fi
+echo $line
 read -p "Press Enter to continue"
 
 # ==================================================================================
@@ -120,6 +121,7 @@ then
 fi
     echo Move the output file to become input file for K207
     mv fort.10 fort.4
+echo $line
 read -p "Press Enter to continue"
 fi
 
@@ -146,6 +148,7 @@ then
 fi
     echo Move the output file to become input file for K207
     mv fort.10 fort.4
+echo $line
 read -p "Press Enter to continue"
 fi
 
@@ -236,4 +239,5 @@ fi
     # $HOME/archive fort.10 $CRYSTAL.dat
     # rm EVFILE fort.15 fort.14 fort.13
     # rm $PROGRAM
+echo $line
 fi
