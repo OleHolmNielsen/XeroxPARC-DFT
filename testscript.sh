@@ -176,7 +176,7 @@ EOF
 1            semiconductor
 1            # electrons OK
 1            # eigenvalues OK
-6 18 2       cutoffs (Ry)
+6 18 2       Plane-wave cutoffs E1 (A waves) E2 (B waves), Rydberg units (2)
 2            iterative diagonalization
 15           max # iterations
 1E-7         eigenvalue accuracy
@@ -184,50 +184,50 @@ EOF
 2            Cycle when recycling eigenvectors
 -1           No VNL file
 -1           - nor any reading of VNL
-1            test dim Hamiltonian
-1            - OK
-1            NDSPLi OK
+1            Test the dimension of the Hamiltonian (A and B waves)
+1            # plane waves are OK
+1            Band structure display - NDSPL1,NDSPL2 OK
 1            V(G) display OK
--1           change ISWCH
-    2        new ISWCH
+-1           Change ISWCH
+2            ISWCH: total energy only from bands, no forces or stress (see k207aux.for)
 1            Rho(r) display OK
--1           change FFT
-32 32 32     FFT
+-1           Change FFT dimension
+32 32 32     FFT mesh dimension
 1            stress
 1            forces
-    4        # cycles
+10           No. of SCF cycles
 -1           no initial Rho(r) guess
 -1           projection radius - off
 -1           no display of mesh points
 -1           no further potential display
-2 3 1.0E-8 0.9 0.5 2      mixing parameters
-2            switch
-1            modify parameters
+2 3 1.0E-8 0.9 0.5 2  IDMAT (dielectric matrix), UPDATE mixing (Broyden), parameters
+2            Modify any parameter defining the run
+1            Yes, change some parameters
 1            E1,E2 OK
-1            NDSPLi OK
+1            NDSPL1,NDSPL2 OK
 1            V(G) display OK
 -1           change ISWCH
-    1        new ISWCH
+1            ISWCH: full calculation with possibly energy forces and stress (see k207aux.for)
 1            Rho(r) display OK
 -1           change FFT
-32 32 32     FFT
-1            stress
-1            forces
-    1        # cycles
+32 32 32     FFT mesh dimension
+1            Calculate stress
+1            Calculate forces
+1            No. of cycles
 -1           no initial Rho(r) guess
 -1           projection radius - off
 -1           no display of mesh points
 -1           no further potential display
-2 3 1.0E-8 0.9 0.5 2      mixing parameters
-2            switch
+2 3 1.0E-8 0.9 0.5 2  IDMAT (dielectric matrix), UPDATE mixing (Broyden), parameters
+2            modify any parameter defining the run
 -1           do not modify parameters
 -1           Band structure
 3            # k-points
 0 0 0        GAMMA point
 1 0 0        X-point
 .5 .5 .5     L-point
-5            Stop, keep potential
--1           No eigenvalues kept
+5            Stop, save the last working potential for Fortran unit 10 (fort.10)
+-1           No eigenvalues stored on unit 13 (fort.13)
 EOF
 
 if [[ $? -ne 0 ]]
