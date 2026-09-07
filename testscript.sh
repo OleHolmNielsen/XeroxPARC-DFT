@@ -10,6 +10,7 @@ TMPDIR=.
 BINDIR=.
 CRYSTAL=bn
 FILE=$CRYSTAL.dat
+ALATT="3.60"
 
 # The lattice structure file fort.2 (Fortran unit 2) with atomic coordinates
 cat <<'EOF' >fort.2
@@ -18,17 +19,17 @@ cat <<'EOF' >fort.2
  0.0 0.5 0.5      0.5 0.0 0.5     0.5 0.5 0.0  a1,a2,a3
  5         -0.125    -0.125    -0.125          B atom position
  7          0.125     0.125     0.125          N atom position
- 3.61                                          Lattice constant (Angstrom)
+ ${ALATT}               Lattice constant (Angstrom)
 EOF
 #
 # Set proper dimensions:
 #
 NTYPMX=2
 NSPIN=1
-NDIM1=7000
-NDIM2=500
-NDIM3=150
-NDIM4=800
+NDIM1=10000
+NDIM2=1500
+NDIM3=250
+NDIM4=1000
 NDIM6=32768
 NDIM8=4
 NDIM9=2
@@ -176,12 +177,12 @@ EOF
 1            semiconductor
 1            # electrons OK
 1            # eigenvalues OK
-6 18 2      Plane-wave cutoffs E1 (A waves) E2 (Lowdin B waves) in Rydberg units (2)
+30 90 2      Plane-wave cutoffs E1 (A waves) E2 (Lowdin B waves) in Rydberg units (2)
 2            iterative diagonalization
-15           max # iterations
-1E-7         eigenvalue accuracy
-0.5          FAC
-2            Cycle when recycling eigenvectors
+5            max # iterations
+-0.01        eigenvalue accuracy
+2.5          FAC
+3            Cycle when recycling eigenvectors
 -1           No VNL file
 -1           - nor any reading of VNL from a file
 1            Test the dimension of the Hamiltonian (A and B waves)
@@ -191,11 +192,11 @@ EOF
 -1           Change ISWCH
 2            ISWCH: total energy only from bands, no forces or stress (see k207aux.for)
 1            Rho(r) display OK
--1           Change FFT dimension
-32 32 32     FFT mesh dimension
+-1           Change FFT dimensions
+32 32 32     FFT mesh dimensions
 1            stress
 1            forces
-10           No. of SCF cycles
+12           No. of SCF cycles
 -1           no initial Rho(r) guess
 -1           Wavefunction projection radius - off
 -1           no display of mesh points
