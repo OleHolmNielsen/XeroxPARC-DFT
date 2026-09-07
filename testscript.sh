@@ -176,14 +176,14 @@ EOF
 1            semiconductor
 1            # electrons OK
 1            # eigenvalues OK
-18 18 2      Plane-wave cutoffs E1 (A waves) E2 (Lowdin B waves) in Rydberg units (2)
+12 18 2      Plane-wave cutoffs E1 (A waves) E2 (Lowdin B waves) in Rydberg units (2)
 2            iterative diagonalization
 15           max # iterations
 1E-7         eigenvalue accuracy
 0.5          FAC
 2            Cycle when recycling eigenvectors
 -1           No VNL file
--1           - nor any reading of VNL
+-1           - nor any reading of VNL from a file
 1            Test the dimension of the Hamiltonian (A and B waves)
 1            # plane waves are OK
 1            Band structure display - NDSPL1,NDSPL2 OK
@@ -197,7 +197,7 @@ EOF
 1            forces
 10           No. of SCF cycles
 -1           no initial Rho(r) guess
--1           projection radius - off
+-1           Wavefunction projection radius - off
 -1           no display of mesh points
 -1           no further potential display
 2 3 1.0E-8 0.9 0.5 2  IDMAT (dielectric matrix), UPDATE mixing (Broyden), parameters
