@@ -3,9 +3,6 @@
 # set -x
 TMPDIR=.
 
-# Trap error signals:
-trap "rm -rf $TMPDIR; exit 2" 1 2 3 14 15 19
-
 # Install the GNU gfortran compiler and BLAS libraries.
 # CHANGE this for your software environment: A Linux system may use:
 # sudo dnf install gcc-gfortran make openblas
