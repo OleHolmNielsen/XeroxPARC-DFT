@@ -14,14 +14,14 @@ BINDIR=.
 CRYSTAL=bn
 FILE=$CRYSTAL.dat
 
-# The structure file with atomic coordinates
+# The lattice structure file fort.2 (Fortran unit 2) with atomic coordinates
 cat <<'EOF' >fort.2
  1-cell Boron Nitride
- 2
- 0.0 0.5 0.5      0.5 0.0 0.5     0.5 0.5 0.0
- 5         -0.125    -0.125    -0.125
- 7          0.125     0.125     0.125
- 3.00
+ 2      Atoms in the unit cell
+ 0.0 0.5 0.5      0.5 0.0 0.5     0.5 0.5 0.0  a1,a2,a3
+ 5         -0.125    -0.125    -0.125          B atom position
+ 7          0.125     0.125     0.125          N atom position
+ 3.00                                          Lattice constant (Angstrom)
 EOF
 #
 # Set proper dimensions:
@@ -35,6 +35,7 @@ NDIM4=800
 NDIM6=32768
 NDIM8=4
 NDIM9=2
+NDIM10=100
 NDIM13=$NDIM3
 NG1MAX=20
 NG2MAX=20
@@ -64,12 +65,12 @@ $line
 EOF
 	make run290
 	./run290 <<'EOF'
-0 0 0 0 0
-0 0
--1
-2 2 2 0 0 0
-1
-0 0 0 0 0 0
+0 0 0 0 0    (sphere radius)**2, mesh size na1,na2,na3, and epsilon
+0 0          Skip more detail
+-1           Continue
+2 2 2 0 0 0  IQ1,IQ2,IQ3,WVK0
+1            Save to file fort.3
+0 0 0 0 0 0  Exit
 EOF
 fi
 
@@ -99,20 +100,20 @@ EOF
     # Fourier-transformed potentials from B.VG and N.VG - files not present here.
     make run213
     ./run213 <<EOF
--1
-0 0 0 0 0
-0 0
--1
-17
-17
-0.8
--1
-0 0
-1.8e-6
-1
-0 0
--1
-1
+-1              No: virtual crystal approximation
+0 0 0 0 0       Plane-wave cutoff in Rydbergs, NG1,NG2,NG3, EPSILON
+0 0             No details
+-1              Continue
+17              Atom 1 potential-type
+17              Atom 2 potential-type
+0.8             Exchange-factor for linear screening of the ionic potential
+-1              Use a different number of electrons?
+0 0             No details
+1.8e-6          Potential clean-up lower limit epsilon
+1               Repeat the display of total potential for selected G-vectors
+0 0             No details
+-1              No clean-up of Potential
+1               Save results to binary file fort.10
 EOF
 
 if [[ $? -ne 0 ]]
@@ -120,7 +121,7 @@ then
 	echo "Program $PROGRAM exited with errors"
 	exit 1
 fi
-    # Move the output file to become input file for K207
+    echo Move the output file to become input file for K207
     mv fort.10 fort.4
 read -p "Press Enter to continue"
 fi
@@ -146,7 +147,7 @@ then
 	echo "Program $PROGRAM exited with errors"
 	exit 1
 fi
-    # Move the output file to become input file for K207
+    echo Move the output file to become input file for K207
     mv fort.10 fort.4
 read -p "Press Enter to continue"
 fi
