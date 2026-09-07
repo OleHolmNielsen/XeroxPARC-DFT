@@ -176,7 +176,7 @@ EOF
 1            semiconductor
 1            # electrons OK
 1            # eigenvalues OK
-12 18 2      Plane-wave cutoffs E1 (A waves) E2 (Lowdin B waves) in Rydberg units (2)
+6 18 2      Plane-wave cutoffs E1 (A waves) E2 (Lowdin B waves) in Rydberg units (2)
 2            iterative diagonalization
 15           max # iterations
 1E-7         eigenvalue accuracy
