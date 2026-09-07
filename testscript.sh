@@ -18,7 +18,7 @@ cat <<'EOF' >fort.2
  0.0 0.5 0.5      0.5 0.0 0.5     0.5 0.5 0.0  a1,a2,a3
  5         -0.125    -0.125    -0.125          B atom position
  7          0.125     0.125     0.125          N atom position
- 3.00                                          Lattice constant (Angstrom)
+ 3.61                                          Lattice constant (Angstrom)
 EOF
 #
 # Set proper dimensions:
@@ -176,7 +176,7 @@ EOF
 1            semiconductor
 1            # electrons OK
 1            # eigenvalues OK
-6 18 2       Plane-wave cutoffs E1 (A waves) E2 (B waves), Rydberg units (2)
+18 18 2      Plane-wave cutoffs E1 (A waves) E2 (Lowdin B waves) in Rydberg units (2)
 2            iterative diagonalization
 15           max # iterations
 1E-7         eigenvalue accuracy
