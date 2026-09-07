@@ -13,7 +13,7 @@ FILE=$CRYSTAL.dat
 ALATT="3.60"
 
 # The lattice structure file fort.2 (Fortran unit 2) with atomic coordinates
-cat <<'EOF' >fort.2
+cat <<"EOF" >fort.2
  1-cell Boron Nitride
  2      Atoms in the unit cell
  0.0 0.5 0.5      0.5 0.0 0.5     0.5 0.5 0.0  a1,a2,a3
