@@ -25,6 +25,7 @@ EOF
 # Set proper dimensions:
 #
 source dimensions.sh
+cat dimensions.sh
 
 # NTYPMX=2
 # NSPIN=1
