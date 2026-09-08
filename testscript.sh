@@ -64,7 +64,7 @@ Running $PROGRAM
 $line
 EOF
 	make run290
-	./run290 <<'EOF'
+	./run290 <<'EOF' | tee fort.6
 0 0 0 0 0    (sphere radius)**2, mesh size na1,na2,na3, and epsilon
 0 0          Skip more detail
 -1           Continue
@@ -100,7 +100,7 @@ EOF
     # The alternative is potential 20 (numerically generated), which reads
     # Fourier-transformed potentials from B.VG and N.VG - files not present here.
     make run213
-    ./run213 <<EOF
+    ./run213 <<EOF | tee --append fort.6
 -1              No: virtual crystal approximation
 0 0 0 0 0       Plane-wave cutoff in Rydbergs, NG1,NG2,NG3, EPSILON
 0 0             No details
@@ -142,7 +142,7 @@ Running $PROGRAM
 $line
 EOF
     make $PROGRAM
-    ./$PROGRAM
+    ./$PROGRAM  | tee --append fort.6
 
 if [[ $? -ne 0 ]]
 then
@@ -173,13 +173,13 @@ Running $PROGRAM
 $line
 EOF
     make $PROGRAM
-    ./$PROGRAM <<'EOF'
+    ./$PROGRAM <<'EOF' | tee --append fort.6
 1            spec. pts.
 1            XC is OK
 1            semiconductor
 1            # electrons OK
 1            # eigenvalues OK
-30 90 2      Plane-wave cutoffs E1 (A waves) E2 (Lowdin B waves) in Rydberg units (2)
+18 30 2      Plane-wave cutoffs E1 (A waves) E2 (Lowdin B waves) in Rydberg units (2)
 2            iterative diagonalization
 5            max # iterations
 -0.01        eigenvalue accuracy
