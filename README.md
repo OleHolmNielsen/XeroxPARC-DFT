@@ -11,6 +11,26 @@ by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
+The groundbreaking contributions of this code to the field of electronic structure calculations 
+is due to a number of features including:
+
+* Combination of [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
+  with plane-wave expansion of crystal wavefunctions according to 
+  [Bloch's theorem](https://en.wikipedia.org/wiki/Bloch%27s_theorem)
+  which enabled accurate solutions of the electronic
+  [ground-state](https://en.wikipedia.org/wiki/Ground_state) and obtaining its *Total Energy*.
+
+* Since plane-wave basis functions do not depend explicitly upon atomic coordinates,
+  it becomes possible to move atomic nuclei by smaller or larger distances from initial configurations
+  and calculate very accurately the atomic 
+  [Hellmann-Feynman forces](https://en.wikipedia.org/wiki/Hellmann%E2%80%93Feynman_theorem)
+  using the electronic [ground-state](https://en.wikipedia.org/wiki/Ground_state) wave-functions.
+  This enabled the first-principles calculations of individual [Phonon](https://en.wikipedia.org/wiki/Phonon)
+  frequencies as well as entire phonon dispersion curves.
+  Furthermore, the forces also enabled relaxation of atomic coordiates to find equilibrium structures.
+
+* Similarly, it became possible to calculate *Stress-strain relations* and *static dielectric properties*.
+
 This new scientific development started with two papers by Wendel and Martin cited below.
 Kunc and Martin developed in the following papers the
 self-consistent DFT calculation methods for obtaining *Total Energy* and *Forces*.
