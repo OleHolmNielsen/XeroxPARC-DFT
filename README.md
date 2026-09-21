@@ -30,7 +30,9 @@ is due to a number of features including:
   frequencies as well as entire phonon dispersion curves.
   Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates to find equilibrium structures.
 
-* Similarly, it became possible to calculate *Stress-strain relations* as well as *static dielectric properties*.
+* Similarly, it became possible to calculate *Stress-strain relations* and 
+  [elastic constants](https://en.wikipedia.org/wiki/Elastic_modulus),
+  as well as *static dielectric properties*.
 
 This new scientific development started with two papers by Wendel and Martin cited below.
 Kunc and Martin developed in subsequent papers the
