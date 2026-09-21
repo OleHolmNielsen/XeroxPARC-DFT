@@ -15,7 +15,8 @@ The groundbreaking contributions of this code to the field of electronic structu
 is due to a number of features including:
 
 * Combination of [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
-  with plane-wave expansion of crystal wavefunctions according to 
+  with [plane-wave](https://en.wikipedia.org/wiki/Plane_wave)
+  expansion of crystal wavefunctions according to 
   [Bloch's theorem](https://en.wikipedia.org/wiki/Bloch%27s_theorem)
   which enabled accurate solutions of the electronic
   [ground-state](https://en.wikipedia.org/wiki/Ground_state) and obtaining its *Total Energy*.
@@ -27,9 +28,9 @@ is due to a number of features including:
   using the electronic [ground-state](https://en.wikipedia.org/wiki/Ground_state) wave-functions.
   This enabled the first-principles calculations of individual [Phonon](https://en.wikipedia.org/wiki/Phonon)
   frequencies as well as entire phonon dispersion curves.
-  Furthermore, the forces also enabled relaxation of atomic coordiates to find equilibrium structures.
+  Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates to find equilibrium structures.
 
-* Similarly, it became possible to calculate *Stress-strain relations* and *static dielectric properties*.
+* Similarly, it became possible to calculate *Stress-strain relations* as well as *static dielectric properties*.
 
 This new scientific development started with two papers by Wendel and Martin cited below.
 Kunc and Martin developed in the following papers the
