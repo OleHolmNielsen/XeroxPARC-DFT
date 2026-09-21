@@ -33,7 +33,7 @@ is due to a number of features including:
 * Similarly, it became possible to calculate *Stress-strain relations* as well as *static dielectric properties*.
 
 This new scientific development started with two papers by Wendel and Martin cited below.
-Kunc and Martin developed in the following papers the
+Kunc and Martin developed in subsequent papers the
 self-consistent DFT calculation methods for obtaining *Total Energy* and *Forces*.
 Nielsen and Martin developed the theory of the *Stress tensor*.
 Minimization of the *Total Energy* for obtaining crystal structures etc. 
