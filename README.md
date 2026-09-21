@@ -26,7 +26,7 @@ is due to a number of features including:
   and calculate very accurately the atomic 
   [Hellmann-Feynman forces](https://en.wikipedia.org/wiki/Hellmann%E2%80%93Feynman_theorem)
   using the electronic [ground-state](https://en.wikipedia.org/wiki/Ground_state) wave-functions.
-  This enabled the first-principles calculations of individual [Phonon](https://en.wikipedia.org/wiki/Phonon)
+  This enabled the first-principles calculations of individual [phonon](https://en.wikipedia.org/wiki/Phonon)
   frequencies as well as entire phonon dispersion curves.
   Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates to find equilibrium structures.
 
