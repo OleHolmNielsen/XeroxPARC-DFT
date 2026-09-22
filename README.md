@@ -30,7 +30,8 @@ is due to a number of features including:
   frequencies as well as entire phonon dispersion curves.
   Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates to find equilibrium structures.
 
-* Similarly, it became possible to calculate *Stress-strain relations* and 
+* Similarly, it became possible to calculate *Stress-strain relations*
+  enabling unit cell volume and shape optimization and the
   [elastic constants](https://en.wikipedia.org/wiki/Elastic_modulus),
   as well as *static dielectric properties*.
 
