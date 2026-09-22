@@ -27,7 +27,7 @@ is due to a number of features including:
   [Hellmann-Feynman forces](https://en.wikipedia.org/wiki/Hellmann%E2%80%93Feynman_theorem)
   using the electronic [ground-state](https://en.wikipedia.org/wiki/Ground_state) wave-functions.
   This enabled the first-principles calculations of individual [phonon](https://en.wikipedia.org/wiki/Phonon)
-  frequencies as well as entire phonon dispersion curves.
+  frequencies ("Frozen phonons" method) as well as entire phonon dispersion curves.
   Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates to find equilibrium structures.
 
 * Similarly, it became possible to calculate *Stress-strain relations*
