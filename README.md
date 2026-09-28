@@ -526,8 +526,6 @@ Input files ``fort.NN`` produced by *K290* and *K213* will be required by K207:
 3 ...... INPUT OF SPECIAL POINTS INFORMATION
 4 ...... INPUT OF POTENTIAL FOR SELFCONSISTENCY
 ```
-NOTE: The K207 output file ``fort.10`` can optionally be renamed as ``fort.4``
-if it will be used as input for another run of K207.
 
 Output files ``fort.NN`` produced by K207:
 ```
@@ -536,3 +534,5 @@ Output files ``fort.NN`` produced by K207:
 10 ..... OUTPUT OF POTENTIAL FOR SELFCONSISTENCY
 12 ..... BRIEF SUMMARY OF OUTPUT (FOR LONG-DISTANCE COMPUTING)
 ```
+NOTE: The K207 output file ``fort.10`` can optionally be renamed as ``fort.4``
+if it will be used as input for another run of K207.
