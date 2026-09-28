@@ -123,7 +123,7 @@ then
 	echo "Program $PROGRAM exited with errors"
 	exit 1
 fi
-    echo Move the output file to become input file for K207
+    echo "Move the output file fort.10 to become input file fort.4 for K207"
     mv fort.10 fort.4
 echo $line
 read -p "Press Enter to continue"
@@ -150,7 +150,7 @@ then
 	echo "Program $PROGRAM exited with errors"
 	exit 1
 fi
-    echo Move the output file to become input file for K207
+    echo "Move the output file fort.10 to become input file fort.4 for K207"
     mv fort.10 fort.4
 echo $line
 read -p "Press Enter to continue"
