@@ -36,7 +36,8 @@ LDR = $(FC) $(FFLAGS)
 # UNIX with BLAS library
 # OBJS = unixtra.o unixus.o error.o
 # A trivial implementation of BLAS subroutines:
-# OBJS = sciblas.o
+# OBJS = sciblas.o 
+# It is recommended to link to the system BLAS library:
 LIBS = -lopenblas -lgfortran
 OBJS =
 
@@ -69,7 +70,7 @@ OBJ_213 = alphaz.o    eps1.o      gcode.o     gshell.o   \
           sfact.o     sorting.o   atomrdwr.o \
           charge.o   day.o      group1.o   ldftyp.o  lenstr.o   \
           paramete.o potentia.o potredwr.o reclat.o  structur.o \
-          machine.o  consts.o   usage.o    erf.o       k213.o 
+          machine.o  consts.o   usage.o    erf.o       k213.o $(OBJS)
 
 run213: run213.o $(OBJ_213)
 	$(LDR) -o $@ $@.o $(OBJ_213) $(LIBS)
@@ -80,7 +81,7 @@ run213: run213.o $(OBJ_213)
 
 OBJ_214 = eps1.o      gcode.o     lenstr.o   lookup.o    \
           consts.o   charge.o   day.o      potredwr.o \
-          machine.o  usage.o    k214.o 
+          machine.o  usage.o    k214.o $(OBJS)
 
 run214: run214.o $(OBJ_214)                                    \
     ; set -x                                                  \
@@ -102,7 +103,7 @@ OBJ_207 = alphaz.o    apwsum.o     cfft.o    dsdot.o     compit.o    \
           gaussq.o   ldftyp.o   lenstr.o  mixvg.o    k207aux.o \
           potget.o   rwev.o     strloc.o  potentia.o potredwr.o\
           consts.o   tsep.o     usage.o    vnlred.o  k207.o    \
-          machine.o  spptrd.o   erf.o
+          machine.o  spptrd.o   erf.o  $(OBJS)
 
 run207: run207.o $(OBJ_207)
 	$(LDR) -o $@ $@.o $(OBJ_207) $(LIBS)
@@ -116,7 +117,6 @@ apollo_special_1:
 # Program K207 (complex version)
 #
 
-# OBJ_207c = alphaz.o    apwsum.o     cfft.o     compit.o    dblas.o    
 OBJ_207c = alphaz.o    apwsum.o     cfft.o     compit.o    \
            cdiagon.o   cdiaham.o    efermi.o   eigen.o     eisherm.o  \
            eps1.o      ceval.o      exch4.o    gcode.o     gkcut.o    \
@@ -129,7 +129,7 @@ OBJ_207c = alphaz.o    apwsum.o     cfft.o     compit.o    \
            gaussq.o   ldftyp.o   lenstr.o   cmixvg.o   k207aux.o \
            potget.o   crwev.o    strloc.o   potentia.o potredwr.o\
            consts.o   tsep.o     usage.o    vnlred.o   k207.o    \
-           machine.o  spptrd.o   erf.o
+           machine.o  spptrd.o   erf.o  $(OBJS)
  
 crun207: crun207.o $(OBJ_207c)  \
     ; set -x                                       \
