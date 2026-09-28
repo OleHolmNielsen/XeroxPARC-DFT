@@ -338,6 +338,7 @@ On Ubuntu or similar Linux distributions the required packages can be installed 
 ```
 sudo apt install git make build-essential patch gfortran libopenblas-dev
 ```
+NOTE: It is recommended to link to the system BLAS library, in this case provided by the ``openblas`` package.
 
 Running the set of codes
 =============================
