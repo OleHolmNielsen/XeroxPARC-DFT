@@ -17,7 +17,7 @@ is due to a number of features including:
 * It was shown that the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
   within the [Local-Density Approximation](https://en.wikipedia.org/wiki/Local-density_approximation) (LDA)
   can be successfully applied for accurate calculations of properties of 
-  covalent and ionic systems such as semiconductors or insulators.
+  covalent or ionic systems, for example, semiconductors or insulators.
   DFT/LDA calculations were previously performed only for close-packed 3rd and 4th row metals by 
   [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854).
 
