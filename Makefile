@@ -35,8 +35,10 @@ LDR = $(FC) $(FFLAGS)
 # OBJS = sciblas.o unixtra.o unixus.o error.o
 # UNIX with BLAS library
 # OBJS = unixtra.o unixus.o error.o
-OBJS =
+# A trivial implementation of BLAS subroutines:
+# OBJS = sciblas.o
 LIBS = -lopenblas -lgfortran
+OBJS =
 
 #
 # The default target:
