@@ -16,7 +16,8 @@ is due to a number of features including:
 
 * It was shown that the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
   within the [Local-Density Approximation](https://en.wikipedia.org/wiki/Local-density_approximation) (LDA)
-  can be successfully applied for accurate calculations of properties of semiconductors and insulators with open crystal structures.
+  can be successfully applied for accurate calculations of properties of 
+  covalent and ionic systems such as open-structured semiconductors or insulators.
   DFT/LDA calculations were previously shown only for close-packed transition metals by Janak, Moruzzi, and Williams.
 
 * Combination of [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
