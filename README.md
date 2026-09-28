@@ -14,6 +14,11 @@ working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo
 The groundbreaking contributions of this code to the field of electronic structure calculations 
 is due to a number of features including:
 
+* It was shown that the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
+  within the [Local-Density Approximation](https://en.wikipedia.org/wiki/Local-density_approximation) (LDA)
+  can be successfully applied for accurate calculations of properties of semiconductors and insulators with open crystal structures.
+  DFT/LDA calculations were previously shown only for close-packed transition metals by Janak, Moruzzi, and Williams.
+
 * Combination of [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
   with [plane-wave](https://en.wikipedia.org/wiki/Plane_wave)
   expansion of crystal wavefunctions according to 
@@ -27,7 +32,7 @@ is due to a number of features including:
   [Hellmann-Feynman forces](https://en.wikipedia.org/wiki/Hellmann%E2%80%93Feynman_theorem)
   using the electronic [ground-state](https://en.wikipedia.org/wiki/Ground_state) wave-functions.
   This enabled the first-principles calculations of individual [phonon](https://en.wikipedia.org/wiki/Phonon)
-  frequencies ("Frozen phonons" method) as well as entire phonon dispersion curves.
+  frequencies (the "Frozen phonon" method) as well as entire phonon dispersion curves.
   Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates to find equilibrium structures.
 
 * Similarly, it became possible to calculate *Stress-strain relations*
