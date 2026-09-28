@@ -395,8 +395,14 @@ NDIM13   MAXIMUM NUMBER OF EIGENVALUES REQUIRED
 NG1MAX=20, NG2MAX=20, NG3MAX=20 Dimension of G-vector array LIST(-NG1MAX:NG1MAX,-NG2MAX:NG2MAX,-NG3MAX:NG3MAX)
 ```
 
-Lattice structure file
---------------------------
+Explanation of input files 
+-----------------------------------
+
+In the file [testscript.sh](testscript.sh) is shown example inputs for K290, K213, and K207.
+Each line of input is annotated by an explanatory text to make it easier to adapt the inputs for other calculations.
+
+Lattice structure file fort.2
+------------------------------
 
 Firstly, create a structure file (Fortran unit 2 file ``fort.2``) describing the
 [Bravais lattice](https://en.wikipedia.org/wiki/Bravais_lattice)
@@ -439,6 +445,13 @@ Notes:
 - In cases where the point group of the crystal does not contain inversion,
   inversion is artificially added in order to make use of the hermiticity of the Hamiltonian.
 
+Output files ``fort.NN`` produced by K290:
+```
+3 ...... INPUT OF SPECIAL POINTS INFORMATION
+6 ...... ON-LINE OUTPUT
+8 ...... ON-LINE OUTPUT, EVEN LESS IMPORTANT INFORMATION
+```
+
 K213: Preparation of an input file with pseudopotential for running K207
 -----------------------------------------------------------------------------------------------
 
@@ -468,6 +481,13 @@ The initial pseudopotential:
 
 - The initial pseudopotential for the self-consistent loop is chosen to be the ionic one, screened by the dielectric function of a free electron gas.
 
+Output files ``fort.NN`` produced by K213:
+```
+4 ...... INPUT OF POTENTIAL FOR SELFCONSISTENCY
+6 ...... ON-LINE OUTPUT
+8 ...... ON-LINE OUTPUT, EVEN LESS IMPORTANT INFORMATION
+```
+
 K214: Potential File Processing
 -----------------------------------------------------------------------------------------------
 
@@ -488,10 +508,16 @@ Purpose:
 
 - Selfconsistent calculation of band structure and total energy, Hellmann-Feynman forces and stress for semiconductors and metals.
 
-Input files
+Input files ``fort.NN`` produced by *K290* and *K213* will be required by K207:
+```
+3 ...... INPUT OF SPECIAL POINTS INFORMATION
+4 ...... INPUT OF POTENTIAL FOR SELFCONSISTENCY
+```
 
-* Input files from *K290* and *K213*.
-
-Output files
-
-* ToDo
+Output files ``fort.NN`` produced by K207:
+```
+6 ...... ON-LINE OUTPUT
+8 ...... ON-LINE OUTPUT, EVEN LESS IMPORTANT INFORMATION
+10 ..... OUTPUT OF POTENTIAL FOR SELFCONSISTENCY
+12 ..... BRIEF SUMMARY OF OUTPUT (FOR LONG-DISTANCE COMPUTING)
+```
