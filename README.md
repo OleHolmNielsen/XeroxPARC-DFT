@@ -446,6 +446,11 @@ Notes:
 - In cases where the point group of the crystal does not contain inversion,
   inversion is artificially added in order to make use of the hermiticity of the Hamiltonian.
 
+Input file ``fort.2`` required by K290:
+```
+2 ...... INPUT OF CRYSTAL STRUCTURE
+```
+
 Output files ``fort.NN`` produced by K290:
 ```
 3 ...... INPUT OF SPECIAL POINTS INFORMATION
@@ -482,6 +487,11 @@ The initial pseudopotential:
 
 - The initial pseudopotential for the self-consistent loop is chosen to be the ionic one, screened by the dielectric function of a free electron gas.
 
+Input file ``fort.2`` required by K213:
+```
+2 ...... INPUT OF CRYSTAL STRUCTURE
+```
+
 Output files ``fort.NN`` produced by K213:
 ```
 6 ...... ON-LINE OUTPUT
@@ -512,6 +522,7 @@ Purpose:
 
 Input files ``fort.NN`` produced by *K290* and *K213* will be required by K207:
 ```
+2 ...... INPUT OF CRYSTAL STRUCTURE
 3 ...... INPUT OF SPECIAL POINTS INFORMATION
 4 ...... INPUT OF POTENTIAL FOR SELFCONSISTENCY
 ```
