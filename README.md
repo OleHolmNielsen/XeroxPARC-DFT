@@ -11,7 +11,8 @@ by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
-[Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854),
+To set the perspective,
+[Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854)
 were the first to show in 1977 that DFT calculations can be quantitatively accurate.
 They calculated lattice constants, cohesive energi and bulk moduli for close-packed 3rd and 4th row metals,
 as discussed in Chapter 2.3 of Richard Martin's book cited in the *Publications* section.
