@@ -11,15 +11,18 @@ by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
-The groundbreaking contributions of this code to the field of electronic structure calculations 
+[Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854),
+were the first to show in 1977 that DFT calculations can be quantitatively accurate.
+They calculated lattice constants, cohesive energi and bulk moduli for close-packed 3rd and 4th row metals,
+as discussed in Chapter 2.3 of Richard Martin's book cited in the *Publications* section.
+
+The groundbreaking contributions of the present code to the field of electronic structure calculations 
 is due to a number of features including:
 
 * It was shown that the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
   within the [Local-Density Approximation](https://en.wikipedia.org/wiki/Local-density_approximation) (LDA)
   can be successfully applied for accurate calculations of properties of 
   covalent or ionic systems, for example, semiconductors or insulators.
-  DFT/LDA calculations were previously performed only for close-packed 3rd and 4th row metals by 
-  [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854).
 
 * Combination of [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
   with [plane-wave](https://en.wikipedia.org/wiki/Plane_wave)
@@ -338,7 +341,8 @@ On Ubuntu or similar Linux distributions the required packages can be installed 
 ```
 sudo apt install git make build-essential patch gfortran libopenblas-dev
 ```
-NOTE: It is recommended to link to the system BLAS library, in this case provided by the ``openblas`` package.
+NOTE: It is recommended to link to the system [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
+library, in this case provided by the ``openblas`` package.
 
 Running the set of codes
 =============================
