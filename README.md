@@ -18,7 +18,8 @@ To set the perspective,
 [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854)
 were the first to show in 1977 that DFT calculations can be quantitatively accurate.
 They calculated lattice constants, cohesive energi and bulk moduli for close-packed 3rd and 4th row metals,
-as discussed in Chapter 2.3 of Richard Martin's book cited in the *Publications* section.
+as discussed in Chapter 2.3 of Richard Martin's book cited in the *Publications* section,
+and good agreement with experiments is found.
 
 The groundbreaking contributions of the present code to the field of electronic structure calculations 
 is due to a number of features including:
