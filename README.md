@@ -12,7 +12,7 @@ and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
 It should be remembered that, in the 1970s,
-the DFT theory and calculations were far from having the scientific prominence
+DFT theory and calculations were far from having the scientific prominence
 it has enjoyed since the late 1980s and onwards.
 To set the perspective,
 [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854)
@@ -26,7 +26,7 @@ is due to a number of features including:
 * It was shown that the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
   within the [Local-Density Approximation](https://en.wikipedia.org/wiki/Local-density_approximation) (LDA)
   can be successfully applied for accurate calculations of properties of 
-  covalent or ionic systems, for example, semiconductors or insulators.
+  covalent or ionic systems with non-slowly-varying charge densities, for example, semiconductors or insulators.
 
 * Combination of [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
   with [plane-wave](https://en.wikipedia.org/wiki/Plane_wave)
