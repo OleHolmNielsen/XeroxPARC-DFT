@@ -11,6 +11,9 @@ by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
+It should be remembered that, in the 1970s,
+the DFT theory and calculations were far from having the scientific prominence
+it has enjoyed since the late 1980s and onwards.
 To set the perspective,
 [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854)
 were the first to show in 1977 that DFT calculations can be quantitatively accurate.
