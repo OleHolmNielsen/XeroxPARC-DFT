@@ -32,9 +32,9 @@ is due to a number of features including:
   In performing such calculations, we are dealing with situations that differ considerably
   from *slowly varying densities* which were studied analytically by
   [Hohenberg and Kohn](https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.B864),
-  or which are present in the interstitial regions of the systems studied by 
+  or which are present in interstitial regions of the systems studied by 
   [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854).
-  Richard Martin responded to a critical comment in 1981:
+  Richard Martin responded to a critical comment on the present work in 1981:
   "Whether an approximation is good or not, one learns by trying it."
 
 * Combination of [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
