@@ -19,7 +19,7 @@ To set the perspective,
 were the first to show in 1977 that DFT calculations can be quantitatively accurate.
 They calculated lattice constants, cohesive energi and bulk moduli for close-packed 3rd and 4th row metals,
 as discussed in Chapter 2.3 of Richard Martin's book cited in the *Publications* section,
-and good agreement with experiments is found.
+and good agreement with experiments was found.
 
 The groundbreaking contributions of the present code to the field of electronic structure calculations 
 is due to a number of features including:
@@ -27,7 +27,15 @@ is due to a number of features including:
 * It was shown that the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
   within the [Local-Density Approximation](https://en.wikipedia.org/wiki/Local-density_approximation) (LDA)
   can be successfully applied for accurate calculations of properties of 
-  covalent or ionic systems with non-slowly-varying charge densities, for example, semiconductors or insulators.
+  covalent or ionic systems, for example, semiconductors or insulators.
+
+  In performing such calculations, we are dealing with situations that differ considerably
+  from *slowly varying densities* which were studied analytically by
+  [Hohenberg and Kohn](https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.B864),
+  or present in the interstitial regions studied by 
+  [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854).
+  Richard Martin responded to a critical comment in 1981:
+  "Whether an approximation is good or not, one learns by trying it."
 
 * Combination of [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
   with [plane-wave](https://en.wikipedia.org/wiki/Plane_wave)
