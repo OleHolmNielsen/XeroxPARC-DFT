@@ -30,7 +30,7 @@ is due to a number of features including:
   covalent or ionic systems, for example, semiconductors or insulators.
 
   In performing such calculations, we are dealing with situations that differ considerably
-  from *slowly varying densities* which were studied analytically by
+  from *slowly varying charge densities* which were studied analytically by
   [Hohenberg and Kohn](https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.B864),
   or which are present in interstitial regions of the systems studied by 
   [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854).
