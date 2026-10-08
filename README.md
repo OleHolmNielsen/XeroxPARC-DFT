@@ -17,8 +17,7 @@ it has enjoyed since the late 1980s and onwards.
 To set the perspective,
 [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854)
 were the first to show in 1977 that DFT calculations can be quantitatively accurate.
-They calculated lattice constants, cohesive energi and bulk moduli for close-packed 3rd and 4th row metals,
-as discussed in Chapter 2.3 of Richard Martin's book cited in the *Publications* section,
+They calculated lattice constants, cohesive energies and bulk moduli for close-packed 3rd and 4th row metals,
 and good agreement with experiments was found.
 
 The groundbreaking contributions of the present code to the field of electronic structure calculations 
@@ -53,8 +52,8 @@ is due to a number of features including:
   frequencies (the "Frozen phonon" method) as well as entire phonon dispersion curves.
   Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates to find equilibrium structures.
 
-* Similarly, it became possible to calculate *Stress-strain relations*
-  enabling unit cell volume and shape optimization and the
+* Similarly, it became possible to calculate *Equation of State* (EOS) E(V) and
+  *Stress-strain relations* enabling unit cell volume and shape optimization and the
   [elastic constants](https://en.wikipedia.org/wiki/Elastic_modulus),
   as well as *static dielectric properties*.
 
@@ -71,8 +70,8 @@ nor does it attempt to survey subsequent developments and the works of other gro
 For such an overview the reader is referrred to Richard Martin's book
 cited in the *Publications* section.
 
-It must be emphasized that this code was used for cutting-edge research during the 1980ies,
-but is today more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
+It must be emphasized that although this code was used for cutting-edge research during the 1980ies,
+it is today more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
 which preserves the code for posterity.
 The present code is at the very root of plane-wave pseudopotential calculations,
 and many newer codes may have been inspired by this work.
@@ -110,18 +109,19 @@ Richard Martin's book
 constitutes an authoritative overview of the field up to 2020,
 covering also historical methods.
 
+As is well-known, DFT calculations have become a sprawling scientific endeavour in numerous fields of science,
+and they occupy large amounts of supercomputer time world-wide.
+
 The following publications from the PARC group document the theory and computational methods
 behind the original codes in the present project,
 and they highlight some of the first and groundbreaking scientific and computational methods created in this field.
-As is well-known, DFT calculations have become a sprawling scientific endeavour in numerous fields of science,
-and they occupy large amounts of supercomputer time world-wide.
 
 In chronological order the fundamental papers from the PARC group are:
 
 * *Charge Density and Structural Properties of Covalent Semiconductors*,
   H. Wendel and Richard M. Martin,
   [Phys. Rev. Lett. 40, 950, 1978](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.40.950).
-  Presents a practical scheme to calculate the charge density and total energy
+  It is a precursor to calculate the charge density and total energy
   of crystals as a function of atomic displacements.
 
 * *Theory of structural properties of covalent semiconductors*,
@@ -165,7 +165,7 @@ In chronological order the fundamental papers from the PARC group are:
 The theory of the quantum mechanical *Stress Tensor* was developed in these papers:
 
 * *First-Principles Calculation of Stress*, O. H. Nielsen and Richard M. Martin,
-  [Phys. Rev. Lett. 50, 697, 1983](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.50.697)
+  [Phys. Rev. Lett. 50, 697, 1983](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.50.697).
   This is the first derivation of the *Stress Theorem* for calculating the 
   macroscopic stress tensor in quantum mechanics, and this theory is applied in DFT calculations.
 
@@ -243,8 +243,8 @@ the [K207](k207.for) module implements the
 correlation calculated by a [Quantum Monte Carlo](https://en.wikipedia.org/wiki/Quantum_Monte_Carlo) method,
 which was by far the most accurate functional available in 1980.
 
-To set things in perspective, what we **did not have back then** include modern
-[Exchange-correlation](https://en.wikipedia.org/wiki/Local-density_approximation) methods 
+What we **did not have back then** include modern
+[Exchange-correlation](https://en.wikipedia.org/wiki/Local-density_approximation) forms 
 which are described in Chapters 8 and 9 of Richard Martin's book listed in *Publications* above.
 
 Crystal symmetry analysis
@@ -292,7 +292,7 @@ calculations of *Total Energy*, *Forces*, and *Stresses* using
 in a [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) basis set.
 
 The code is written in [Fortran-77](https://en.wikipedia.org/wiki/Fortran),
-which was the most modern standard Fortran compiler at the time of writing.
+the most modern standard Fortran language at the time of writing.
 Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipedia.org/wiki/Fortran):
 
 * Arrays had to be allocated with static dimensions in the [main program entry-point](https://en.wikipedia.org/wiki/Entry_point)
