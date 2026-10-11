@@ -39,7 +39,7 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   and in the seminal work of
   [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854):
   Namely that our work treated systems with **strongly** varying charge densities where the applicability of the theory is not guaranteed a priori.
-  However, the calculated results for properties such as equilibrium volumes V~0~ and phonon frequencies,
+  However, the calculated results for properties such as equilibrium volumes and phonon frequencies,
   which were originally anticipated to be approximate at best,
   turned out to be surprisingly close to their experimental values.
   This led Richard Martin to respond in 1981 to a critical comment on that work:
@@ -309,7 +309,7 @@ About the code
 
 The code in this historical project implements
 [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
-calculations of *Total Energy*, *Forces*, and *Stresses* using 
+calculations of *Total Energy*, *Forces*, and *Stresses* within the LDA using 
 [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 in a [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) basis set.
 
