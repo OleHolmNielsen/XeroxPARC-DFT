@@ -12,31 +12,49 @@ and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
 It should be remembered that, in the 1970s,
-DFT theory and calculations were far from having the scientific prominence
-it has enjoyed since the late 1980s and onwards.
+DFT theory and calculations were far from having the scientific prominence it has enjoyed since the late 1980s and onwards.
 To set the perspective,
 [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854)
-were the first to show in 1977 that DFT calculations can be quantitatively accurate.
+were the first to show in 1977 that DFT calculations using LDA can be quantitatively accurate.
 They calculated lattice constants, cohesive energies and bulk moduli for close-packed 3rd and 4th row metals,
 and good agreement with experiments was found.
 
-The groundbreaking contributions of the present code to the field of electronic structure calculations 
-is due to a number of features including:
+A modern summary of numerous successful approximations to DFT is presented in
+Chapter 2.4 *How Good Is DFT for Calculation of Structures?* of
+Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition).
+An important quote is:
+"Each functional has deficiencies and there are no systematic proofs of when a functional works well and when it does not;
+there is only experience to justify the use in various classes of materials."
+
+The groundbreaking contributions of the present work to the field of DFT calculations is due to a number of features including:
 
 * It was shown that the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
   within the [Local-Density Approximation](https://en.wikipedia.org/wiki/Local-density_approximation) (LDA)
-  can be successfully applied for accurate calculations of properties of 
-  covalent or ionic systems, for example, semiconductors or insulators.
+  can be successfully applied in accurate calculations of properties of covalent or ionic systems,
+  for example, semiconductors or insulators.
 
-  In performing such calculations, we are dealing with situations that differ considerably
-  from *slowly varying charge densities* which were studied analytically by
-  [Hohenberg and Kohn](https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.B864),
-  or which are present in interstitial regions of the systems studied by 
-  [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854).
-  Richard Martin responded to a critical comment on the present work in 1981:
-  "Whether an approximation is good or not, one learns by trying it."
+  In performing such calculations we were dealing with situations that differed considerably from those studied in the famous papers of 
+  [Hohenberg and Kohn](https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.B864)
+  and [Kohn and Sham](https://journals.aps.org/pr/abstract/10.1103/PhysRev.140.A1133),
+  and in the seminal work of
+  [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854):
+  Namely that our work treated systems with **strongly** varying charge densities where the applicability of the theory is not guaranteed a priori.
+  However, the calculated results for properties such as equilibrium volumes V_0 and phonon frequencies,
+  which were originally anticipated to be approximate at best,
+  turned out to be surprisingly close to their experimental values.
+  This led Richard Martin to respond in 1981 to a critical comment on that work:
+  "Whether an approximation is good or not, one learns by trying it".
 
-* Combination of [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
+  One of the reasons for the positive results could rest on the fact that the calculated quantities
+  are nearly always a **difference** of two electronic
+  [ground-state](https://en.wikipedia.org/wiki/Ground_state)
+  total energies.
+  The success of the calculations might indicate that, for the present systems,
+  a significant part of the error caused by the LDA approximation
+  is in fact *systematic* and therefore largely cancelled when calculating **total energy differences**.
+
+* The code uses a combination of
+  [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
   with [plane-wave](https://en.wikipedia.org/wiki/Plane_wave)
   expansion of crystal wavefunctions according to 
   [Bloch's theorem](https://en.wikipedia.org/wiki/Bloch%27s_theorem)
@@ -44,12 +62,15 @@ is due to a number of features including:
   [ground-state](https://en.wikipedia.org/wiki/Ground_state) and obtaining its *Total Energy*.
 
 * Since plane-wave basis functions do not depend explicitly upon atomic coordinates,
-  it becomes possible to move atomic nuclei by smaller or larger distances from initial configurations
+  it becomes possible to displace atomic nuclei by smaller or larger distances from initial configurations
   and calculate very accurately the atomic 
   [Hellmann-Feynman forces](https://en.wikipedia.org/wiki/Hellmann%E2%80%93Feynman_theorem)
-  using the electronic [ground-state](https://en.wikipedia.org/wiki/Ground_state) wave-functions.
-  This enabled the first-principles calculations of individual [phonon](https://en.wikipedia.org/wiki/Phonon)
-  frequencies (the "Frozen phonon" method) as well as entire phonon dispersion curves.
+  using the electronic
+  [ground-state](https://en.wikipedia.org/wiki/Ground_state)
+  wave-functions.
+  This enabled the first-principles calculations of individual
+  [phonon](https://en.wikipedia.org/wiki/Phonon)
+  frequencies (thus establishing the "Frozen phonon" method) as well as entire phonon dispersion curves.
   Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates to find equilibrium structures.
 
 * Similarly, it became possible to calculate *Equation of State* (EOS) E(V) and
@@ -67,8 +88,8 @@ where computers were orders of magnitude slower than today.
 
 The present historical project does *not* aim to give a complete coverage of the scientific field,
 nor does it attempt to survey subsequent developments and the works of other groups.
-For such an overview the reader is referrred to Richard Martin's book
-cited in the *Publications* section.
+For such an overview the reader is referred to
+Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition).
 
 It must be emphasized that although this code was used for cutting-edge research during the 1980ies,
 it is today more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
