@@ -313,12 +313,12 @@ calculations of *Total Energy*, *Forces*, and *Stresses* within the LDA using
 [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 in a [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) basis set.
 
-During this time period it was not common to associate names or acronyms to sets of computer codes.
+During this time period it was not common to assign names or acronyms to sets of computer codes.
 The present code modules happen to be named as *K* (for *Kunc*) plus a running number.
 The code module name *K207* was adopted by adding 100 to *K107* when Ole Holm Nielsen
 became the primary author at PARC.
 
-The code was authored by Karel Kunc employing [punched cards](https://en.wikipedia.org/wiki/Punched_card)
+The code was written by Karel Kunc employing [punched cards](https://en.wikipedia.org/wiki/Punched_card)
 input media on a Xerox mainframe computer.
 With the arrival of a [VAX 11/780](https://en.wikipedia.org/wiki/VAX-11)
 32-bit superminicomputer at PARC in 1981,
