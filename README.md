@@ -39,17 +39,17 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   and in the seminal work of
   [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854):
   Namely that our work treated systems with **strongly** varying charge densities where the applicability of the theory is not guaranteed a priori.
-  However, the calculated results for properties such as equilibrium volumes V_0 and phonon frequencies,
+  However, the calculated results for properties such as equilibrium volumes V~0~ and phonon frequencies,
   which were originally anticipated to be approximate at best,
   turned out to be surprisingly close to their experimental values.
   This led Richard Martin to respond in 1981 to a critical comment on that work:
   "Whether an approximation is good or not, one learns by trying it".
 
   One of the reasons for the positive results could rest on the fact that the calculated quantities
-  are nearly always a **difference** of two electronic
+  are nearly always a difference of two electronic
   [ground-state](https://en.wikipedia.org/wiki/Ground_state)
   total energies.
-  The success of the calculations might indicate that, for the present systems,
+  The success of the calculations might indicate that, for the systems treated,
   a significant part of the error caused by the LDA approximation
   is in fact *systematic* and therefore largely cancelled when calculating **total energy differences**.
 
@@ -70,8 +70,9 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   wave-functions.
   This enabled the first-principles calculations of individual
   [phonon](https://en.wikipedia.org/wiki/Phonon)
-  frequencies (thus establishing the "Frozen phonon" method) as well as entire phonon dispersion curves.
-  Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates to find equilibrium structures.
+  frequencies (thereby establishing the **Frozen phonon method**) as well as entire phonon dispersion curves.
+  Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates, for example,
+  to optimize equilibrium structures.
 
 * Similarly, it became possible to calculate *Equation of State* (EOS) E(V) and
   *Stress-strain relations* enabling unit cell volume and shape optimization and the
