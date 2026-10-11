@@ -312,6 +312,17 @@ calculations of *Total Energy*, *Forces*, and *Stresses* using
 [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 in a [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) basis set.
 
+During this time period it was not common to associate names or acronyms to sets of computer codes.
+The present code modules happen to be named as *K* (for *Kunc*) plus a running number.
+The code module name *K207* was adopted by adding 100 to *K107* when Ole Holm Nielsen
+became the primary author at PARC.
+
+The code was authored by Karel Kunc employing [punched cards](https://en.wikipedia.org/wiki/Punched_card)
+input media on a Xerox mainframe computer.
+With the arrival of a [VAX 11/780](https://en.wikipedia.org/wiki/VAX-11)
+32-bit superminicomputer at PARC in 1981,
+the use of punched cards was replaced with interactive terminals.
+
 The code is written in [Fortran-77](https://en.wikipedia.org/wiki/Fortran),
 the most modern standard Fortran language at the time of writing.
 Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipedia.org/wiki/Fortran):
@@ -537,19 +548,6 @@ Output files ``fort.NN`` produced by K213:
 10 ..... OUTPUT OF POTENTIAL FOR SELFCONSISTENCY
 ```
 NOTE: The K213 output file ``fort.10`` must be renamed as ``fort.4`` as input for K207.
-
-K214: Potential File Processing
------------------------------------------------------------------------------------------------
-
-Purpose:
-
-- Read a file with ionic and screened potentials and modify it to create an improved starting point for a new calculation with a different lattice structure.
-
-Method: 
-
-- Add the screening potential from a previous self-consistent calculation
-- Combine with V(IONIC) 
-- Include a screened term of DELTA-V(IONIC)
 
 K207 self-consistent DFT (Density Functional Theory) calculation of Total Energy, Forces, and Stresses
 ----------------------------------------------------------------------------------------------------------
