@@ -11,6 +11,17 @@ by [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>)
 and [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
 working at the Xerox [PARC](https://en.wikipedia.org/wiki/PARC_(company)) (*Palo Alto Research Center*) during 1979-1981.
 
+The present historical project does *not* aim to give a complete coverage of the scientific field,
+nor does it attempt to survey subsequent developments and the works of other groups.
+For such an overview the reader is referred to
+Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition).
+
+It must be emphasized that although this code was used for cutting-edge research during the 1980ies,
+it is today more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
+which preserves the code for posterity.
+The present code is at the very root of plane-wave pseudopotential calculations,
+and many newer codes may have been inspired by this work.
+
 It should be remembered that, in the 1970s,
 DFT theory and calculations were far from having the scientific prominence it has enjoyed since the late 1980s and onwards.
 To set the perspective,
@@ -86,17 +97,6 @@ Nielsen and Martin developed the theory of the *Stress tensor*.
 Minimization of the *Total Energy* for obtaining crystal structures etc. 
 using various optimization algorithms was to some extent a hand-held process at the time
 where computers were orders of magnitude slower than today.
-
-The present historical project does *not* aim to give a complete coverage of the scientific field,
-nor does it attempt to survey subsequent developments and the works of other groups.
-For such an overview the reader is referred to
-Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition).
-
-It must be emphasized that although this code was used for cutting-edge research during the 1980ies,
-it is today more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
-which preserves the code for posterity.
-The present code is at the very root of plane-wave pseudopotential calculations,
-and many newer codes may have been inspired by this work.
 
 Author of this project: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
 
