@@ -75,9 +75,9 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   to optimize equilibrium structures.
 
 * Similarly, it became possible to calculate *Equation of State* (EOS) E(V) and
-  *Stress-strain relations* enabling unit cell volume and shape optimization and the
-  [elastic constants](https://en.wikipedia.org/wiki/Elastic_modulus),
-  as well as *static dielectric properties*.
+  *Stress-strain relations* enabling unit cell volume and shape optimization,
+  calculation of [elastic constants](https://en.wikipedia.org/wiki/Elastic_modulus)
+  and calculation of *static dielectric properties*.
 
 This new scientific development started with two papers by Wendel and Martin cited below.
 Kunc and Martin developed in subsequent papers the
@@ -267,7 +267,8 @@ which was by far the most accurate functional available in 1980.
 
 What we **did not have back then** include modern
 [Exchange-correlation](https://en.wikipedia.org/wiki/Local-density_approximation) forms 
-which are described in Chapters 8 and 9 of Richard Martin's book listed in *Publications* above.
+which are described in Chapters 8 and 9 of 
+Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition).
 
 Crystal symmetry analysis
 ----------------------------
