@@ -77,7 +77,7 @@ The groundbreaking contributions of the present work to the field of DFT calcula
 * Similarly, it became possible to calculate *Equation of State* (EOS) E(V) and
   *Stress-strain relations* enabling unit cell volume and shape optimization,
   calculation of [elastic constants](https://en.wikipedia.org/wiki/Elastic_modulus)
-  and calculation of *static dielectric properties*.
+  and *static dielectric properties*.
 
 This new scientific development started with two papers by Wendel and Martin cited below.
 Kunc and Martin developed in subsequent papers the
