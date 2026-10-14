@@ -19,7 +19,7 @@ Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/ph
 It must be emphasized that although this code was used for cutting-edge research during the 1980ies,
 it is today more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
 which preserves the code for posterity.
-The present code is at the very root of plane-wave pseudopotential calculations,
+The present code is at the very origin of the field of plane-wave pseudopotential calculations,
 and many newer codes may have been inspired by this work.
 
 It should be remembered that, in the 1970s,
