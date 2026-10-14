@@ -30,13 +30,6 @@ were the first to show in 1977 that DFT calculations using LDA can be quantitati
 They calculated lattice constants, cohesive energies and bulk moduli for close-packed 3rd and 4th row metals,
 and good agreement with experiments was found.
 
-A modern summary of numerous successful approximations to DFT is presented in
-Chapter 2.4 *How Good Is DFT for Calculation of Structures?* of
-Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition).
-An important quote is:
-"Each functional has deficiencies and there are no systematic proofs of when a functional works well and when it does not;
-there is only experience to justify the use in various classes of materials."
-
 The groundbreaking contributions of the present work to the field of DFT calculations is due to a number of features including:
 
 * It was shown that the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
@@ -44,7 +37,7 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   can be successfully applied in accurate calculations of properties of covalent or ionic systems,
   for example, semiconductors or insulators.
 
-  In performing such calculations we were dealing with situations that differed considerably from those studied in the famous papers of 
+  In performing such calculations we were dealing with situations that differed considerably from those studied in the seminal papers of 
   [Hohenberg and Kohn](https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.B864)
   and [Kohn and Sham](https://journals.aps.org/pr/abstract/10.1103/PhysRev.140.A1133),
   and in the seminal work of
@@ -85,10 +78,13 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates, for example,
   to optimize equilibrium structures.
 
-* Similarly, it became possible to calculate *Equation of State* (EOS) E(V) and
-  *Stress-strain relations* enabling unit cell volume and shape optimization,
-  calculation of [elastic constants](https://en.wikipedia.org/wiki/Elastic_modulus)
-  and *static dielectric properties*.
+* Similarly, it became possible to calculate many physical properties including:
+
+  - *Equation of State* (EOS) E(V),
+  - Crystal stability and pressure-induced phase transitions,
+  - *Stress-strain relations* enabling unit cell volume and shape optimization,
+  - Calculation of [elastic constants](https://en.wikipedia.org/wiki/Elastic_modulus), and
+  - *Static dielectric properties*.
 
 This new scientific development started with two papers by Wendel and Martin cited below.
 Kunc and Martin developed in subsequent papers the
@@ -133,6 +129,13 @@ covering also historical methods.
 
 As is well-known, DFT calculations have become a sprawling scientific endeavour in numerous fields of science,
 and they occupy large amounts of supercomputer time world-wide.
+
+A modern summary of numerous successful approximations to DFT is presented in
+Chapter 2.4 *How Good Is DFT for Calculation of Structures?* of
+Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition).
+An important quote is:
+"Each functional has deficiencies and there are no systematic proofs of when a functional works well and when it does not;
+there is only experience to justify the use in various classes of materials."
 
 The following publications from the PARC group document the theory and computational methods
 behind the original codes in the present project,
