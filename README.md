@@ -133,9 +133,10 @@ and they occupy large amounts of supercomputer time world-wide.
 A modern summary of numerous successful approximations to DFT is presented in
 Chapter 2.4 *How Good Is DFT for Calculation of Structures?* of
 Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition).
-An important quote is:
-"Each functional has deficiencies and there are no systematic proofs of when a functional works well and when it does not;
-there is only experience to justify the use in various classes of materials."
+An important quote from this chapter is:
+
+* "Each functional has deficiencies and there are no systematic proofs of when a functional works well and when it does not;
+  there is only experience to justify the use in various classes of materials."
 
 The following publications from the PARC group document the theory and computational methods
 behind the original codes in the present project,
