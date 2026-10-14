@@ -75,11 +75,11 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   This enabled the first-principles calculations of individual
   [phonon](https://en.wikipedia.org/wiki/Phonon)
   frequencies (thereby establishing the **Frozen phonon method**) as well as entire phonon dispersion curves.
-  Furthermore, having the forces on atoms also enabled relaxation of atomic coordiates, for example,
-  to optimize equilibrium structures.
 
 * Similarly, it became possible to calculate many physical properties including:
 
+  - Having the forces on atoms available enabled relaxation of atomic coordiates, for example,
+    for optimizing equilibrium structures,
   - *Equation of State* (EOS) E(V),
   - Crystal stability and pressure-induced phase transitions,
   - *Stress-strain relations* enabling unit cell volume and shape optimization,
