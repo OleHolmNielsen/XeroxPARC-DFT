@@ -1,6 +1,6 @@
 # Xerox PARC (Palo Alto Research Center) DFT plane-wave code
 
-Purpose of this project
+Introduction
 ===========================
 
 This historical project preserves the [Density Functional Theory](https://en.wikipedia.org/wiki/Density_functional_theory) (DFT)
