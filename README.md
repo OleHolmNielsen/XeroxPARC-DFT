@@ -336,8 +336,8 @@ Some quirks in the code are due to limitations of [Fortran-77](https://en.wikipe
 * Arrays had to be allocated with static dimensions in the [main program entry-point](https://en.wikipedia.org/wiki/Entry_point)
   (in the ``run2xx.for`` files) since dynamically allocatable arrays were not yet in the Fortran standard.
   Therefore the scripts must define static dimension variables such as ``NDIM1, NDIM2, NDIM3``, etc.,
-  to generate ``run2xx.for`` files from the ``run2xx.start`` files [run290.start](run290.start),
-  [run213.start](run213.start), and [run207.start](run207.start).
+  to generate ``run2xx.for`` files from the "starting" files:
+  [run290.start](run290.start), [run213.start](run213.start), and [run207.start](run207.start).
 
 * The code works both with matrices of either *Real* or *Complex*
   [Fortran number](https://www.tutorialspoint.com/fortran/fortran_numbers.htm) 
