@@ -18,9 +18,9 @@ Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/ph
 
 It must be emphasized that although this code was used for cutting-edge research during the 1980s,
 it is today more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
-which preserves the code for posterity.
+which preserves the Xerox PARC DFT code for posterity.
 The present code is at the very origin of the field of plane-wave pseudopotential calculations,
-and many newer codes may have been inspired by this work.
+and many newer DFT codes may have been inspired by this work.
 
 It should be remembered that, in the 1970s,
 DFT theory and calculations were far from having the scientific prominence it has enjoyed since the late 1980s and onwards.
@@ -37,7 +37,7 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   can be successfully applied in accurate calculations of properties of covalent or ionic systems,
   for example, semiconductors or insulators.
 
-  In performing such calculations, we were dealing with various crystal structure and strongly varying charge densities in the interatomic region 
+  In performing such calculations, we were dealing with various crystal structures and strongly varying charge densities in the interatomic region 
   that differed considerably from those studied in the work of [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854).
   Even though the applicability of the theory is not guaranteed a priori,
   the calculated results for properties such as equilibrium volumes and phonon frequencies turned out to be surprisingly close to their experimental values.
