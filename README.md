@@ -16,7 +16,7 @@ nor does it attempt to survey subsequent developments and the works of other gro
 For such an overview the reader is referred to
 Richard Martin's [book](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition).
 
-It must be emphasized that although this code was used for cutting-edge research during the 1980ies,
+It must be emphasized that although this code was used for cutting-edge research during the 1980s,
 it is today more like a [time capsule](https://en.wikipedia.org/wiki/Time_capsule)
 which preserves the code for posterity.
 The present code is at the very origin of the field of plane-wave pseudopotential calculations,
@@ -37,33 +37,24 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   can be successfully applied in accurate calculations of properties of covalent or ionic systems,
   for example, semiconductors or insulators.
 
-  In performing such calculations we were dealing with situations that differed considerably from those studied in the seminal papers of 
-  [Hohenberg and Kohn](https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.B864)
-  and [Kohn and Sham](https://journals.aps.org/pr/abstract/10.1103/PhysRev.140.A1133),
-  and in the seminal work of
-  [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854):
-  Namely that our work treated systems with **strongly** varying charge densities where the applicability of the theory is not guaranteed a priori.
-  However, the calculated results for properties such as equilibrium volumes and phonon frequencies,
-  which were originally anticipated to be approximate at best,
-  turned out to be surprisingly close to their experimental values.
-  This led Richard Martin to respond in 1981 to a critical comment on that work:
-  "Whether an approximation is good or not, one learns by trying it".
+  In performing such calculations, we were dealing with various crystal structure and strongly varying charge densities in the interatomic region 
+  that differed considerably from those studied in the work of [Janak, Moruzzi, and Williams](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.15.2854).
+  Even though the applicability of the theory is not guaranteed a priori,
+  the calculated results for properties such as equilibrium volumes and phonon frequencies turned out to be surprisingly close to their experimental values.
+  This led Richard Martin to respond in 1981 to a critical comment on that work: "Whether an approximation is good or not, one learns by trying it".
 
-  One of the reasons for the positive results could rest on the fact that the calculated quantities
-  are nearly always a difference of two electronic
-  [ground-state](https://en.wikipedia.org/wiki/Ground_state)
-  total energies.
+  One of the reasons for the positive results could rest on the fact that the relevant quantities are nearly always differences of electronic
+  [ground-state](https://en.wikipedia.org/wiki/Ground_state) total energies:
+  the difference in energies of different crystal structures, the variation of energy for as a function of volume (or pressure),
+  perturbations such as phonons, etc.
   The success of the calculations might indicate that, for the systems treated,
-  a significant part of the error caused by the LDA approximation
-  is in fact *systematic* and therefore largely cancelled when calculating **total energy differences**.
+  a significant part of the error caused by the LDA approximation is largely cancelled when calculating total energy differences.
 
 * The code uses a combination of
   [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
   with [plane-wave](https://en.wikipedia.org/wiki/Plane_wave)
   expansion of crystal wavefunctions according to 
-  [Bloch's theorem](https://en.wikipedia.org/wiki/Bloch%27s_theorem)
-  which enabled accurate solutions of the electronic
-  [ground-state](https://en.wikipedia.org/wiki/Ground_state) and obtaining its *Total Energy*.
+  [Bloch's theorem](https://en.wikipedia.org/wiki/Bloch%27s_theorem).
 
 * Since plane-wave basis functions do not depend explicitly upon atomic coordinates,
   it becomes possible to displace atomic nuclei by smaller or larger distances from initial configurations
@@ -74,13 +65,13 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   wave-functions.
   This enabled the first-principles calculations of individual
   [phonon](https://en.wikipedia.org/wiki/Phonon)
-  frequencies (thereby establishing the **Frozen phonon method**) as well as entire phonon dispersion curves.
+  frequencies (and inventing the well-known **Frozen phonon method**) as well as entire phonon dispersion curves.
 
 * Similarly, it became possible to calculate many physical properties including:
 
-  - Having the forces on atoms available enabled relaxation of atomic coordiates, for example,
+  - Availability of forces on atoms available enabled relaxation of atomic coordiates, for example,
     for optimizing equilibrium structures,
-  - *Equation of State* (EOS) E(V),
+  - *Equation of State* (EOS) E(V) and P(V),
   - Crystal stability and pressure-induced phase transitions,
   - *Stress-strain relations* enabling unit cell volume and shape optimization,
   - Calculation of [elastic constants](https://en.wikipedia.org/wiki/Elastic_modulus), and
@@ -94,7 +85,12 @@ Minimization of the *Total Energy* for obtaining crystal structures etc.
 using various optimization algorithms was to some extent a hand-held process at the time
 where computers were orders of magnitude slower than today.
 
-Author of this project: [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>).
+Authors of this project:
+
+* [Ole Holm Nielsen](https://dcwww.fysik.dtu.dk/~ohnielse/) (<Ole.H.Nielsen@fysik.dtu.dk>),
+* [Karel Kunc](http://www-ext.impmc.upmc.fr/~kunc/) (<krl.kunc@gmail.com>), and
+* [Richard M. Martin](https://people.physics.illinois.edu/rmartin/) (<rmartin@illinois.edu>)
+
 
 Project homepage: https://github.com/OleHolmNielsen/XeroxPARC-DFT/
 
@@ -122,13 +118,14 @@ changed the way we maintain computer codes.
 Publications
 ------------------
 
+As is well-known, DFT calculations have become a sprawling scientific endeavour in numerous fields of science,
+using up large amounts of supercomputer time world-wide,
+and currently thousands of papers based on DFT calculations are being published every year.
+
 Richard Martin's book
 [Electronic Structure: Basic Theory and Practical Methods, 2nd Edition](https://www.cambridge.org/dk/universitypress/subjects/physics/condensed-matter-physics-nanoscience-and-mesoscopic-physics/electronic-structure-basic-theory-and-practical-methods-2nd-edition)
 constitutes an authoritative overview of the field up to 2020,
 covering also historical methods.
-
-As is well-known, DFT calculations have become a sprawling scientific endeavour in numerous fields of science,
-and they occupy large amounts of supercomputer time world-wide.
 
 A modern summary of numerous successful approximations to DFT is presented in
 Chapter 2.4 *How Good Is DFT for Calculation of Structures?* of
@@ -318,6 +315,7 @@ calculations of *Total Energy*, *Forces*, and *Stresses* within the LDA using
 [pseudopotentials](https://en.wikipedia.org/wiki/Density_functional_theory#Pseudo-potentials)
 in a [plane-wave](https://en.wikipedia.org/wiki/Plane_wave) basis set.
 
+Naming:
 During this time period it was not common to assign names or acronyms to sets of computer codes.
 The present code modules happen to be named as *K* (for *Kunc*) plus a running number.
 The code module name *K207* was adopted by adding 100 to *K107* when Ole Holm Nielsen
@@ -357,7 +355,7 @@ You can download a copy of the code from the [GitHub](https://en.wikipedia.org/w
 repository [main page](https://github.com/OleHolmNielsen/XeroxPARC-DFT/tree/main) 
 by clicking on the green ``<> Code`` button near the top.
 If you have installed the [git command](https://www.kernel.org/pub/software/scm/git/docs/git-clone.html)
-the download is simply:
+as indicated below, the download is a simple command:
 ```
 git clone https://github.com/OleHolmNielsen/XeroxPARC-DFT.git
 ```
