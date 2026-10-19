@@ -56,7 +56,7 @@ The groundbreaking contributions of the present work to the field of DFT calcula
   expansion of crystal wavefunctions according to 
   [Bloch's theorem](https://en.wikipedia.org/wiki/Bloch%27s_theorem).
 
-* Since plane-wave basis functions do not depend explicitly upon atomic coordinates,
+  Since plane-wave basis functions do not depend explicitly upon atomic coordinates,
   it becomes possible to displace atomic nuclei by smaller or larger distances from initial configurations
   and calculate very accurately the atomic 
   [Hellmann-Feynman forces](https://en.wikipedia.org/wiki/Hellmann%E2%80%93Feynman_theorem)
